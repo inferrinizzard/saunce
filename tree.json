@@ -1,0 +1,228 @@
+{
+	"mothers": [
+		{
+			"name": "velouté",
+			"ingredients": [],
+			"daughters": [
+				{
+					"name": "velouté de volaille",
+					"ingredients": [],
+					"daughters": [
+						{ "name": "suprème", "ingredients": [], "daughters": [] },
+						{ "name": "ivoire", "ingredients": [], "daughters": [] },
+						{ "name": "albuféra", "ingredients": [], "daughters": [] },
+						{ "name": "chivry", "ingredients": [], "daughters": [] }
+					]
+				},
+				{
+					"name": "velouté de veau",
+					"ingredients": [],
+					"daughters": [
+						{
+							"name": "allemande",
+							"ingredients": [],
+							"daughters": [{ "name": "poulette", "ingredients": [], "daughters": [] }]
+						},
+						{ "name": "villeroy", "ingredients": [], "daughters": [] },
+						{ "name": "poulette", "ingredients": [], "daughters": [] },
+						{ "name": "villageoise", "ingredients": [], "daughters": [] }
+					]
+				},
+				{
+					"name": "velouté de poisson",
+					"ingredients": [],
+					"daughters": [
+						{ "name": "nantua", "ingredients": [], "daughters": [] },
+						{
+							"name": "normande",
+							"ingredients": [],
+							"daughters": [
+								{ "name": "anchois", "ingredients": [], "daughters": [] },
+								{
+									"name": "diplomate",
+									"ingredients": [],
+									"daughters": [{ "name": "riche", "ingredients": [], "daughters": [] }]
+								},
+								{ "name": "joinville", "ingredients": [], "daughters": [] },
+								{ "name": "véron", "ingredients": [], "daughters": [] }
+							]
+						},
+						{
+							"name": "bercy",
+							"ingredients": [],
+							"daughters": [{ "name": "marinière", "ingredients": [], "daughters": [] }]
+						},
+						{ "name": "vénitienne", "ingredients": [], "daughters": [] },
+						{
+							"name": "américaine",
+							"ingredients": [],
+							"daughters": [{ "name": "orientale", "ingredients": [], "daughters": [] }]
+						},
+						{ "name": "l'aurore", "ingredients": [], "daughters": [] },
+						{ "name": "bretonne", "ingredients": [], "daughters": [] },
+						{ "name": "crevettes", "ingredients": [], "daughters": [] },
+						{
+							"name": "homard",
+							"ingredients": [],
+							"daughters": [{ "name": "victoria", "ingredients": [], "daughters": [] }]
+						},
+						{
+							"name": "vin blanc",
+							"ingredients": [],
+							"daughters": [{ "name": "saint-malo", "ingredients": [], "daughters": [] }]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "tomate",
+			"ingredients": [],
+			"daughters": [
+				{ "name": "bolognaise", "ingredients": [], "daughters": [] },
+				{ "name": "portugaise", "ingredients": [], "daughters": [] },
+				{ "name": "milanaise", "ingredients": [], "daughters": [] },
+				{ "name": "hachée", "ingredients": [], "daughters": [] }
+			]
+		},
+		{
+			"name": "béchamel",
+			"ingredients": [],
+			"daughters": [
+				{
+					"name": "crème",
+					"ingredients": [],
+					"daughters": [{ "name": "écossaise", "ingredients": [], "daughters": [] }]
+				},
+				{ "name": "mornay", "ingredients": [], "daughters": [] },
+				{ "name": "soubise", "ingredients": [], "daughters": [] },
+				{ "name": "cardinal", "ingredients": [], "daughters": [] },
+				{ "name": "crevettes", "ingredients": [], "daughters": [] },
+				{ "name": "moutarde", "ingredients": [], "daughters": [] }
+			]
+		},
+		{
+			"name": "espagnole",
+			"ingredients": [],
+			"daughters": [
+				{
+					"name": "demi-glace",
+					"ingredients": [],
+					"daughters": [
+						{
+							"name": "bordelaise",
+							"ingredients": [],
+							"daughters": [{ "name": "rouennaise", "ingredients": [], "daughters": [] }]
+						},
+						{
+							"name": "poivrade",
+							"ingredients": [],
+							"daughters": [
+								{ "name": "chevreuil", "ingredients": [], "daughters": [] },
+								{ "name": "diane", "ingredients": [], "daughters": [] },
+								{ "name": "moscovite", "ingredients": [], "daughters": [] },
+								{ "name": "venaison", "ingredients": [], "daughters": [] }
+							]
+						},
+						{ "name": "grand-veneur", "ingredients": [], "daughters": [] },
+						{ "name": "bigarrade", "ingredients": [], "daughters": [] },
+						{ "name": "lyonnaise", "ingredients": [], "daughters": [] },
+						{
+							"name": "robert",
+							"ingredients": [],
+							"daughters": [{ "name": "charcutière", "ingredients": [], "daughters": [] }]
+						},
+						{ "name": "diable", "ingredients": [], "daughters": [] },
+						{ "name": "champignons", "ingredients": [], "daughters": [] },
+						{ "name": "chaudfroid", "ingredients": [], "daughters": [] },
+						{ "name": "duxelles", "ingredients": [], "daughters": [] },
+						{ "name": "estragon", "ingredients": [], "daughters": [] },
+						{ "name": "financière", "ingredients": [], "daughters": [] },
+						{ "name": "godard", "ingredients": [], "daughters": [] },
+						{ "name": "gratin", "ingredients": [], "daughters": [] },
+						{ "name": "italienne", "ingredients": [], "daughters": [] },
+						{ "name": "madère", "ingredients": [], "daughters": [] },
+						{ "name": "moelle", "ingredients": [], "daughters": [] },
+						{ "name": "périgueux", "ingredients": [], "daughters": [] },
+						{ "name": "périgourdine", "ingredients": [], "daughters": [] },
+						{ "name": "porto", "ingredients": [], "daughters": [] },
+						{ "name": "régence", "ingredients": [], "daughters": [] },
+						{ "name": "salmis", "ingredients": [], "daughters": [] },
+						{ "name": "tortue", "ingredients": [], "daughters": [] }
+					]
+				},
+				{
+					"name": "bercy",
+					"ingredients": [],
+					"daughters": [{ "name": "marinière", "ingredients": [], "daughters": [] }]
+				},
+				{ "name": "bourguignonne", "ingredients": [], "daughters": [] },
+				{ "name": "chasseur", "ingredients": [], "daughters": [] },
+				{ "name": "africaine", "ingredients": [], "daughters": [] },
+				{ "name": "génevoise", "ingredients": [], "daughters": [] },
+				{ "name": "gratin", "ingredients": [], "daughters": [] },
+				{ "name": "hachée", "ingredients": [], "daughters": [] },
+				{ "name": "la vallière", "ingredients": [], "daughters": [] },
+				{ "name": "matelote", "ingredients": [], "daughters": [] },
+				{ "name": "piquante", "ingredients": [], "daughters": [] },
+				{ "name": "romaine", "ingredients": [], "daughters": [] }
+			]
+		},
+		{
+			"name": "emulsions",
+			"ingredients": [],
+			"daughters": [
+				{
+					"name": "hollandaise",
+					"ingredients": [],
+					"daughters": [
+						{
+							"name": "béarnaise",
+							"ingredients": [],
+							"daughters": [
+								{ "name": "choron", "ingredients": [], "daughters": [] },
+								{ "name": "paloise", "ingredients": [], "daughters": [] },
+								{
+									"name": "foyot",
+									"ingredients": [],
+									"daughters": [{ "name": "colbert", "ingredients": [], "daughters": [] }]
+								},
+								{ "name": "beauharnais", "ingredients": [], "daughters": [] },
+								{
+									"name": "tyrolienne",
+									"ingredients": [],
+									"daughters": [{ "name": "véron", "ingredients": [], "daughters": [] }]
+								}
+							]
+						},
+						{ "name": "maltaise", "ingredients": [], "daughters": [] },
+						{ "name": "bavaroise", "ingredients": [], "daughters": [] },
+						{ "name": "noisette", "ingredients": [], "daughters": [] },
+						{ "name": "chantilly", "ingredients": [], "daughters": [] }
+					]
+				},
+				{
+					"name": "mayonnaise",
+					"ingredients": [],
+					"daughters": [{ "name": "rémoulade", "ingredients": [], "daughters": [] }]
+				}
+			]
+		}
+	],
+	"misc": [
+		{
+			"name": "vinaigrette",
+			"ingredients": [],
+			"daughters": [{ "name": "ravigote", "ingredients": [], "daughters": [] }]
+		},
+		{
+			"name": "beurre",
+			"ingredients": [],
+			"daughters": [
+				{ "name": "câpres", "ingredients": [], "daughters": [] },
+				{ "name": "groseilles", "ingredients": [], "daughters": [] },
+				{ "name": "laguipierre", "ingredients": [], "daughters": [] }
+			]
+		}
+	]
+}
