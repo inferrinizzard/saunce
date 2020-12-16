@@ -98,7 +98,8 @@
 				{ "name": "soubise", "ingredients": [], "daughters": [] },
 				{ "name": "cardinal", "ingredients": [], "daughters": [] },
 				{ "name": "crevettes", "ingredients": [], "daughters": [] },
-				{ "name": "moutarde", "ingredients": [], "daughters": [] }
+				{ "name": "moutarde", "ingredients": [], "daughters": [] },
+				{ "name": "bohémienne", "ingredients": [], "daughters": [] }
 			]
 		},
 		{
@@ -198,13 +199,25 @@
 						{ "name": "maltaise", "ingredients": [], "daughters": [] },
 						{ "name": "bavaroise", "ingredients": [], "daughters": [] },
 						{ "name": "noisette", "ingredients": [], "daughters": [] },
-						{ "name": "chantilly", "ingredients": [], "daughters": [] }
+						{ "name": "mousseline", "ingredients": [], "daughters": [] }
 					]
 				},
 				{
 					"name": "mayonnaise",
 					"ingredients": [],
-					"daughters": [{ "name": "rémoulade", "ingredients": [], "daughters": [] }]
+					"daughters": [
+						{ "name": "gribiche", "ingredients": [], "daughters": [] },
+						{ "name": "rémoulade", "ingredients": [], "daughters": [] },
+						{ "name": "aïoli", "ingredients": [], "daughters": [] },
+						{ "name": "andalouse", "ingredients": [], "daughters": [] },
+						{ "name": "chantilly", "ingredients": [], "daughters": [] },
+						{ "name": "mousquetaire", "ingredients": [], "daughters": [] },
+						{ "name": "russe", "ingredients": [], "daughters": [] },
+						{ "name": "tartare", "ingredients": [], "daughters": [] },
+						{ "name": "verte", "ingredients": [], "daughters": [] },
+						{ "name": "vincent", "ingredients": [], "daughters": [] },
+						{ "name": "suédoise", "ingredients": [], "daughters": [] }
+					]
 				}
 			]
 		}

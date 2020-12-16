@@ -40,7 +40,7 @@
 		{
 			"name": "béchamel",
 			"ingredients": [],
-			"daughters": ["crème", "mornay", "soubise", "cardinal", "crevettes", "moutarde"]
+			"daughters": ["crème", "mornay", "soubise", "cardinal", "crevettes", "moutarde", "bohémienne"]
 		},
 		{
 			"name": "espagnole",
@@ -67,9 +67,25 @@
 				{
 					"name": "hollandaise",
 					"ingredients": [],
-					"daughters": ["béarnaise", "maltaise", "bavaroise", "noisette", "chantilly"]
+					"daughters": ["béarnaise", "maltaise", "bavaroise", "noisette", "mousseline"]
 				},
-				{ "name": "mayonnaise", "ingredients": [], "daughters": ["rémoulade"] }
+				{
+					"name": "mayonnaise",
+					"ingredients": [],
+					"daughters": [
+						"gribiche",
+						"rémoulade",
+						"aïoli",
+						"andalouse",
+						"chantilly",
+						"mousquetaire",
+						"russe",
+						"tartare",
+						"verte",
+						"vincent",
+						"suédoise"
+					]
+				}
 			]
 		}
 	],
@@ -190,7 +206,7 @@
 		{ "name": "bonnefoy", "ingredients": [], "daughters": [] },
 		{ "name": "canotière", "ingredients": [], "daughters": [] },
 		{ "name": "câpres", "ingredients": [], "daughters": [] },
-		{ "name": "chantilly", "ingredients": [], "daughters": [] },
+		{ "name": "mousseline", "ingredients": [], "daughters": [] },
 		{ "name": "châteaubriand", "ingredients": [], "daughters": [] },
 		{ "name": "chivry", "ingredients": [], "daughters": [] },
 		{ "name": "crevettes", "ingredients": [], "daughters": [] },
@@ -217,7 +233,18 @@
 		{ "name": "véron", "ingredients": [], "daughters": [] },
 		{ "name": "victoria", "ingredients": [], "daughters": [] },
 		{ "name": "villageoise", "ingredients": [], "daughters": [] },
-		{ "name": "vin blanc", "ingredients": [], "daughters": ["saint-malo"] }
+		{ "name": "vin blanc", "ingredients": [], "daughters": ["saint-malo"] },
+		{ "name": "aïoli", "ingredients": [], "daughters": [] },
+		{ "name": "andalouse", "ingredients": [], "daughters": [] },
+		{ "name": "bohémienne", "ingredients": [], "daughters": [] },
+		{ "name": "chantilly", "ingredients": [], "daughters": [] },
+		{ "name": "génoise", "ingredients": [], "daughters": [] },
+		{ "name": "mousquetaire", "ingredients": [], "daughters": [] },
+		{ "name": "russe", "ingredients": [], "daughters": [] },
+		{ "name": "tartare", "ingredients": [], "daughters": [] },
+		{ "name": "verte", "ingredients": [], "daughters": [] },
+		{ "name": "vincent", "ingredients": [], "daughters": [] },
+		{ "name": "suédoise", "ingredients": [], "daughters": [] }
 	],
 	"misc": [
 		{ "name": "vinaigrette", "ingredients": [], "daughters": ["ravigote"] },
