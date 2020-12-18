@@ -1,0 +1,39 @@
+{
+	"devDependencies": {
+		"@types/react": "^17.0.0",
+		"pre-commit": "^1.2.2"
+	},
+	"dependencies": {
+		"gatsby": "^2.29.1",
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
+		"typescript": "^4.1.3"
+	},
+	"name": "saunce",
+	"version": "0.0.1",
+	"main": "index.js",
+	"repository": "https://github.com/inferrinizzard/saunce.git",
+	"author": "inferrinizzard <inferrinizzard@gmail.com>",
+	"license": "MIT",
+	"config": {
+		"port": "8080"
+	},
+	"scripts": {
+		"build": "start http://localhost:8080 && gatsby build -p 8080",
+		"start": "start http://localhost:8080 && gatsby develop -p 8080",
+		"fmt": "prettier --write src/**"
+	},
+	"pre-commit": [
+		"fmt"
+	],
+	"prettier": {
+		"printWidth": 100,
+		"jsxBracketSameLine": true,
+		"trailingComma": "es5",
+		"useTabs": true,
+		"arrowParens": "avoid",
+		"singleQuote": true,
+		"semi": true,
+		"quoteProps": "consistent"
+	}
+}
