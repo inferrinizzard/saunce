@@ -1,5 +1,8 @@
-import React from 'react';
+import * as React from 'react';
+import { render } from 'react-dom';
+// import './index.css';
 
-export default function Home() {
-	return <h1>Hello Gatsby!</h1>;
-}
+import App from './App';
+
+const root = document.querySelector('body');
+render(<App />, root);
