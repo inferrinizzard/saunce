@@ -1,5 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import Overlay from './Overlay';
+import Main from './Main';
 
 export default function App() {
-	return <h1>Hello Gatsby!</h1>;
+	return (
+		<div>
+			<h1>Hello World!</h1>
+			<Overlay />
+			<Main />
+		</div>
+	);
 }
