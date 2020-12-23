@@ -1,18 +1,28 @@
 import _styled, { AnyStyledComponent } from 'styled-components';
 
-type StyledProps = {};
+interface StyledProps {
+	[key: string]: any;
+}
+type StyledPropFunc = (p: StyledProps) => string;
 
-export const styled = (Element: AnyStyledComponent) => (props: StyledProps) => (
+export const styled = (
+	Element: AnyStyledComponent | keyof JSX.IntrinsicElements | React.ComponentType<any>
+) => (staticProps: StyledProps) => (
 	[head, ...tail]: TemplateStringsArray,
-	...tags: (keyof StyledProps | ((p: StyledProps) => string))[]
+	...tags: (keyof StyledProps | StyledPropFunc)[]
 ) =>
-	_styled(Element)`${tail.reduce(
-		(acc, curr, i) =>
-			acc +
-			(tags[i].toString() in props ? props[tags[i] as keyof StyledProps] : tags[i](props)) +
-			curr,
-		head
-	)}`;
+	_styled(Element)<StyledProps>((componentProps: StyledProps) =>
+		((props: StyledProps) =>
+			`${tail.reduce(
+				(acc, curr, i) =>
+					acc +
+					(tags[i].toString() in props
+						? props[tags[i] as keyof StyledProps]
+						: (tags[i] as StyledPropFunc)(props)) +
+					curr,
+				head
+			)}`)({ ...staticProps, ...componentProps })
+	);
 
 export const styledStrings = (Element: AnyStyledComponent) => (props: StyledProps) => (
 	[head, ...tail]: TemplateStringsArray,

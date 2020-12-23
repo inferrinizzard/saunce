@@ -1,14 +1,24 @@
 import React from 'react';
-import styled from 'styled-components';
+import pureStyled from 'styled-components';
+import { styled } from './Styled';
 
-const StyledCard = styled.div``;
+const StyledCard = pureStyled.div``;
 
-const StyledBar = styled.hr``;
+const StyledBar = pureStyled.hr``;
+
+let Test = styled(StyledCard)({ red: '#ff0000' })`
+	color: ${'red'};
+	background-color: ${p => p.blue};
+`;
 
 export interface CardProps {}
 
 const Card: React.SFC<CardProps> = () => {
-	return <div></div>;
+	return (
+		<div>
+			<Test blue="#00f">styled</Test>
+		</div>
+	);
 };
 
 export default Card;
