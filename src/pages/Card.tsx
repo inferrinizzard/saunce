@@ -1,23 +1,54 @@
 import React from 'react';
-import pureStyled from 'styled-components';
-import { styled } from './Styled';
 
-const StyledCard = pureStyled.div``;
+import styled from './Styled';
+import { lighten } from 'polished';
 
-const StyledBar = pureStyled.hr``;
+let StyledCard = styled('div')({ height: 250 })`
+	display: block;
+	height: ${p => p.height}px;
+	width: ${p => 1.618 * p.height}px;
+	background-color: ${p => p.theme.offwhite};
 
-let Test = styled(StyledCard)({ red: '#ff0000' })`
-	color: ${'red'};
-	background-color: ${p => p.blue};
+	border-radius: 20px;
+	box-shadow: 20px 20px 0px 0px ${p => lighten(0.05, p.accentColour)};
+
+	div {
+		padding: 20px;
+		
+		h1 {
+			margin: 0;
+			font-size: ${p => p.height / 6}px;
+		}
+
+		hr {
+			height: 3px;
+			border: none;
+			background-color: ${'accentColour'}
+		}
+
+		.ingredient {
+			
+		}
+	}
+
 `;
 
-export interface CardProps {}
+export interface CardProps {
+	name: string;
+	ingredients: string[];
+}
 
-const Card: React.SFC<CardProps> = () => {
+const Card: React.SFC<CardProps> = ({ name, ingredients }) => {
 	return (
-		<div>
-			<Test blue="#00f">styled</Test>
-		</div>
+		<StyledCard accentColour="salmon">
+			<div className="card-content">
+				<h1>{name}</h1>
+				<hr />
+				{ingredients.map((i, k) => (
+					<div key={k} className="ingredient" />
+				))}
+			</div>
+		</StyledCard>
 	);
 };
 

@@ -8,7 +8,7 @@ export interface MainProps {}
 const Main: React.SFC<MainProps> = () => {
 	return (
 		<div>
-			<Card />
+			<Card name="Sauce Velouté de Volaille" ingredients={[]} />
 		</div>
 	);
 };
