@@ -3,6 +3,9 @@ import React from 'react';
 import styled from './Styled';
 import { lighten } from 'polished';
 
+import sauces from '../data/sauce.json';
+import Ingredient, { IngredientName } from './Ingredient';
+
 let StyledCard = styled('div')({ height: 250 })`
 	display: block;
 	height: ${p => p.height}px;
@@ -34,18 +37,19 @@ let StyledCard = styled('div')({ height: 250 })`
 `;
 
 export interface CardProps {
-	name: string;
-	ingredients: string[];
+	name: keyof typeof sauces;
 }
 
-const Card: React.SFC<CardProps> = ({ name, ingredients }) => {
+const Card: React.SFC<CardProps> = ({ name }) => {
+	const sauce = sauces[name];
 	return (
 		<StyledCard accentColour="salmon">
 			<div className="card-content">
-				<h1>{name}</h1>
+				<h1>{sauce.nom}</h1>
 				<hr />
-				{ingredients.map((i, k) => (
-					<div key={k} className="ingredient" />
+				{/* {sauce.ingredients.map((i, k) => ( */}
+				{(sauce.ingredients as string[]).map((i, k) => (
+					<Ingredient key={k} name={i as IngredientName} colour={'#fb968b'} />
 				))}
 			</div>
 		</StyledCard>

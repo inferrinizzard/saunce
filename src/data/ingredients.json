@@ -1,0 +1,31 @@
+{
+	"list": {
+		"fish": { "url": "https://www.svgrepo.com/show/44529/fish.svg" },
+		"garlic": { "url": "https://www.svgrepo.com/show/2206/onion.svg" },
+		"lemon": { "url": "https://www.svgrepo.com/show/108620/lemon.svg" },
+		"wine": { "url": "https://www.svgrepo.com/show/5875/glass.svg" },
+		"cheese": { "url": "https://www.svgrepo.com/show/8487/cheese.svg" },
+		"chicken": { "url": "https://www.svgrepo.com/show/14826/meat.svg" },
+		"meat": { "url": "https://www.svgrepo.com/show/40001/steak.svg" },
+		"tomato": { "url": "https://www.svgrepo.com/show/53000/tomato.svg" },
+		"egg": { "url": "https://www.svgrepo.com/show/61470/eggs.svg" },
+		"onion": { "url": "https://www.svgrepo.com/show/89154/onion.svg" },
+		"milk": { "url": "https://www.svgrepo.com/show/108604/milk.svg" },
+		"flour": { "url": "https://www.svgrepo.com/show/131085/flour.svg" },
+		"pepper": { "url": "https://www.svgrepo.com/show/128323/pepper.svg" },
+		"shrimp": { "url": "https://www.svgrepo.com/show/129124/shrimp.svg" },
+		"oil": { "url": "https://www.svgrepo.com/show/57454/oil.svg" },
+		"mushroom": { "url": "https://www.svgrepo.com/show/81188/mushroom.svg" },
+		"carrot": { "url": "https://www.svgrepo.com/show/23337/carrot.svg" },
+		"butter": { "url": "https://www.svgrepo.com/show/103424/butter.svg" }
+	},
+	"categories": {
+		"fond": ["fond blanc", "fond brun", "fond lié"],
+		"roux": ["roux blanc", "roux brun"],
+		"mirepoix": ["oignon", "carotte", "céleri"],
+		"lait": ["lait", "beurre", "crème"],
+		"légumes": ["tomate"],
+		"herbes": [],
+		"misc": []
+	}
+}
