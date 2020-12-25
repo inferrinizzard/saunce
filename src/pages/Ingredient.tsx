@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from './Styled';
 
-import { SolveColour } from './Color';
+import ShiftColour from './Color';
 
 import { list as ingredientsList } from '../data/ingredients.json';
 // const ingredientsList = ingredients.list;
@@ -13,7 +13,7 @@ export interface IngredientProps {
 }
 
 const IngredientIcon = styled('img')({ pad: 10 })`
-	${p => SolveColour(p.colour)}
+	${p => ShiftColour(p.colour)}
 	padding: ${'pad'}px;
 `;
 

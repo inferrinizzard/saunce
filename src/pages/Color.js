@@ -9,15 +9,11 @@ class Color {
 		this.set(r, g, b);
 	}
 
-	toString() {
-		return `rgb(${Math.round(this.r)}, ${Math.round(this.g)}, ${Math.round(this.b)})`;
-	}
+	triple = () => [this.r, this.g, this.b];
 
-	set(r, g, b) {
-		this.r = this.clamp(r);
-		this.g = this.clamp(g);
-		this.b = this.clamp(b);
-	}
+	toString = () => `rgb(${Math.round(this.r)}, ${Math.round(this.g)}, ${Math.round(this.b)})`;
+
+	set = (r, g, b) => ([this.r, this.g, this.b] = [r, g, b].map(x => this.clamp(x)));
 
 	hueRotate(angle = 0) {
 		angle = (angle / 180) * Math.PI;
@@ -79,39 +75,21 @@ class Color {
 		]);
 	}
 
-	multiply(matrix) {
-		const newR = this.clamp(this.r * matrix[0] + this.g * matrix[1] + this.b * matrix[2]);
-		const newG = this.clamp(this.r * matrix[3] + this.g * matrix[4] + this.b * matrix[5]);
-		const newB = this.clamp(this.r * matrix[6] + this.g * matrix[7] + this.b * matrix[8]);
-		this.r = newR;
-		this.g = newG;
-		this.b = newB;
-	}
+	multiply = matrix =>
+		this.set(...[0, 3, 6].map(j => this.triple().reduce((a, x, i) => a + x * matrix[i + j], 0)));
 
-	brightness(value = 1) {
-		this.linear(value);
-	}
-	contrast(value = 1) {
-		this.linear(value, -(0.5 * value) + 0.5);
-	}
+	brightness = (value = 1) => this.linear(value);
+	contrast = (value = 1) => this.linear(value, -(0.5 * value) + 0.5);
 
-	linear(slope = 1, intercept = 0) {
-		this.r = this.clamp(this.r * slope + intercept * 255);
-		this.g = this.clamp(this.g * slope + intercept * 255);
-		this.b = this.clamp(this.b * slope + intercept * 255);
-	}
+	linear = (slope = 1, intercept = 0) =>
+		this.set(...this.triple().map(x => x * slope + intercept * 255));
 
-	invert(value = 1) {
-		this.r = this.clamp((value + (this.r / 255) * (1 - 2 * value)) * 255);
-		this.g = this.clamp((value + (this.g / 255) * (1 - 2 * value)) * 255);
-		this.b = this.clamp((value + (this.b / 255) * (1 - 2 * value)) * 255);
-	}
+	invert = (value = 1) =>
+		this.set(...this.triple().map(x => (value + (x / 255) * (1 - 2 * value)) * 255));
 
 	hsl() {
 		// Code taken from https://stackoverflow.com/a/9493060/2688027, licensed under CC BY-SA.
-		const r = this.r / 255;
-		const g = this.g / 255;
-		const b = this.b / 255;
+		const [r, g, b] = this.triple().map(x => x / 255);
 		const max = Math.max(r, g, b);
 		const min = Math.min(r, g, b);
 		let h,
@@ -141,21 +119,11 @@ class Color {
 			h /= 6;
 		}
 
-		return {
-			h: h * 100,
-			s: s * 100,
-			l: l * 100,
-		};
+		[h, s, l] = [h, s, l].map(x => x * 100);
+		return { h, s, l };
 	}
 
-	clamp(value) {
-		if (value > 255) {
-			value = 255;
-		} else if (value < 0) {
-			value = 0;
-		}
-		return value;
-	}
+	clamp = value => (value > 255 && 255) || (value < 0 && 0) || value;
 }
 
 class Solver {
@@ -183,9 +151,7 @@ class Solver {
 		for (let i = 0; best.loss > 25 && i < 3; i++) {
 			const initial = [50, 20, 3750, 50, 100, 100];
 			const result = this.spsa(A, a, c, initial, 1000);
-			if (result.loss < best.loss) {
-				best = result;
-			}
+			if (result.loss < best.loss) best = result;
 		}
 		return best;
 	}
@@ -204,9 +170,7 @@ class Solver {
 
 		let best = null;
 		let bestLoss = Infinity;
-		const deltas = new Array(6);
-		const highArgs = new Array(6);
-		const lowArgs = new Array(6);
+		const [deltas, highArgs, lowArgs] = [0, 0, 0].map(_ => new Array(6));
 
 		for (let k = 0; k < iters; k++) {
 			const ck = c / Math.pow(k + 1, gamma);
@@ -232,25 +196,12 @@ class Solver {
 		return { values: best, loss: bestLoss };
 
 		function fix(value, idx) {
-			let max = 100;
-			if (idx === 2 /* saturate */) {
-				max = 7500;
-			} else if (idx === 4 /* brightness */ || idx === 5 /* contrast */) {
-				max = 200;
-			}
-
-			if (idx === 3 /* hue-rotate */) {
-				if (value > max) {
-					value %= max;
-				} else if (value < 0) {
-					value = max + (value % max);
-				}
-			} else if (value < 0) {
-				value = 0;
-			} else if (value > max) {
-				value = max;
-			}
-			return value;
+			let max = { 2: 7500, 4: 200, 5: 200 }[idx] || 100;
+			return (
+				(value > max && max) ||
+				(value < 0 && (value = idx === 3 ? max + (value % max) : 0)) ||
+				value
+			);
 		}
 	}
 
@@ -277,58 +228,23 @@ class Solver {
 		);
 	}
 
-	css(filters) {
-		function fmt(idx, multiplier = 1) {
-			return Math.round(filters[idx] * multiplier);
-		}
-		return `filter: invert(${fmt(0)}%) sepia(${fmt(1)}%) saturate(${fmt(2)}%) hue-rotate(${fmt(
-			3,
-			3.6
-		)}deg) brightness(${fmt(4)}%) contrast(${fmt(5)}%);`;
-	}
+	css = filters =>
+		['invert', 'sepia', 'saturate', 'hue-rotate', 'brightness', 'contrast'].reduce(
+			(acc, f, i) =>
+				` ${acc} ${f}(${Math.round(filters[i] * (i === 3 ? 3.6 : 1))}${i === 3 ? 'deg' : '%'})`,
+			'filter:'
+		) + ';';
 }
 
-function hexToRgb(hex) {
+const hexToRgb = hex => {
 	// Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
 	const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-	hex = hex.replace(shorthandRegex, (m, r, g, b) => {
-		return r + r + g + g + b + b;
-	});
+	hex = hex.replace(shorthandRegex, (m, ...colour) => colour.reduce((a, x) => a + x + x, ''));
 
 	const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-	return result
-		? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
-		: null;
-}
+	return result ? result.slice(1).map(x => parseInt(x, 16)) : null;
+};
 
-export const SolveColour = colour => new Solver(new Color(...hexToRgb(colour))).solve().filter;
+const ShiftColour = colour => new Solver(new Color(...hexToRgb(colour))).solve().filter;
 
-// $(document).ready(() => {
-// 	$('button.execute').click(() => {
-// 		const rgb = hexToRgb($('input.target').val());
-// 		if (rgb.length !== 3) {
-// 			alert('Invalid format!');
-// 			return;
-// 		}
-
-// 		const color = new Color(rgb[0], rgb[1], rgb[2]);
-// 		const solver = new Solver(color);
-// 		const result = solver.solve();
-
-// 		let lossMsg;
-// 		if (result.loss < 1) {
-// 			lossMsg = 'This is a perfect result.';
-// 		} else if (result.loss < 5) {
-// 			lossMsg = 'The is close enough.';
-// 		} else if (result.loss < 15) {
-// 			lossMsg = 'The color is somewhat off. Consider running it again.';
-// 		} else {
-// 			lossMsg = 'The color is extremely off. Run it again!';
-// 		}
-
-// 		$('.realPixel').css('background-color', color.toString());
-// 		$('.filterPixel').attr('style', result.filter);
-// 		$('.filterDetail').text(result.filter);
-// 		$('.lossDetail').html(`Loss: ${result.loss.toFixed(1)}. <b>${lossMsg}</b>`);
-// 	});
-// });
+export default ShiftColour;
