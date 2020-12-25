@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styled from './Styled';
+import styled from '../util/Styled';
 import { lighten } from 'polished';
 
 import sauces from '../data/sauce.json';

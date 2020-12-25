@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from './Styled';
+import styled from '../util/Styled';
 
-import ShiftColour from './Color';
+import ShiftColour from '../util/ColorShift';
 
 import { list as ingredientsList } from '../data/ingredients.json';
 // const ingredientsList = ingredients.list;

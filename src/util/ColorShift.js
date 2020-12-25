@@ -92,9 +92,8 @@ class Color {
 		const [r, g, b] = this.triple().map(x => x / 255);
 		const max = Math.max(r, g, b);
 		const min = Math.min(r, g, b);
-		let h,
-			s,
-			l = (max + min) / 2;
+		let h, s, l;
+		l = (max + min) / 2;
 
 		if (max === min) {
 			h = s = 0;
@@ -245,6 +244,11 @@ const hexToRgb = hex => {
 	return result ? result.slice(1).map(x => parseInt(x, 16)) : null;
 };
 
-const ShiftColour = colour => new Solver(new Color(...hexToRgb(colour))).solve().filter;
+const ShiftColour = colour => {
+	let solver = new Solver(new Color(...hexToRgb(colour)));
+	let result = { loss: Infinity };
+	while (result.loss > 15) result = solver.solve();
+	return result.filter;
+};
 
 export default ShiftColour;
