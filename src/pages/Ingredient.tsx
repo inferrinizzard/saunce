@@ -1,10 +1,12 @@
 import React from 'react';
-import styled from '../util/Styled';
 
+// @ts-ignore: @bit components
+import Tooltip from '@bit/mui-org.material-ui.tooltip';
+
+import styled from '../util/Styled';
 import ShiftColour from '../util/ColorShift';
 
 import { list as ingredientsList } from '../data/ingredients.json';
-// const ingredientsList = ingredients.list;
 export type IngredientName = keyof typeof ingredientsList;
 
 export interface IngredientProps {
@@ -19,7 +21,9 @@ const IngredientIcon = styled('img')({ pad: 10 })`
 
 const Ingredient: React.FC<IngredientProps> = ({ name, colour }) => {
 	return (
-		<IngredientIcon src={ingredientsList[name].url} height="40px" width="40px" colour={colour} />
+		<Tooltip title={name[0].toUpperCase() + name.slice(1)}>
+			<IngredientIcon src={ingredientsList[name]?.url} height="50px" width="50px" colour={colour} />
+		</Tooltip>
 	);
 };
 

@@ -11,10 +11,11 @@ let StyledCard = styled('div')({ height: 250 })`
 	height: ${p => p.height}px;
 	width: ${p => 1.618 * p.height}px;
 	background-color: ${p => p.theme.offwhite};
-
+	margin: 2em;
+	
 	border-radius: 20px;
 	box-shadow: 20px 20px 0px 0px ${p => lighten(0.05, p.accentColour)};
-
+	
 	div {
 		padding: 20px;
 		
@@ -29,7 +30,6 @@ let StyledCard = styled('div')({ height: 250 })`
 			background-color: ${'accentColour'}
 		}
 	}
-
 `;
 
 export interface CardProps {

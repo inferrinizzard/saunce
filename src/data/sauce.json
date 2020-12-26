@@ -53,7 +53,7 @@
 	"gribiche": { "nom": "", "ingredients": [], "temp": "froide" },
 	"groseilles": { "nom": "", "ingredients": [] },
 	"hachée": { "nom": "", "ingredients": [] },
-	"hollandaise": { "nom": "", "ingredients": [] },
+	"hollandaise": { "nom": "Sauce Hollandaise", "ingredients": ["egg", "butter", "lemon"] },
 	"homard": { "nom": "", "ingredients": [] },
 	"hongroise": { "nom": "", "ingredients": [] },
 	"hussarde": { "nom": "", "ingredients": [] },

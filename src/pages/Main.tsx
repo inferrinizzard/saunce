@@ -9,6 +9,7 @@ const Main: React.SFC<MainProps> = () => {
 	return (
 		<div>
 			<Card name="béchamel" />
+			<Card name="hollandaise" />
 		</div>
 	);
 };

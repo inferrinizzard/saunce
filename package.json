@@ -5,6 +5,7 @@
 		"pre-commit": "^1.2.2"
 	},
 	"dependencies": {
+		"@bit/mui-org.material-ui.tooltip": "^4.9.10",
 		"gatsby": "^2.29.1",
 		"polished": "^4.0.5",
 		"react": "^17.0.1",
