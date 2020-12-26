@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { ThemeProvider } from 'styled-components';
 
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+
+import styled, { ThemeProvider } from 'styled-components';
 import '../css/main.css';
 
 import Overlay from './Overlay';
@@ -11,13 +13,29 @@ let theme = {
 	font: 'Courgette',
 };
 
+let AppHead = styled.div`
+	&,
+	> div.react-transform-component {
+		height: 100%;
+		width: 100%;
+	}
+`;
+
 export default function App() {
 	return (
-		<div>
+		<AppHead>
 			<ThemeProvider theme={theme}>
 				<Overlay />
-				<Main />
+				<TransformWrapper
+					defaultPositionX={0}
+					defaultPositionY={0}
+					wheel={{ step: 10 }}
+					options={{ minScale: 0.5, centerContent: false, limitToBounds: false }}>
+					<TransformComponent>
+						<Main />
+					</TransformComponent>
+				</TransformWrapper>
 			</ThemeProvider>
-		</div>
+		</AppHead>
 	);
 }
