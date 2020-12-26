@@ -28,10 +28,6 @@ let StyledCard = styled('div')({ height: 250 })`
 			border: none;
 			background-color: ${'accentColour'}
 		}
-
-		.ingredient {
-			
-		}
 	}
 
 `;
