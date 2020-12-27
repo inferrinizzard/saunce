@@ -20,9 +20,15 @@ const IngredientIcon = styled('img')({ pad: 10 })`
 `;
 
 const Ingredient: React.FC<IngredientProps> = ({ name, colour }) => {
+	const missing = 'https://www.svgrepo.com/show/33204/dish.svg';
 	return (
 		<Tooltip title={name[0].toUpperCase() + name.slice(1)}>
-			<IngredientIcon src={ingredientsList[name]?.url} height="50px" width="50px" colour={colour} />
+			<IngredientIcon
+				src={ingredientsList[name]?.url || missing}
+				height="50px"
+				width="50px"
+				colour={colour}
+			/>
 		</Tooltip>
 	);
 };

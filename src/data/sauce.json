@@ -36,14 +36,22 @@
 	"chivry": { "nom": "", "desc": "", "ingredients": [] },
 	"choron": { "nom": "", "desc": "", "ingredients": [] },
 	"colbert": { "nom": "", "desc": "", "ingredients": [] },
-	"crème": { "nom": "", "desc": "", "ingredients": [] },
+	"crème": {
+		"nom": "Sauce a la Crème",
+		"desc": "Sauce Béchamel + Crème + Lemon",
+		"ingredients": ["crème", "lemon"]
+	},
 	"crevettes": { "nom": "", "desc": "", "ingredients": [] },
 	"demi-glace": { "nom": "", "desc": "", "ingredients": [] },
 	"diable": { "nom": "", "desc": "", "ingredients": [] },
 	"diane": { "nom": "", "desc": "", "ingredients": [] },
 	"diplomate": { "nom": "", "desc": "", "ingredients": [] },
 	"duxelles": { "nom": "", "desc": "", "ingredients": [] },
-	"écossaise": { "nom": "", "desc": "", "ingredients": [] },
+	"écossaise": {
+		"nom": "Sauce Écossaise",
+		"desc": "Brunoise(Mirepoix, French Beans) + Bouillon + Sauce a la Crème",
+		"ingredients": ["onion", "carrot", "celery", "butter"]
+	},
 	"émulsions": { "nom": "", "desc": "", "ingredients": [] },
 	"espagnole": { "nom": "", "desc": "", "ingredients": [] },
 	"estragon": { "nom": "", "desc": "", "ingredients": [] },
@@ -79,7 +87,11 @@
 	"mayonnaise": { "nom": "", "desc": "", "ingredients": [] },
 	"milanaise": { "nom": "", "desc": "", "ingredients": [] },
 	"moelle": { "nom": "", "desc": "", "ingredients": [] },
-	"mornay": { "nom": "", "desc": "", "ingredients": [] },
+	"mornay": {
+		"nom": "Sauce Mornay",
+		"desc": "Sauce Béchamel + Gruyère",
+		"ingredients": ["cheese"]
+	},
 	"moscovite": { "nom": "", "desc": "", "ingredients": [] },
 	"mousquetaire": { "nom": "", "desc": "", "ingredients": [], "temp": "froide" },
 	"mousseline": { "nom": "", "desc": "", "ingredients": [] },
@@ -123,7 +135,11 @@
 	"velouté": { "nom": "", "desc": "", "ingredients": [] },
 	"velouté de poisson": { "nom": "", "desc": "", "ingredients": [] },
 	"velouté de veau": { "nom": "", "desc": "", "ingredients": [] },
-	"velouté de volaille": { "nom": "", "desc": "", "ingredients": [] },
+	"velouté de volaille": {
+		"nom": "Sauce Velouté de Volaille",
+		"desc": "Chicken Stock + White Roux",
+		"ingredients": ["stock", "butter", "flour"]
+	},
 	"venaison": { "nom": "", "desc": "", "ingredients": [] },
 	"vénitienne": { "nom": "", "desc": "", "ingredients": [] },
 	"véron": { "nom": "", "desc": "", "ingredients": [] },

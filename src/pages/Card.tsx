@@ -7,30 +7,34 @@ import sauces from '../data/sauce.json';
 type Sauce = { nom: string; desc: string; ingredients: string[]; temp?: string };
 import Ingredient, { IngredientName } from './Ingredient';
 
-let StyledCard = styled('div')({ height: 250 })`
+let ceilToNearestFive = (x: number) => Math.ceil(x / 5) * 5;
+let smoothPhi = (x: number) => ceilToNearestFive(x * 1.618) - x * 1.618;
+
+let StyledCard = styled('div')({ size: 250, shadowSize: 20 })`
 	display: block;
 	position: fixed;
 	left: ${p => p.pos.x}px;
 	top: ${p => p.pos.y}px;
-	height: ${p => p.height}px;
-	width: ${p => 1.618 * p.height}px;
+	height: ${p => p.size}px;
+	width: ${p => 1.618 * p.size}px;
 	background-color: ${p => p.theme.offwhite};
-	margin: 2em;
+	margin: 40px 75px 80px 45px;
 	
-	border-radius: 20px;
-	box-shadow: 20px 20px 0px 0px ${p => lighten(0.05, p.accentColour)};
+	border-radius: ${p => smoothPhi(p.size) + 20}px;
+	box-shadow: ${p => smoothPhi(p.size) + 20}px ${p => smoothPhi(p.size) + 20}px 0px 0px ${p =>
+	lighten(0.05, p.accentColour)};
 	
 	div {
 		padding: 20px;
 		
 		h1 {
 			margin: 0;
-			font-size: ${p => p.height / 6}px;
+			font-size: ${p => p.size / 6}px;
 		}
 
 		h2 {
 			margin: 0;
-			font-size: ${p => p.height / 10}px;
+			font-size: ${p => p.size / 10}px;
 		}
 
 		hr {

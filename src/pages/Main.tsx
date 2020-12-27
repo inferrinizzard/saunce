@@ -19,8 +19,12 @@ const Main: React.SFC<MainProps> = () => {
 					left: '-5px',
 				}}
 			/>
-			<Card name="béchamel" pos={{ x: 100, y: 100 }} />
-			<Card name="hollandaise" pos={{ x: 600, y: 100 }} />
+			<Card name="béchamel" pos={{ x: 50, y: 50 }} />
+			<Card name="mornay" pos={{ x: 50, y: 400 }} />
+			<Card name="crème" pos={{ x: 600, y: 400 }} />
+			<Card name="écossaise" pos={{ x: 600, y: 750 }} />
+			<Card name="velouté de volaille" pos={{ x: 1150, y: 400 }} />
+			<Card name="hollandaise" pos={{ x: 1150, y: 50 }} />
 		</div>
 	);
 };

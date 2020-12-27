@@ -17,7 +17,11 @@
 		"oil": { "url": "https://www.svgrepo.com/show/57454/oil.svg" },
 		"mushroom": { "url": "https://www.svgrepo.com/show/81188/mushroom.svg" },
 		"carrot": { "url": "https://www.svgrepo.com/show/23337/carrot.svg" },
-		"butter": { "url": "https://www.svgrepo.com/show/103424/butter.svg" }
+		"butter": { "url": "https://www.svgrepo.com/show/103424/butter.svg" },
+		"sauce": { "url": "https://www.svgrepo.com/show/123451/sauce.svg" },
+		"stock": { "url": "https://www.svgrepo.com/show/48926/pot.svg" },
+		"spices": { "url": "https://www.svgrepo.com/show/168105/spices.svg" },
+		"crème": { "url": "https://www.svgrepo.com/show/46711/milk.svg" }
 	},
 	"categories": {
 		"fond": ["fond blanc", "fond brun", "fond lié"],
