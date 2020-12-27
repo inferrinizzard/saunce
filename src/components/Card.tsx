@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styled from '../util/Styled';
 import { lighten } from 'polished';
@@ -9,8 +9,22 @@ import Ingredient from './Ingredient';
 
 let ceilToNearestFive = (x: number) => Math.ceil(x / 5) * 5;
 let smoothPhi = (x: number) => ceilToNearestFive(x * 1.618) - x * 1.618;
+const margins = { top: 70, right: 90, bottom: 130, left: 60 };
+const cardSize = 250;
 
-let StyledCard = styled('div')({ size: 250, shadowSize: 20 })`
+// margin border
+// &::before {
+// 	content: '';
+// 	position: absolute;
+// 	${p => Object.entries(p.margins).reduce((a, [k, v]) => `${a}\n${k}: -${v}px;`, '')}
+// 	border: 1px solid #000;
+// }
+
+let StyledCard = styled('div')({
+	size: cardSize,
+	shadowSize: 20,
+	margins: margins,
+})`
 	display: block;
 	position: fixed;
 	left: ${p => p.pos.x}px;
@@ -18,7 +32,7 @@ let StyledCard = styled('div')({ size: 250, shadowSize: 20 })`
 	height: ${p => p.size}px;
 	width: ${p => 1.618 * p.size}px;
 	background-color: ${p => p.theme.offwhite};
-	margin: 40px 75px 80px 45px;
+	margin: ${p => Object.entries(p.margins).reduce((a, c) => a + c + 'px ', '')};
 	
 	border-radius: ${p => smoothPhi(p.size) + 20}px;
 	box-shadow: ${p => smoothPhi(p.size) + 20}px ${p => smoothPhi(p.size) + 20}px 0px 0px ${p =>
@@ -45,16 +59,35 @@ let StyledCard = styled('div')({ size: 250, shadowSize: 20 })`
 	}
 `;
 
-type Pos = { x: number; y: number };
+export type Pos = { x: number; y: number };
 
 export interface CardProps {
 	name: keyof typeof sauces;
-	pos: Pos;
+	pos: Pos; // top-left corner of card, pre-margin
+	attach?: (sauce: string, pos: { in: Pos; out: Pos }) => void;
 }
 
-const Card: React.SFC<CardProps> = ({ name, pos }) => {
+// enter: pos + (size * 1.618 / 2, 0)
+// exit: pos + (size * 1.618 / 2, size)
+const Card: React.FC<CardProps> = ({ name, pos, attach }) => {
 	const sauce = sauces[name] as Sauce;
 	let colour = 'salmon';
+
+	useEffect(
+		() => (
+			attach &&
+				attach(name, {
+					in: { x: pos.x + (cardSize * 1.618) / 2, y: pos.y },
+					out: { x: pos.x + (cardSize * 1.618) / 2, y: pos.y + cardSize },
+				}),
+			console.log(name, pos, {
+				in: { x: pos.x + (cardSize * 1.618) / 2, y: pos.y },
+				out: { x: pos.x + (cardSize * 1.618) / 2, y: pos.y + cardSize },
+			})
+		),
+		[]
+	);
+
 	return (
 		<StyledCard accentColour={colour} pos={pos}>
 			<div className="card-content">

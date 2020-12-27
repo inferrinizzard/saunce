@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface OverlayProps {}
 
-const Overlay: React.SFC<OverlayProps> = () => {
+const Overlay: React.FC<OverlayProps> = () => {
 	return <div></div>;
 };
 
