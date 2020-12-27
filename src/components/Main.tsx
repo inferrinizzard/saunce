@@ -4,7 +4,7 @@ import filles from '../data/filles.json';
 const connected = Object.entries(filles).reduce((all, [k, v]) => [...all, k, ...v], [] as string[]);
 
 import Card, { Pos } from './Card';
-import Arrow from './Arrow';
+import _Arrow, { ArrowProps } from './Arrow';
 
 export interface MainProps {}
 
@@ -14,6 +14,21 @@ const Main: React.FC<MainProps> = () => {
 	let [anchors, setAnchors] = useState({} as { [k: string]: { in: Pos; out: Pos } });
 	let attachAnchor = (sauce: string, pos: { in: Pos; out: Pos }) =>
 		setAnchors(prev => ({ ...prev, [sauce]: pos }));
+
+	const Arrow = ({
+		head,
+		tail,
+		...props
+	}: {
+		head: keyof typeof anchors;
+		tail: keyof typeof anchors;
+	} & Omit<ArrowProps, 'head' | 'tail'>) => (
+		<_Arrow
+			head={anchors[head]?.in || defaultPos}
+			tail={anchors[tail]?.out || defaultPos}
+			{...(props as Omit<ArrowProps, 'head' | 'tail'>)}
+		/>
+	);
 
 	return (
 		<div className="main">
@@ -28,18 +43,9 @@ const Main: React.FC<MainProps> = () => {
 					left: '-5px',
 				}}
 			/>
-			<Arrow
-				tail={anchors['béchamel']?.out || defaultPos}
-				head={anchors['crème']?.in || defaultPos}
-			/>
-			<Arrow
-				tail={anchors['béchamel']?.out || defaultPos}
-				head={anchors['mornay']?.in || defaultPos}
-			/>
-			<Arrow
-				tail={anchors['crème']?.out || defaultPos}
-				head={anchors['écossaise']?.in || defaultPos}
-			/>
+			<Arrow colour={'salmon'} head={'crème'} tail={'béchamel'} />
+			<Arrow colour={'salmon'} head={'mornay'} tail={'béchamel'} />
+			<Arrow colour={'salmon'} head={'écossaise'} tail={'crème'} />
 			<Card name="béchamel" pos={{ x: 50, y: 50 }} attach={attachAnchor} />
 			<Card name="mornay" pos={{ x: 50, y: 500 }} attach={attachAnchor} />
 			<Card name="crème" pos={{ x: 605, y: 500 }} attach={attachAnchor} />

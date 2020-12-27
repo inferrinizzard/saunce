@@ -37,7 +37,7 @@
 	"choron": { "nom": "", "desc": "", "ingredients": [] },
 	"colbert": { "nom": "", "desc": "", "ingredients": [] },
 	"crème": {
-		"nom": "Sauce a la Crème",
+		"nom": "Sauce à la Crème",
 		"desc": "Sauce Béchamel + Crème + Lemon",
 		"ingredients": ["crème", "lemon"]
 	},
@@ -49,7 +49,7 @@
 	"duxelles": { "nom": "", "desc": "", "ingredients": [] },
 	"écossaise": {
 		"nom": "Sauce Écossaise",
-		"desc": "Brunoise(Mirepoix, French Beans) + Bouillon + Sauce a la Crème",
+		"desc": "Brunoise(Mirepoix, French Beans) + Bouillon + Sauce à la Crème",
 		"ingredients": ["onion", "carrot", "celery", "beans", "butter"]
 	},
 	"émulsions": { "nom": "", "desc": "", "ingredients": [] },

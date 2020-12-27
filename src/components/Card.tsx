@@ -74,17 +74,12 @@ const Card: React.FC<CardProps> = ({ name, pos, attach }) => {
 	let colour = 'salmon';
 
 	useEffect(
-		() => (
+		() =>
 			attach &&
-				attach(name, {
-					in: { x: pos.x + (cardSize * 1.618) / 2, y: pos.y },
-					out: { x: pos.x + (cardSize * 1.618) / 2, y: pos.y + cardSize },
-				}),
-			console.log(name, pos, {
+			attach(name, {
 				in: { x: pos.x + (cardSize * 1.618) / 2, y: pos.y },
 				out: { x: pos.x + (cardSize * 1.618) / 2, y: pos.y + cardSize },
-			})
-		),
+			}),
 		[]
 	);
 
