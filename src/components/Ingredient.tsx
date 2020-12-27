@@ -7,10 +7,10 @@ import styled from '../util/Styled';
 import ShiftColour from '../util/ColorShift';
 
 import { list as ingredientsList } from '../data/ingredients.json';
-export type IngredientName = keyof typeof ingredientsList;
+// export type IngredientName = ArrayElement<ingredientsList>;
 
 export interface IngredientProps {
-	name: IngredientName;
+	name: string;
 	colour: string;
 }
 
@@ -35,7 +35,7 @@ const Ingredient: React.FC<IngredientProps> = ({ name, colour }) => {
 				colour={colour}
 			/> */}
 			<IngredientIcon
-				className={`ingredient-${ingredientsList[name] ? name : 'missing'}`}
+				className={`ingredient-${ingredientsList.includes(name) ? name : 'missing'}`}
 				size={50}
 				colour={colour}
 			/>

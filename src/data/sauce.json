@@ -50,7 +50,7 @@
 	"écossaise": {
 		"nom": "Sauce Écossaise",
 		"desc": "Brunoise(Mirepoix, French Beans) + Bouillon + Sauce a la Crème",
-		"ingredients": ["onion", "carrot", "celery", "butter"]
+		"ingredients": ["onion", "carrot", "celery", "beans", "butter"]
 	},
 	"émulsions": { "nom": "", "desc": "", "ingredients": [] },
 	"espagnole": { "nom": "", "desc": "", "ingredients": [] },

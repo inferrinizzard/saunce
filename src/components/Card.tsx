@@ -5,7 +5,7 @@ import { lighten } from 'polished';
 
 import sauces from '../data/sauce.json';
 type Sauce = { nom: string; desc: string; ingredients: string[]; temp?: string };
-import Ingredient, { IngredientName } from './Ingredient';
+import Ingredient from './Ingredient';
 
 let ceilToNearestFive = (x: number) => Math.ceil(x / 5) * 5;
 let smoothPhi = (x: number) => ceilToNearestFive(x * 1.618) - x * 1.618;
@@ -54,14 +54,15 @@ export interface CardProps {
 
 const Card: React.SFC<CardProps> = ({ name, pos }) => {
 	const sauce = sauces[name] as Sauce;
+	let colour = 'salmon';
 	return (
-		<StyledCard accentColour="salmon" pos={pos}>
+		<StyledCard accentColour={colour} pos={pos}>
 			<div className="card-content">
 				<h1>{sauce.nom}</h1>
 				<hr />
 				<h2>{sauce.desc}</h2>
 				{sauce.ingredients.map((i, k) => (
-					<Ingredient key={k} name={i as IngredientName} colour={'#fb968b'} />
+					<Ingredient key={k} name={i} colour={colour} />
 				))}
 			</div>
 		</StyledCard>
