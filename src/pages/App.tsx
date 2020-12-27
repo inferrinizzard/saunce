@@ -5,8 +5,8 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import styled, { ThemeProvider } from 'styled-components';
 import '../css/main.css';
 
-import Overlay from './Overlay';
-import Main from './Main';
+import Overlay from '../components/Overlay';
+import Main from '../components/Main';
 
 let theme = {
 	offwhite: '#f7f7f2', // #faf3dd
