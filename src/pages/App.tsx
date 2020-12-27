@@ -4,6 +4,7 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 import styled, { ThemeProvider } from 'styled-components';
 import '../css/main.css';
+import '../css/ingredients.css';
 
 import Overlay from '../components/Overlay';
 import Main from '../components/Main';
