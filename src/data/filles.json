@@ -47,7 +47,8 @@
 		"la vallière",
 		"matelote",
 		"piquante",
-		"romaine"
+		"romaine",
+		"vin rouge"
 	],
 	"foyot": ["colbert"],
 	"hollandaise": ["bavaroise", "béarnaise", "maltaise", "mousseline", "noisette"],
@@ -65,7 +66,7 @@
 		"verte",
 		"vincent"
 	],
-	"normande": ["anchois", "diplomate", "joinville", "véron"],
+	"normande": ["anchois", "diplomate", "huîtres", "joinville", "véron"],
 	"poivrade": ["chevreuil", "diane", "moscovite", "venaison"],
 	"robert": ["charcutière"],
 	"tomate": ["bolognaise", "hachée", "milanaise", "portugaise", "zingara"],
@@ -79,12 +80,20 @@
 		"crevettes",
 		"homard",
 		"l'aurore",
+		"livonienne",
 		"nantua",
 		"normande",
 		"vin blanc",
 		"vénitienne"
 	],
-	"velouté de veau": ["allemande", "hongroise", "poulette", "villageoise", "villeroy"],
+	"velouté de veau": [
+		"allemande",
+		"hongroise",
+		"poulette",
+		"ravigote chaud",
+		"villageoise",
+		"villeroy"
+	],
 	"velouté de volaille": ["albuféra", "chivry", "ivoire", "suprème"],
 	"vin blanc": ["saint-malo", "souchet"],
 	"vinaigrette": ["ravigote"],
