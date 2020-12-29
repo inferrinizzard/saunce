@@ -8,7 +8,7 @@
 	"béchamel": ["bohémienne", "cardinal", "crevettes", "crème", "mornay", "moutarde", "soubise"],
 	"crème": ["écossaise"],
 	"demi-glace": [
-		"bigarade",
+		"bigarrade",
 		"bordelaise",
 		"champignons",
 		"chaudfroid",
@@ -71,7 +71,6 @@
 	"robert": ["charcutière"],
 	"tomate": ["bolognaise", "hachée", "milanaise", "portugaise", "zingara"],
 	"tyrolienne": ["véron"],
-	"velouté": ["velouté de poisson", "velouté de veau", "velouté de volaille"],
 	"velouté de poisson": [
 		"américaine",
 		"bercy",
@@ -96,6 +95,5 @@
 	],
 	"velouté de volaille": ["albuféra", "chivry", "ivoire", "suprème"],
 	"vin blanc": ["saint-malo", "souchet"],
-	"vinaigrette": ["ravigote"],
-	"émulsions": ["hollandaise", "mayonnaise"]
+	"vinaigrette": ["ravigote"]
 }

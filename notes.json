@@ -10,5 +10,17 @@
 		"smitane → velouté?",
 		"solférino"
 	],
-	"dupes": ["bercy", "crevettes", "gratin", "hachée", "poulette", "véron", "zingara"]
+	"dupes": ["bercy", "crevettes", "gratin", "hachée", "poulette", "véron", "zingara"],
+	"unfound": [
+		"africaine",
+		"bohémienne",
+		"bolognaise",
+		"bordelaise",
+		"valliere",
+		"marinière",
+		"milanaise",
+		"victoria",
+		"vierge",
+		"vinaigrette"
+	]
 }
