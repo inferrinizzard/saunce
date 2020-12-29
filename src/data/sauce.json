@@ -9,7 +9,7 @@
 	"albuféra": {
 		"nom": "Sauce Albuféra",
 		"desc": "Sauce Suprème + Glace de Viande + Pimento Butter",
-		"ingredients": []
+		"ingredients": ["chili", "butter"]
 	},
 	"allemande": {
 		"nom": "Sauce Allemande",
@@ -40,7 +40,11 @@
 		"ingredients": ["herbs"]
 	},
 	"bercy": { "nom": "Sauce Bercy", "desc": "", "ingredients": [] },
-	"béarnaise": { "nom": "Sauce Béarnaise", "desc": "", "ingredients": [] },
+	"béarnaise": {
+		"nom": "Sauce Béarnaise",
+		"desc": "Sauce Hollandaise + Shallot + Chervil + Tarragon + Peppercorn",
+		"ingredients": ["herbs", "pepper"]
+	},
 	"béchamel": {
 		"nom": "Sauce Béchamel",
 		"desc": "White Roux + Milk",
@@ -490,7 +494,7 @@
 		"ingredients": ["stock", "herbs", "mushroom", "pepper", "wine"]
 	},
 	"tyrolienne": {
-		"nom": "Sauce tyrolienne",
+		"nom": "Sauce Tyrolienne",
 		"desc": "Sauce Béarnaise + Tomato Purée + Yolks + Oil + Cayenne",
 		"ingredients": ["tomato", "egg", "oil"]
 	},

@@ -11,17 +11,24 @@ export interface ArrowProps {
 const Arrow: React.FC<ArrowProps> = ({ head, tail, colour }) => {
 	const dx = head.x - tail.x;
 	const dy = head.y - tail.y;
-	const controlDist = dy / 2;
+	const controlDist = dy;
 	const width = 20;
 	return (
 		<svg
 			width={Math.abs(dx) + width * 2}
 			height={Math.abs(dy)}
-			style={{ position: 'fixed', left: tail.x - width / 2, top: tail.y }}>
+			style={{
+				zIndex: -1,
+				position: 'fixed',
+				left: dx >= 0 ? tail.x - width / 2 : tail.x + dx - width / 2,
+				top: tail.y,
+			}}>
 			<path
 				d={
-					dx
-						? `M ${width / 2} 0
+					// why does controldist - width work on left-facing arrows? bro who knows
+					(dx &&
+						(dx > 0
+							? `M ${width / 2} 0
 							c 0 ${controlDist} ${dx} ${dy - controlDist} ${dx} ${dy - width}
 							h ${-width / 2}
 							l ${width} ${width}
@@ -29,7 +36,15 @@ const Arrow: React.FC<ArrowProps> = ({ head, tail, colour }) => {
 							h ${-width / 2}
 							c 0 ${-controlDist} ${-dx} ${-dy + controlDist} ${-dx + width / 2} ${-dy + width}
 							z`
-						: `M ${width / 2} 0 
+							: `M ${width / 2 - dx} 0
+							c 0 ${controlDist - width} ${dx} ${dy - controlDist - width} ${dx} ${dy - width}
+							h ${-width / 2}
+							l ${width} ${width}
+							l ${width} ${-width}
+							h ${-width / 2}
+							c 0 ${-controlDist + width} ${-dx} ${-dy + controlDist + width} ${-dx + width / 2} ${-dy + width}
+							z`)) ||
+					`M ${width / 2} 0 
 							v ${dy - width} 
 							h ${-width / 2}
 							l ${width} ${width}
