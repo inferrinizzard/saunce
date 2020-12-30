@@ -20,7 +20,7 @@ const cardSize = 250;
 // 	border: 1px solid #000;
 // }
 
-let StyledCard = styled('div')({
+let StyledCard = styled('section')({
 	size: cardSize,
 	shadowSize: 20,
 })`

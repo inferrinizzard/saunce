@@ -164,7 +164,12 @@
 	},
 	"estragon": {
 		"nom": "Sauce Estragon",
-		"desc": "Sauce Velouté + Tarragon",
+		"desc": "White Wine + Tarragon + (Sauce Demi-glace or Veal Stock)",
+		"ingredients": ["wine", "herbs", "stock"]
+	},
+	"estragon velouté": {
+		"nom": "Sauce Estragon",
+		"desc": "Sauce Velouté (de Poisson or de Volaille) + Tarragon",
 		"ingredients": ["herbs"]
 	},
 	"financière": {

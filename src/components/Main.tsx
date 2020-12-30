@@ -25,7 +25,10 @@ const Main: React.FC<MainProps> = () => {
 			{head && <Card name={mère} pos={pos} attach={attachAnchor} />}
 			{(filles[mère as keyof typeof filles] as SauceName[])?.map((fille, i) => {
 				let newPos = {
-					x: pos.x + Math.ceil((i % rowWidth) - rowWidth / 2),
+					x:
+						pos.x -
+						Math.floor(i % rowWidth) -
+						(filles[mère as keyof typeof filles].length > rowWidth ? 0.5 : 0),
 					y: pos.y + 1 + Math.floor(i / rowWidth),
 				};
 				return (
@@ -52,9 +55,9 @@ const Main: React.FC<MainProps> = () => {
 					left: '-5px',
 				}}
 			/>
-			{Tree('hollandaise', { x: 0, y: 0 })}
-			{Tree('mayonnaise', { x: 6, y: 0 })}
-			{/* {Tree('espagnole', { x: 6, y: 0 }, 6)} */}
+			{/* {Tree('hollandaise', { x: 0, y: 0 })}
+			{Tree('mayonnaise', { x: 6, y: 0 })} */}
+			{Tree('espagnole', { x: 0, y: 0 })}
 		</div>
 	);
 };
