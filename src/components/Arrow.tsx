@@ -3,12 +3,13 @@ import React from 'react';
 import { Pos } from './Card';
 
 export interface ArrowProps {
-	head: Pos;
-	tail: Pos;
+	head?: Pos;
+	tail?: Pos;
 	colour: string;
 }
 
 const Arrow: React.FC<ArrowProps> = ({ head, tail, colour }) => {
+	if (!head || !tail) return null;
 	const dx = head.x - tail.x;
 	const dy = head.y - tail.y;
 	const controlDist = dy;
