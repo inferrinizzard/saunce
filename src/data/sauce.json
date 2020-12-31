@@ -397,6 +397,11 @@
 		"desc": "White Wine + Vinegar + Sauce Velouté + Shallot + Butter + Chervil + Tarragon + Chives",
 		"ingredients": ["wine", "butter", "herbs"]
 	},
+	"réforme": {
+		"nom": "Sauce Réforme",
+		"desc": "Sauce Poivrade + Sauce Demi-glace + Cornichons + Egg White + Mushroom + Truffle + Beef Tongue",
+		"ingredients": ["pickle", "egg", "mushroom", "meat"]
+	},
 	"régence": {
 		"nom": "Sauce à la Régence",
 		"desc": "Rhine Wine + Mirepoix + Butter + Truffle + Sauce Demi-glace",

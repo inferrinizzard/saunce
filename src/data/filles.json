@@ -8,6 +8,7 @@
 	"béchamel": ["bohémienne", "cardinal", "mornay", "moutarde", "soubise", "crevettes", "crème"],
 	"crème": ["écossaise"],
 	"demi-glace": [
+		"gratin",
 		"bigarrade",
 		"champignons",
 		"chaudfroid",
@@ -17,22 +18,21 @@
 		"financière",
 		"godard",
 		"grand-veneur",
-		"gratin",
 		"hussarde",
 		"italienne",
 		"lyonnaise",
 		"madère",
 		"moelle",
 		"porto",
-		"périgourdine",
-		"périgueux",
 		"régence",
 		"salmis",
 		"tortue",
-		"zingara",
 		"bordelaise",
 		"robert",
-		"poivrade"
+		"périgueux",
+		"glace de viande",
+		"zingara",
+		"réforme"
 	],
 	"diplomate": ["riche"],
 	"espagnole": [
@@ -48,9 +48,12 @@
 		"vin rouge",
 		"gratin",
 		"bercy",
-		"demi-glace"
+		"demi-glace",
+		"poivrade",
+		"réforme"
 	],
 	"foyot": ["colbert"],
+	"glace de viande": ["véron"],
 	"hollandaise": ["bavaroise", "maltaise", "mousseline", "noisette", "béarnaise"],
 	"homard": ["victoria"],
 	"mayonnaise": [
@@ -66,20 +69,22 @@
 		"verte",
 		"vincent"
 	],
-	"normande": ["anchois", "huîtres", "joinville", "véron", "diplomate"],
+	"normande": ["anchois", "huîtres", "joinville", "diplomate", "véron"],
 	"poivrade": ["chevreuil", "diane", "moscovite", "venaison"],
+	"périgueux": ["périgourdine"],
 	"robert": ["charcutière"],
+	"suprème": ["albuféra"],
 	"tomate": ["bolognaise", "milanaise", "portugaise", "hachée", "zingara"],
 	"tyrolienne": ["véron"],
 	"velouté de poisson": [
+		"crevettes",
 		"bonnefoy",
 		"bretonne",
-		"l'aurore",
-		"livonienne",
 		"nantua",
+		"livonienne",
+		"l'aurore",
 		"vénitienne",
 		"vin blanc",
-		"crevettes",
 		"bercy",
 		"homard",
 		"américaine",
@@ -87,13 +92,13 @@
 	],
 	"velouté de veau": [
 		"hongroise",
-		"poulette",
 		"ravigote chaud",
 		"villageoise",
 		"villeroy",
-		"allemande"
+		"allemande",
+		"poulette"
 	],
-	"velouté de volaille": ["albuféra", "chivry", "ivoire", "suprème"],
+	"velouté de volaille": ["chivry", "ivoire", "suprème", "estragon velouté"],
 	"vin blanc": ["saint-malo", "souchet"],
 	"vinaigrette": ["ravigote"]
 }
