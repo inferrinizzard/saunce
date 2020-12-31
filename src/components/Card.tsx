@@ -65,13 +65,13 @@ export interface CardProps {
 	attach?: (sauce: SauceName, pos: { in: Pos; out: Pos }) => void;
 }
 
-const cardBlockSize: Pos = { x: 525, y: 400 };
+export const CardBlockSize: Pos = { x: 525, y: 400 };
 // enter: pos + (size * phi / 2, 0)
 // exit: pos + (size * phi / 2, size)
 const Card: React.FC<CardProps> = ({ name, pos, attach }) => {
 	const sauce = Sauces[name] as Sauce;
 	let colour = 'salmon';
-	pos = { x: pos.x * cardBlockSize.x, y: pos.y * cardBlockSize.y };
+	pos = { x: pos.x * CardBlockSize.x, y: pos.y * CardBlockSize.y };
 
 	useEffect(
 		() =>
