@@ -7,7 +7,7 @@ const connected = Object.values(filles)
 	.reduce((all, vals) => [...all, ...vals.filter(v => Object.keys(filles).includes(v))], [])
 	.concat(dupes);
 
-import Card, { SauceName, Pos } from './Card';
+import Card, { SauceName, Pos, CardBlockSize } from './Card';
 import Arrow from './Arrow';
 
 export interface MainProps {}
@@ -32,6 +32,40 @@ const Main: React.FC<MainProps> = () => {
 					left: '-5px',
 				}}
 			/>
+			<button
+				style={{
+					position: 'absolute',
+					top: '-300px',
+					right: '10px',
+					backgroundColor: 'salmon',
+					height: '50px',
+					width: '100px',
+					borderRadius: '25px',
+					fontSize: '25px',
+				}}
+				onClick={() => {
+					let json = JSON.stringify(
+						Object.entries(cards).reduce(
+							(acc, [name, card]) => ({
+								...acc,
+								[name]: {
+									x: card?.state.pos.x / CardBlockSize.x,
+									y: card?.state.pos.y / CardBlockSize.y,
+								},
+							}),
+							{}
+						)
+					);
+					let blob = new Blob([json], { type: 'application/json' });
+					let url = URL.createObjectURL(blob);
+
+					let a = document.createElement('a');
+					a.download = 'pos.json';
+					a.href = url;
+					a.click();
+				}}>
+				Save
+			</button>
 			{Object.entries(Positions).map(([sauce, pos]) => (
 				<Card key={sauce} name={sauce as SauceName} pos={pos} attach={linkCard} />
 			))}
