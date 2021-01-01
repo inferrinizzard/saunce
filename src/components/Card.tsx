@@ -7,6 +7,8 @@ import Sauces from '../data/sauce.json';
 type Sauce = { nom: string; desc: string; ingredients: string[]; temp?: string };
 import Ingredient from './Ingredient';
 
+import Buttons from './Buttons';
+
 let ceilToNearestFive = (x: number) => Math.ceil(x / 5) * 5;
 let smoothPhi = (x: number) => ceilToNearestFive(x * 1.618) - x * 1.618;
 const phi = 1.618;
@@ -69,10 +71,14 @@ export interface CardProps {
 
 export interface CardState {
 	pos: Pos;
+	active: boolean;
 }
 
 class Card extends React.Component<CardProps, CardState> {
-	state = { pos: { x: this.props.pos.x * CardBlockSize.x, y: this.props.pos.y * CardBlockSize.y } };
+	state = {
+		pos: { x: this.props.pos.x * CardBlockSize.x, y: this.props.pos.y * CardBlockSize.y },
+		active: false,
+	};
 
 	name = this.props.name;
 	sauce = Sauces[this.props.name] as Sauce;
@@ -86,7 +92,11 @@ class Card extends React.Component<CardProps, CardState> {
 
 	render() {
 		return (
-			<StyledCard accentColour={this.colour} pos={this.state.pos}>
+			<StyledCard
+				accentColour={this.colour}
+				pos={this.state.pos}
+				onClick={(e: MouseEvent) => (e.stopPropagation(), this.setState({ active: true }))}
+				onMouseDown={(e: MouseEvent) => (e.stopPropagation(), this.setState({ active: true }))}>
 				<div className="card-content">
 					<h1>{this.sauce.nom}</h1>
 					<hr />
@@ -95,6 +105,16 @@ class Card extends React.Component<CardProps, CardState> {
 						<Ingredient key={k} name={i} colour={this.colour} />
 					))}
 				</div>
+				{this.state.active && (
+					<Buttons
+						pos={this.state.pos}
+						setPos={(pos: Pos) => {
+							this.setState({ pos: pos, active: false });
+							this.in = { x: pos.x + (cardSize * phi) / 2, y: pos.y };
+							this.out = { x: pos.x + (cardSize * phi) / 2, y: pos.y + cardSize };
+						}}
+					/>
+				)}
 			</StyledCard>
 		);
 	}
