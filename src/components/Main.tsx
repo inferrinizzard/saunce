@@ -19,7 +19,6 @@ const Main: React.FC<MainProps> = () => {
 		(!cards[sauce.name] || force) && setCards(prev => ({ ...prev, [sauce.name]: sauce }));
 
 	let remaining = Object.keys(sauces).filter(sauce => !Object.keys(Positions).includes(sauce));
-	console.log(remaining.filter(sauce => Object.keys(filles).includes(sauce)));
 
 	return (
 		<div
