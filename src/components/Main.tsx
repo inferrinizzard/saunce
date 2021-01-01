@@ -12,17 +12,15 @@ import Arrow from './Arrow';
 
 export interface MainProps {}
 
-const defaultPos: Pos = { x: 0, y: 0 };
-
 const Main: React.FC<MainProps> = () => {
 	let [cards, setCards] = useState({} as { [k: string]: Card });
-	let linkCard = (sauce: Card) =>
-		!cards[sauce.name] && setCards(prev => ({ ...prev, [sauce.name]: sauce }));
+	let linkCard = (sauce: Card, force: boolean = false) =>
+		(!cards[sauce.name] || force) && setCards(prev => ({ ...prev, [sauce.name]: sauce }));
 
 	return (
 		<div
 			className="main"
-			onClick={() => Object.values(cards).forEach(card => card.setState({ active: false }))}>
+			onClick={() => Object.values(cards).forEach(card => card.setState({ active: 0 }))}>
 			<div
 				style={{
 					backgroundColor: 'black',

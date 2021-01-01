@@ -66,18 +66,18 @@ export const CardBlockSize: Pos = { x: 525, y: 400 };
 export interface CardProps {
 	name: SauceName;
 	pos: Pos; // top-left corner of card, pre-margin
-	attach: (sauce: Card) => void;
+	attach: (sauce: Card, force?: boolean) => void;
 }
 
 export interface CardState {
 	pos: Pos;
-	active: boolean;
+	active: number;
 }
 
 class Card extends React.Component<CardProps, CardState> {
 	state = {
 		pos: { x: this.props.pos.x * CardBlockSize.x, y: this.props.pos.y * CardBlockSize.y },
-		active: false,
+		active: 0,
 	};
 
 	name = this.props.name;
@@ -85,9 +85,18 @@ class Card extends React.Component<CardProps, CardState> {
 	colour = 'salmon';
 	in = { x: this.state.pos.x + (cardSize * phi) / 2, y: this.state.pos.y };
 	out = { x: this.state.pos.x + (cardSize * phi) / 2, y: this.state.pos.y + cardSize };
+	force = false;
 
 	componentDidMount() {
 		this.props.attach(this);
+	}
+
+	componentDidUpdate() {
+		if (this.force) {
+			this.setState({ active: 0 });
+			this.force = false;
+			this.props.attach(this, true);
+		}
 	}
 
 	render() {
@@ -95,8 +104,8 @@ class Card extends React.Component<CardProps, CardState> {
 			<StyledCard
 				accentColour={this.colour}
 				pos={this.state.pos}
-				onClick={(e: MouseEvent) => (e.stopPropagation(), this.setState({ active: true }))}
-				onMouseDown={(e: MouseEvent) => (e.stopPropagation(), this.setState({ active: true }))}>
+				onClick={(e: MouseEvent) => (e.stopPropagation(), this.setState({ active: 1 }))}
+				onMouseDown={(e: MouseEvent) => (e.stopPropagation(), this.setState({ active: 1 }))}>
 				<div className="card-content">
 					<h1>{this.sauce.nom}</h1>
 					<hr />
@@ -105,11 +114,12 @@ class Card extends React.Component<CardProps, CardState> {
 						<Ingredient key={k} name={i} colour={this.colour} />
 					))}
 				</div>
-				{this.state.active && (
+				{this.state.active > 0 && (
 					<Buttons
 						pos={this.state.pos}
 						setPos={(pos: Pos) => {
-							this.setState({ pos: pos, active: false });
+							this.setState({ pos: pos, active: 2 });
+							this.force = true;
 							this.in = { x: pos.x + (cardSize * phi) / 2, y: pos.y };
 							this.out = { x: pos.x + (cardSize * phi) / 2, y: pos.y + cardSize };
 						}}
