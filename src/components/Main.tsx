@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import Positions from '../data/pos.json';
 import filles from '../data/filles.json';
 import { dupes } from '../data/notes.json';
 const connected = Object.values(filles)
@@ -14,13 +15,13 @@ export interface MainProps {}
 const defaultPos: Pos = { x: 0, y: 0 };
 
 const Main: React.FC<MainProps> = () => {
-	let [anchors, setAnchors] = useState({} as { [k: string]: { in: Pos; out: Pos } });
-	let attachAnchor = (sauce: SauceName, pos: { in: Pos; out: Pos }) =>
-		!anchors[sauce] && setAnchors(prev => ({ ...prev, [sauce]: pos }));
+	let [anchors, setAnchors] = useState({} as { [k: string]: Card });
+	let linkCard = (sauce: Card) =>
+		!anchors[sauce.name] && setAnchors(prev => ({ ...prev, [sauce.name]: sauce }));
 
 	// const Tree = (mère: SauceName, pos: Pos, rowWidth: number = 5, head = true): JSX.Element => (
 	// 	<>
-	// 		{head && <Card name={mère} pos={pos} attach={attachAnchor} />}
+	// 		{head && <Card name={mère} pos={pos} attach={linkCard} />}
 	// 		{(filles[mère as keyof typeof filles] as SauceName[])?.map((fille, i) => {
 	// 			let newPos = {
 	// 				x:
@@ -31,7 +32,7 @@ const Main: React.FC<MainProps> = () => {
 	// 			};
 	// 			return (
 	// 				<React.Fragment key={fille}>
-	// 					<Card name={fille} pos={newPos} attach={attachAnchor} />
+	// 					<Card name={fille} pos={newPos} attach={linkCard} />
 	// 					<Arrow colour={'salmon'} tail={anchors[mère]?.out} head={anchors[fille]?.in} />
 	// 					{Tree(fille, newPos, rowWidth, false)}
 	// 				</React.Fragment>
@@ -51,13 +52,12 @@ const Main: React.FC<MainProps> = () => {
 			.splice(flags?.sliceStart ?? 0, num)
 			.map((fille, i) => (
 				<React.Fragment key={fille}>
-					<Card key={fille} name={fille} pos={posFunction(i)} attach={attachAnchor} />
+					<Card name={fille} pos={posFunction(i)} attach={linkCard} />
 					{filles[fille as keyof typeof filles]?.length === 1 && (
 						<Card
-							key={fille}
-							name={filles[fille as keyof typeof filles][0]}
+							name={filles[fille as keyof typeof filles][0] as SauceName}
 							pos={{ x: posFunction(i).x, y: posFunction(i).y + 1 }}
-							attach={attachAnchor}
+							attach={linkCard}
 						/>
 					)}
 				</React.Fragment>
@@ -76,77 +76,9 @@ const Main: React.FC<MainProps> = () => {
 					left: '-5px',
 				}}
 			/>
-
-			<Card name="espagnole" pos={{ x: 0, y: 0 }} attach={attachAnchor} />
-			{Tree('espagnole', 9, i => ({ x: -(3 - (i % 3)), y: 1 + Math.floor(i / 3) }), {
-				filter: false,
-			})}
-			{/* <Arrow
-				colour={'salmon'}
-				tail={anchors['espagnole']?.out}
-				head={anchors['gratin']?.in}
-				heightOverride={2}
-			/> */}
-			<Card name="vin rouge" pos={{ x: 1, y: 3 }} attach={attachAnchor} />
-			<Card name="bercy" pos={{ x: 1, y: 4 }} attach={attachAnchor} />
-			<Card name="marinière" pos={{ x: 1, y: 5 }} attach={attachAnchor} />
-
-			<Card name="demi-glace" pos={{ x: -1, y: 4 }} attach={attachAnchor} />
-			<Card name="gratin" pos={{ x: 0, y: 5 }} attach={attachAnchor} />
-			{Tree('demi-glace', 21, i => ({ x: -4 + (i % 6), y: 6 + Math.floor(i / 6) }), {
-				sliceStart: 1,
-			})}
-			{/* <Card name="poivrade" pos={{ x: 0, y: 9 }} attach={attachAnchor} />
-			{Tree('poivrade', 4, i => ({ x: -1 + i, y: 10 }))} */}
-
-			<Card name="tomate" pos={{ x: -4, y: 0 }} attach={attachAnchor} />
-			{Tree('tomate', 3, i => ({ x: -5, y: 1 + i }))}
-			<Card name="zingara" pos={{ x: -4, y: 5 }} attach={attachAnchor} />
-
-			<Card name="velouté de poisson" pos={{ x: 2, y: 0 }} attach={attachAnchor} />
-			{Tree(
-				'velouté de poisson',
-				8,
-				i => ({
-					x: 2 + ((8 - i) % 3 || -1),
-					y: 1 + Math.floor(i / 3),
-				}),
-				{ filter: false }
-			)}
-
-			<Card name="américaine" pos={{ x: 3, y: 4 }} attach={attachAnchor} />
-			<Card name="homard" pos={{ x: 4, y: 4 }} attach={attachAnchor} />
-			<Card name="orientale" pos={{ x: 3, y: 5 }} attach={attachAnchor} />
-			<Card name="victoria" pos={{ x: 4, y: 5 }} attach={attachAnchor} />
-
-			<Card name="normande" pos={{ x: 2, y: 5 }} attach={attachAnchor} />
-			{Tree('normande', 4, i => ({ x: 2 + (i % 2), y: 6 + Math.floor(i / 2) }))}
-
-			<Card name="béchamel" pos={{ x: 5, y: 0 }} attach={attachAnchor} />
-			{Tree('béchamel', 4, i => ({ x: 6, y: 1 + i }))}
-			{/* <Card name="moutarde" pos={{ x: 7, y: 2 }} attach={attachAnchor} /> */}
-			<Card name="crème" pos={{ x: 5, y: 5 }} attach={attachAnchor} />
-
-			<Card name="hollandaise" pos={{ x: 7, y: 0 }} attach={attachAnchor} />
-			{Tree('hollandaise', 4, i => ({ x: 8 + (i % 2), y: 1 + Math.floor(i / 2) }))}
-			<Card name="béarnaise" pos={{ x: 7, y: 2 }} attach={attachAnchor} />
-			{Tree('béarnaise', 4, i => ({ x: 8 + (i % 2), y: 3 + Math.floor(i / 2) }))}
-			<Card name="tyrolienne" pos={{ x: 7, y: 4 }} attach={attachAnchor} />
-
-			<Card name="velouté de veau" pos={{ x: 10, y: 0 }} attach={attachAnchor} />
-			{Tree('velouté de veau', 4, i => ({ x: 10 + 1 + (i % 2), y: 1 + Math.ceil(i / 2) }))}
-			<Card name="allemande" pos={{ x: 11, y: 3 }} attach={attachAnchor} />
-			<Card name="poulette" pos={{ x: 10, y: 4 }} attach={attachAnchor} />
-
-			<Card name="velouté de volaille" pos={{ x: 13, y: 0 }} attach={attachAnchor} />
-			{Tree('velouté de volaille', 4, i => ({
-				x: 13 + (i ? i % 2 : -1),
-				y: 1 + Math.floor(i / 2),
-			}))}
-
-			<Card name="mayonnaise" pos={{ x: 15, y: 0 }} attach={attachAnchor} />
-			{Tree('mayonnaise', 6, i => ({ x: 16 + (i % 3), y: 1 + Math.floor(i / 3) }))}
-			{Tree('mayonnaise', 5, i => ({ x: 14 + i, y: 3 }), { sliceStart: 6 })}
+			{Object.entries(Positions).map(([sauce, pos]) => (
+				<Card key={sauce} name={sauce as SauceName} pos={pos} attach={linkCard} />
+			))}
 
 			{Object.entries(filles).map(([mère, filles]) =>
 				filles.map(fille => (

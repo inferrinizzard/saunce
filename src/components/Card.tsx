@@ -59,42 +59,45 @@ let StyledCard = styled('section')({
 
 export type Pos = { x: number; y: number };
 export type SauceName = keyof typeof Sauces;
+export const CardBlockSize: Pos = { x: 525, y: 400 };
+
 export interface CardProps {
 	name: SauceName;
 	pos: Pos; // top-left corner of card, pre-margin
-	attach?: (sauce: SauceName, pos: { in: Pos; out: Pos }) => void;
+	attach: (sauce: Card) => void;
 }
 
-export const CardBlockSize: Pos = { x: 525, y: 400 };
-// enter: pos + (size * phi / 2, 0)
-// exit: pos + (size * phi / 2, size)
-const Card: React.FC<CardProps> = ({ name, pos, attach }) => {
-	const sauce = Sauces[name] as Sauce;
-	let colour = 'salmon';
-	pos = { x: pos.x * CardBlockSize.x, y: pos.y * CardBlockSize.y };
+export interface CardState {
+	pos: Pos;
+}
 
-	useEffect(
-		() =>
-			attach &&
-			attach(name, {
-				in: { x: pos.x + (cardSize * phi) / 2, y: pos.y },
-				out: { x: pos.x + (cardSize * phi) / 2, y: pos.y + cardSize },
-			}),
-		[]
-	);
+class Card extends React.Component<CardProps, CardState> {
+	state = { pos: { x: this.props.pos.x * CardBlockSize.x, y: this.props.pos.y * CardBlockSize.y } };
 
-	return (
-		<StyledCard accentColour={colour} pos={pos}>
-			<div className="card-content">
-				<h1>{sauce.nom}</h1>
-				<hr />
-				<h2>{sauce.desc}</h2>
-				{sauce.ingredients.map((i, k) => (
-					<Ingredient key={k} name={i} colour={colour} />
-				))}
-			</div>
-		</StyledCard>
-	);
-};
+	name = this.props.name;
+	sauce = Sauces[this.props.name] as Sauce;
+	colour = 'salmon';
+	in = { x: this.state.pos.x + (cardSize * phi) / 2, y: this.state.pos.y };
+	out = { x: this.state.pos.x + (cardSize * phi) / 2, y: this.state.pos.y + cardSize };
+
+	componentDidMount() {
+		this.props.attach(this);
+	}
+
+	render() {
+		return (
+			<StyledCard accentColour={this.colour} pos={this.state.pos}>
+				<div className="card-content">
+					<h1>{this.sauce.nom}</h1>
+					<hr />
+					<h2>{this.sauce.desc}</h2>
+					{this.sauce.ingredients.map((i, k) => (
+						<Ingredient key={k} name={i} colour={this.colour} />
+					))}
+				</div>
+			</StyledCard>
+		);
+	}
+}
 
 export default Card;

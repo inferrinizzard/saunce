@@ -2,21 +2,28 @@
 let readFileSync = require('fs').readFileSync;
 let writeFileSync = require('fs').writeFileSync;
 
-let sauces = JSON.parse(Buffer.from(readFileSync('src/data/filles.json')).toString());
+let filles = JSON.parse(Buffer.from(readFileSync('src/data/filles.json')).toString());
+let sauces = JSON.parse(Buffer.from(readFileSync('src/data/sauce.json')).toString());
 
-sauces = Object.entries(sauces).reduce(
-	(acc, [sauce, filles]) => ({
-		...acc,
-		[sauce]: filles.sort((a, b) =>
-			sauces[a] || sauces[b]
-				? ((sauces[a] && sauces[a].length) || 0) - ((sauces[b] && sauces[b].length) || 0)
-				: a - b
-		),
-	}),
-	{}
+console.log(
+	Object.values(filles)
+		.reduce((arr, v) => [...arr, ...v], [])
+		.filter(sauce => !Object.keys(sauces).includes(sauce))
 );
-console.log(sauces);
-writeFileSync('src/data/filles.json', JSON.stringify(sauces));
+
+// sauces = Object.entries(sauces).reduce(
+// 	(acc, [sauce, filles]) => ({
+// 		...acc,
+// 		[sauce]: filles.sort((a, b) =>
+// 			sauces[a] || sauces[b]
+// 				? ((sauces[a] && sauces[a].length) || 0) - ((sauces[b] && sauces[b].length) || 0)
+// 				: a - b
+// 		),
+// 	}),
+// 	{}
+// );
+// console.log(sauces);
+// writeFileSync('src/data/filles.json', JSON.stringify(sauces));
 
 // let mothers = sauces.mothers;
 // console.log(sauces.dérivées);
