@@ -129,8 +129,8 @@
 	},
 	"demi-glace": {
 		"nom": "Sauce Demi-glace",
-		"desc": "Sauce Espagnole + Meat",
-		"ingredients": ["meat"]
+		"desc": "Sauce Espagnole + Brown Stock + Meat",
+		"ingredients": ["stock", "meat"]
 	},
 	"diable": {
 		"nom": "Sauce à la Diable",
@@ -435,7 +435,7 @@
 	},
 	"rubens": {
 		"nom": "Sauce Rubens",
-		"desc": "Brunoise(Mirepoix) + White Wine + Fish Stock + Madeira Wine + Yolks + Anchovy Essence",
+		"desc": "Brunoise(Mirepoix) + White Wine + Fish Stock + Madeira Wine + Yolks + Crustacean Butter + Anchovy Essence",
 		"ingredients": ["butter", "carrot", "celery", "onion", "wine", "stock", "wine", "egg", "fish"]
 	},
 	"russe": {

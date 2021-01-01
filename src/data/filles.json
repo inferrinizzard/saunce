@@ -5,7 +5,16 @@
 	"beurre": ["câpres", "groseilles", "laguipierre"],
 	"bordelaise": ["rouennaise"],
 	"béarnaise": ["beauharnais", "choron", "paloise", "foyot", "tyrolienne"],
-	"béchamel": ["bohémienne", "cardinal", "mornay", "moutarde", "soubise", "crevettes", "crème"],
+	"béchamel": [
+		"bohémienne",
+		"cardinal",
+		"génoise",
+		"mornay",
+		"moutarde",
+		"soubise",
+		"crevettes",
+		"crème"
+	],
 	"crème": ["écossaise"],
 	"demi-glace": [
 		"gratin",
@@ -15,7 +24,6 @@
 		"diable",
 		"duxelles",
 		"estragon",
-		"financière",
 		"godard",
 		"grand-veneur",
 		"hussarde",
@@ -69,6 +77,7 @@
 		"verte",
 		"vincent"
 	],
+	"madère": ["financière"],
 	"normande": ["anchois", "huîtres", "joinville", "diplomate", "véron"],
 	"poivrade": ["chevreuil", "diane", "moscovite", "venaison"],
 	"périgueux": ["périgourdine"],
