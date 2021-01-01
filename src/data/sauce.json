@@ -78,10 +78,15 @@
 	"canotière": { "nom": "Sauce Canotière", "desc": "", "ingredients": [] },
 	"câpres": { "nom": "Sauce aux Câpres", "desc": "", "ingredients": [] },
 	"cardinal": { "nom": "Sauce Cardinal", "desc": "", "ingredients": [] },
-	"champignons": {
+	"champignons velouté": {
 		"nom": "Sauce aux Champignons",
 		"desc": "Mushroom Liqour + (Sauce Allemande or Sauce Velouté de Poisson) + Button Mushrooms",
 		"ingredients": ["mushroom"]
+	},
+	"champignons": {
+		"nom": "Sauce Champignons",
+		"desc": "Mushroom Liqour + Sauce Demi-glace + Butter + Button Mushrooms",
+		"ingredients": ["mushroom", "butter"]
 	},
 	"chantilly": {
 		"nom": "Sauce Chantilly",

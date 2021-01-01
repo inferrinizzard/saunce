@@ -87,13 +87,47 @@ class Card extends React.Component<CardProps, CardState> {
 	out = { x: this.state.pos.x + (cardSize * phi) / 2, y: this.state.pos.y + cardSize };
 	force = false;
 
+	arrowKeys = (key: string) => {
+		let delta: Pos = { x: 0, y: 0 };
+		switch (key) {
+			case 'ArrowLeft':
+				delta.x = -1;
+				break;
+			case 'ArrowRight':
+				delta.x = 1;
+				break;
+			case 'ArrowDown':
+				delta.y = 1;
+				break;
+			case 'ArrowUp':
+				delta.y = -1;
+				break;
+		}
+
+		let pos = {
+			x: this.state.pos.x + CardBlockSize.x * delta.x,
+			y: this.state.pos.y + CardBlockSize.y * delta.y,
+		};
+		this.setState({ pos });
+		this.in = { x: pos.x + (cardSize * phi) / 2, y: pos.y };
+		this.out = { x: pos.x + (cardSize * phi) / 2, y: pos.y + cardSize };
+		this.props.attach(this, true);
+	};
+
+	arrowListener = (e: KeyboardEvent) =>
+		e.key.includes('Arrow') && this.state.active && this.arrowKeys(e.key);
+
 	componentDidMount() {
 		this.props.attach(this);
+		window.addEventListener('keydown', this.arrowListener);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('keydown', this.arrowListener);
 	}
 
 	componentDidUpdate() {
 		if (this.force) {
-			this.setState({ active: 0 });
 			this.force = false;
 			this.props.attach(this, true);
 		}
@@ -102,10 +136,11 @@ class Card extends React.Component<CardProps, CardState> {
 	render() {
 		return (
 			<StyledCard
-				accentColour={this.colour}
+				accentColour={this.state.active ? 'cornflowerblue' : this.colour}
 				pos={this.state.pos}
-				onClick={(e: MouseEvent) => (e.stopPropagation(), this.setState({ active: 1 }))}
-				onMouseDown={(e: MouseEvent) => (e.stopPropagation(), this.setState({ active: 1 }))}>
+				onClick={(e: MouseEvent) => (
+					e.stopPropagation(), this.setState({ active: this.state.active ? 0 : 1 })
+				)}>
 				<div className="card-content">
 					<h1>{this.sauce.nom}</h1>
 					<hr />

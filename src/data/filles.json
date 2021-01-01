@@ -1,5 +1,5 @@
 {
-	"allemande": ["poulette"],
+	"allemande": ["poulette", "villeroy", "champignons velouté"],
 	"américaine": ["orientale"],
 	"bercy": ["marinière"],
 	"beurre": ["câpres", "groseilles", "laguipierre"],
@@ -15,7 +15,6 @@
 		"diable",
 		"duxelles",
 		"estragon",
-		"financière",
 		"godard",
 		"grand-veneur",
 		"hussarde",
@@ -26,13 +25,23 @@
 		"porto",
 		"régence",
 		"salmis",
-		"tortue",
 		"bordelaise",
 		"robert",
 		"périgueux",
 		"glace de viande",
 		"zingara",
 		"réforme"
+	],
+	"glace de viande": [
+		"albuféra",
+		"bonnefoy",
+		"bordelaise",
+		"foyot",
+		"ivoire",
+		"mousquetaire",
+		"portugaise",
+		"véron",
+		"vin blanc"
 	],
 	"diplomate": ["riche"],
 	"espagnole": [
@@ -49,11 +58,9 @@
 		"gratin",
 		"bercy",
 		"demi-glace",
-		"poivrade",
-		"réforme"
+		"poivrade"
 	],
 	"foyot": ["colbert"],
-	"glace de viande": ["véron"],
 	"hollandaise": ["bavaroise", "maltaise", "mousseline", "noisette", "béarnaise"],
 	"homard": ["victoria"],
 	"mayonnaise": [
@@ -69,8 +76,9 @@
 		"verte",
 		"vincent"
 	],
+	"madère": ["tortue", "financière"],
 	"normande": ["anchois", "huîtres", "joinville", "diplomate", "véron"],
-	"poivrade": ["chevreuil", "diane", "moscovite", "venaison"],
+	"poivrade": ["chevreuil", "diane", "moscovite", "venaison", "réforme"],
 	"périgueux": ["périgourdine"],
 	"robert": ["charcutière"],
 	"suprème": ["albuféra"],
@@ -88,16 +96,10 @@
 		"bercy",
 		"homard",
 		"américaine",
-		"normande"
+		"normande",
+		"champignons velouté"
 	],
-	"velouté de veau": [
-		"hongroise",
-		"ravigote chaud",
-		"villageoise",
-		"villeroy",
-		"allemande",
-		"poulette"
-	],
+	"velouté de veau": ["hongroise", "ravigote chaud", "villageoise", "allemande", "poulette"],
 	"velouté de volaille": ["chivry", "ivoire", "suprème", "estragon velouté"],
 	"vin blanc": ["saint-malo", "souchet"],
 	"vinaigrette": ["ravigote"]
