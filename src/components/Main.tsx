@@ -14,8 +14,6 @@ const Main: React.FC<MainProps> = () => {
 	let linkCard = (sauce: Card, force: boolean = false) =>
 		(!cards[sauce.name] || force) && setCards(prev => ({ ...prev, [sauce.name]: sauce }));
 
-	let remaining = Object.keys(sauces).filter(sauce => !Object.keys(Positions).includes(sauce));
-
 	return (
 		<div
 			className="main"

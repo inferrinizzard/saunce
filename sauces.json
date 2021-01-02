@@ -7,7 +7,7 @@
 				{
 					"name": "velouté de volaille",
 					"ingredients": [],
-					"daughters": ["suprème", "ivoire", "albuféra", "chivry"]
+					"daughters": ["suprême", "ivoire", "albuféra", "chivry"]
 				},
 				{
 					"name": "velouté de veau",
@@ -91,7 +91,7 @@
 		}
 	],
 	"dérivées": [
-		{ "name": "suprème", "ingredients": [] },
+		{ "name": "suprême", "ingredients": [] },
 		{ "name": "ivoire", "ingredients": [] },
 		{ "name": "albuféra", "ingredients": [] },
 		{ "name": "allemande", "ingredients": [], "daughters": ["poulette"] },

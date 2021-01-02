@@ -26,8 +26,20 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.ingredient-wine:before {
-	content: '\e90c';
+.ingredient-truffle:before {
+	content: '\e912';
+}
+.ingredient-capsicum:before {
+	content: '\e91a';
+}
+.ingredient-herbs:before {
+	content: '\e91b';
+}
+.ingredient-oil:before {
+	content: '\e91c';
+}
+.ingredient-pickle:before {
+	content: '\e91d';
 }
 .ingredient-butter:before {
 	content: '\e900';
@@ -50,7 +62,7 @@
 .ingredient-chives:before {
 	content: '\e906';
 }
-.ingredient-crème:before {
+.ingredient-creme:before {
 	content: '\e907';
 }
 .ingredient-egg:before {
@@ -64,6 +76,9 @@
 }
 .ingredient-garlic:before {
 	content: '\e90b';
+}
+.ingredient-wine:before {
+	content: '\e90c';
 }
 .ingredient-lemon:before {
 	content: '\e90d';
@@ -79,9 +94,6 @@
 }
 .ingredient-mushroom:before {
 	content: '\e911';
-}
-.ingredient-oil:before {
-	content: '\e912';
 }
 .ingredient-onion:before {
 	content: '\e913';

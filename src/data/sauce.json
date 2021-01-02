@@ -8,7 +8,7 @@
 	},
 	"albuféra": {
 		"nom": "Sauce Albuféra",
-		"desc": "Sauce Suprème + Glace de Viande + Pimento Butter",
+		"desc": "Sauce Suprême + Glace de Viande + Pimento Butter",
 		"ingredients": ["chili", "butter"]
 	},
 	"allemande": {
@@ -28,6 +28,11 @@
 		"desc": "Sauce Mayonnaise + Tomato purée, + Pimento",
 		"ingredients": ["tomato", "chili"],
 		"temp": "froide"
+	},
+	"bagration": {
+		"nom": "Sauce Bagration",
+		"desc": "Sauce Mayonnaise + Anchovy Purée + Caviar",
+		"ingredients": ["fish"]
 	},
 	"bavaroise": {
 		"nom": "Sauce Bavaroise",
@@ -66,7 +71,7 @@
 	},
 	"bordelaise": {
 		"nom": "Sauce Bordelaise",
-		"desc": "Red Wine + Shallot + Pepper + Bay leaf + Thyme + Sauce Espagnole + Glace de Viande + Lemon + Bone Marrow",
+		"desc": "Red Wine + Shallot + Pepper + Bay leaf + Thyme + Sauce Demi-glace + Glace de Viande + Lemon + Bone Marrow",
 		"ingredients": ["wine", "herbs", "pepper", "lemon"]
 	},
 	"bourguignonne": { "nom": "Sauce Bourguignonne", "desc": "", "ingredients": [] },
@@ -134,8 +139,8 @@
 	},
 	"demi-glace": {
 		"nom": "Sauce Demi-glace",
-		"desc": "Sauce Espagnole + Meat",
-		"ingredients": ["meat"]
+		"desc": "Sauce Espagnole + Meat + Brown Stock",
+		"ingredients": ["meat", "stock"]
 	},
 	"diable": {
 		"nom": "Sauce à la Diable",
@@ -145,12 +150,12 @@
 	"diane": {
 		"nom": "Sauce à la Diane",
 		"desc": "Cream + Sauce Poivrade + Truffle + Egg White",
-		"ingredients": ["crème", "egg"]
+		"ingredients": ["crème", "truffle", "egg"]
 	},
 	"diplomate": {
 		"nom": "Sauce Diplomate",
 		"desc": "Lobster + Butter + Sauce Normande + Truffle",
-		"ingredients": ["butter"]
+		"ingredients": ["butter", "truffle"]
 	},
 	"duxelles": {
 		"nom": "Sauce Duxelles",
@@ -159,7 +164,7 @@
 	},
 	"écossaise": {
 		"nom": "Sauce Écossaise",
-		"desc": "Brunoise(Mirepoix, French Beans) + Bouillon + Sauce à la Cream",
+		"desc": "Brunoise(Mirepoix, French Beans) + Bouillon + Sauce à la Crème",
 		"ingredients": ["onion", "carrot", "celery", "beans", "butter"]
 	},
 	"espagnole": {
@@ -180,7 +185,12 @@
 	"financière": {
 		"nom": "Sauce Financière",
 		"desc": "Sauce Madère + Truffle",
-		"ingredients": []
+		"ingredients": ["truffle"]
+	},
+	"fines herbes": {
+		"nom": "Sauce Fines Herbes",
+		"desc": "Sauce Vin Blanc + Butter + Shallots + Parsley + Chervil + Tarragon",
+		"ingredients": ["butter", "herbs"]
 	},
 	"foyot": {
 		"nom": "Sauce Foyot",
@@ -254,13 +264,13 @@
 	},
 	"ivoire": {
 		"nom": "Sauce Ivoire",
-		"desc": "Sauce Suprème + Glace de Viande",
+		"desc": "Sauce Suprême + Glace de Viande",
 		"ingredients": []
 	},
 	"joinville": {
 		"nom": "Sauce Joinville",
 		"desc": "Sauce Normande + Crayfish Butter + Shrimp Butter + (Truffle)",
-		"ingredients": ["shrimp", "butter"]
+		"ingredients": ["shrimp", "butter", "truffle"]
 	},
 	"l'aurore": {
 		"nom": "Sauce à l'Aurore",
@@ -276,7 +286,7 @@
 	"livonienne": {
 		"nom": "Sauce Livonienne",
 		"desc": "Carrots + Celery + Mushrooms + Onion + Butter + Sauce Velouté de Poisson + Truffle + Parsley",
-		"ingredients": ["carrot", "celery", "mushroom", "onion", "butter", "herbs"]
+		"ingredients": ["carrot", "celery", "mushroom", "onion", "butter", "herbs", "truffle"]
 	},
 	"lyonnaise": {
 		"nom": "Sauce Lyonnaise",
@@ -292,6 +302,11 @@
 		"nom": "Sauce Maltaise",
 		"desc": "Sauce Hollandaise + Blood Oranges + Zest",
 		"ingredients": []
+	},
+	"marchand de vin": {
+		"nom": "Sauce Marchand de Vin",
+		"desc": "dry Red Wine + Shallots + Sauce Demi-glace",
+		"ingredients": ["wine"]
 	},
 	"marinière": { "nom": "Sauce Marinière", "desc": "", "ingredients": [] },
 	"matelote": {
@@ -354,21 +369,35 @@
 		"desc": "Sauce Velouté de Poisson + Mushroom Liquor + Mussels Liquor + Fish Stock + Lemon + Yolks + Cream + Butter",
 		"ingredients": ["mushroom", "stock", "lemon", "crème", "butter"]
 	},
+	"norvégienne": {
+		"nom": "Sauce Norvégienne",
+		"desc": "Sauce Vinaigrette + Yolks + Anchovies",
+		"ingredients": ["egg", "fish"]
+	},
 	"orientale": {
 		"nom": "Sauce Orientale",
 		"desc": "Sauce Américaine + Curry + Cream",
-		"ingredients": ["spice", "crème"]
+		"ingredients": ["spices", "crème"]
 	},
 	"paloise": {
 		"nom": "Sauce Paloise",
 		"desc": "Sauce Béarnaise - Tarragon + Mint",
 		"ingredients": ["herbs"]
 	},
-	"périgourdine": { "nom": "Sauce Périgourdine", "desc": "", "ingredients": [] },
+	"pêcheur": {
+		"nom": "Sauce à la Pêcheur",
+		"desc": "Sauce Vinaigrette + Crab Meat",
+		"ingredients": []
+	},
+	"périgourdine": {
+		"nom": "Sauce Périgourdine",
+		"desc": "Sauce Périgueux, cut the truffles differently",
+		"ingredients": []
+	},
 	"périgueux": {
 		"nom": "Sauce Périgueux",
 		"desc": "Sauce Demi-glace + Truffle",
-		"ingredients": []
+		"ingredients": ["truffle"]
 	},
 	"piquante": {
 		"nom": "Sauce Piquante",
@@ -396,6 +425,12 @@
 		"ingredients": ["mushroom", "lemon", "butter", "herbs"]
 	},
 	"provençale": { "nom": "Sauce à la Provençale", "desc": "", "ingredients": [] },
+	"raifort": {
+		"nom": "Sauce Raifort",
+		"desc": "Sauce Béchamel + Horseradish",
+		"ingredients": [],
+		"temp": "froide"
+	},
 	"ravigote": { "nom": "Sauce Ravigote", "desc": "", "ingredients": [], "temp": "froide" },
 	"ravigote chaud": {
 		"nom": "Sauce Ravigote",
@@ -405,12 +440,12 @@
 	"réforme": {
 		"nom": "Sauce Réforme",
 		"desc": "Sauce Poivrade + Sauce Demi-glace + Cornichons + Egg White + Mushroom + Truffle + Beef Tongue",
-		"ingredients": ["pickle", "egg", "mushroom", "meat"]
+		"ingredients": ["pickle", "egg", "mushroom", "meat", "truffle"]
 	},
 	"régence": {
 		"nom": "Sauce à la Régence",
 		"desc": "Rhine Wine + Mirepoix + Butter + Truffle + Sauce Demi-glace",
-		"ingredients": ["wine", "carrot", "celery", "onion", "butter"]
+		"ingredients": ["wine", "carrot", "celery", "onion", "butter", "truffle"]
 	},
 	"rémoulade": {
 		"nom": "Sauce Rémoulade",
@@ -421,7 +456,7 @@
 	"riche": {
 		"nom": "Sauce Riche",
 		"desc": "Sauce Diplomate + Truffle",
-		"ingredients": []
+		"ingredients": ["truffle"]
 	},
 	"robert": {
 		"nom": "Sauce Robert",
@@ -456,7 +491,7 @@
 	},
 	"salmis": {
 		"nom": "Sauce Salmis",
-		"desc": "Butter + Mirepoix + Skin of Gibier + White Wine + sauce Demi-glace + Stock",
+		"desc": "Butter + Mirepoix + Skin of Gibier + White Wine + Sauce Demi-glace + Stock",
 		"ingredients": ["butter", "carrot", "celery", "onion", "meat", "wine", "stock"]
 	},
 	"smitane": {
@@ -477,8 +512,8 @@
 		"ingredients": ["wine"],
 		"temp": "froide"
 	},
-	"suprème": {
-		"nom": "Sauce Suprème",
+	"suprême": {
+		"nom": "Sauce Suprême",
 		"desc": "Sauce Velouté de Volaille + Chicken Stock + Mushroom Liquor + Cream + Butter",
 		"ingredients": ["stock", "mushroom", "crème", "butter"]
 	},
@@ -507,6 +542,11 @@
 		"nom": "Sauce Tortue",
 		"desc": "Veal Stock + Sage + Basil + Marjoram + Rosemary + Thyme + Parsley + Bay leaf + Mushroom + Peppercorn + Sauce Demi-glace + Sauce Tomate + Madeira Wine + Truffle + Cayenne",
 		"ingredients": ["stock", "herbs", "mushroom", "pepper", "wine"]
+	},
+	"toulouse": {
+		"nom": "Sauce Toulouse",
+		"desc": "Sauce Suprême + Truffle + Lemon + Butter",
+		"ingredients": ["truffle", "lemon", "butter"]
 	},
 	"tyrolienne": {
 		"nom": "Sauce Tyrolienne",
@@ -560,7 +600,7 @@
 	"villeroy": {
 		"nom": "Sauce Villeroy",
 		"desc": "Sauce Allemande + Ham + Truffle",
-		"ingredients": ["meat"]
+		"ingredients": ["meat", "truffle"]
 	},
 	"vin blanc": {
 		"nom": "Sauce au Vin Blanc",
