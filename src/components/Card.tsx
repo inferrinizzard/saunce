@@ -67,6 +67,7 @@ export interface CardProps {
 	name: SauceName;
 	pos: Pos; // top-left corner of card, pre-margin
 	attach: (sauce: Card, force?: boolean) => void;
+	colour?: string;
 }
 
 export interface CardState {
@@ -82,7 +83,7 @@ class Card extends React.Component<CardProps, CardState> {
 
 	name = this.props.name;
 	sauce = Sauces[this.props.name] as Sauce;
-	colour = 'salmon';
+	colour = this.props.colour ?? 'salmon';
 	in = { x: this.state.pos.x + (cardSize * phi) / 2, y: this.state.pos.y };
 	out = { x: this.state.pos.x + (cardSize * phi) / 2, y: this.state.pos.y + cardSize };
 	force = false;
