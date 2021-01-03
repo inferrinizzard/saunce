@@ -118,13 +118,13 @@
 	"châteaubriand": { "nom": "Sauce Châteaubriand", "desc": "", "ingredients": [] },
 	"chivry": {
 		"nom": "Sauce Chivry",
-		"desc": "White Wine + Chervil + Parsely + Tarragon + Shallot + Chives + Salad Burnet + Sauce Velouté",
-		"ingredients": []
+		"desc": "White Wine + Chervil + Parsley + Tarragon + Shallot + Chives + Salad Burnet + Sauce Velouté",
+		"ingredients": ["wine", "herbs", "chives"]
 	},
 	"choron": {
 		"nom": "Sauce Choron",
 		"desc": "Sauce Béarnaise - Tarragon - Chervil + Tomato Purée",
-		"ingredients": []
+		"ingredients": ["herbs", "tomato"]
 	},
 	"colbert": { "nom": "Sauce Colbert", "desc": "", "ingredients": [] },
 	"crème": {
@@ -189,7 +189,7 @@
 	},
 	"fines herbes": {
 		"nom": "Sauce Fines Herbes",
-		"desc": "Sauce Vin Blanc + Butter + Shallots + Parsley + Chervil + Tarragon",
+		"desc": "Sauce au Vin Blanc + Butter + Shallots + Parsley + Chervil + Tarragon",
 		"ingredients": ["butter", "herbs"]
 	},
 	"foyot": {
@@ -206,7 +206,7 @@
 	"génoise": {
 		"nom": "Sauce Génoise",
 		"desc": "Pistachio + Pine Nuts + Sauce Béchamel + Yolks + Oil + Lemon + Parsley + Chervil + Tarragon + Chives + Pimpernel",
-		"ingredients": ["nuts", "egg", "oil", "lemon", "herbs"],
+		"ingredients": ["nuts", "egg", "oil", "lemon", "herbs", "chives"],
 		"temp": "froide"
 	},
 	"godard": {
@@ -338,7 +338,7 @@
 	"mousquetaire": {
 		"nom": "Sauce Mousquetaire",
 		"desc": "Sauce Mayonnaise + Shallot + White Wine + Glace de Viande + Chives + (Cayenne or Pepper)",
-		"ingredients": ["wine", "herbs", "pepper"],
+		"ingredients": ["wine", "chives", "pepper"],
 		"temp": "froide"
 	},
 	"mousseline": {
@@ -435,7 +435,7 @@
 	"ravigote chaud": {
 		"nom": "Sauce Ravigote",
 		"desc": "White Wine + Vinegar + Sauce Velouté + Shallot + Butter + Chervil + Tarragon + Chives",
-		"ingredients": ["wine", "butter", "herbs"]
+		"ingredients": ["wine", "butter", "herbs", "chives"]
 	},
 	"réforme": {
 		"nom": "Sauce Réforme",
@@ -520,7 +520,7 @@
 	"tartare": {
 		"nom": "Sauce Tartare",
 		"desc": "Egg + Pepper + Vinegar + (Scallions or Chives) + Sauce Mayonnaise",
-		"ingredients": ["egg", "pepper", "herbs"],
+		"ingredients": ["egg", "pepper", "herbs", "chives"],
 		"temp": "froide"
 	},
 	"tomate": {
@@ -615,13 +615,13 @@
 	"vinaigrette": {
 		"nom": "Sauce Vinaigrette",
 		"desc": "Oil + Vinegar + Capers + Parsley + Tarragon + Cervil + Chives + Onion + Pepper",
-		"ingredients": ["oil", "herbs", "onion", "pepper"],
+		"ingredients": ["oil", "herbs", "onion", "pepper", "chives"],
 		"temp": "froide"
 	},
 	"vincent": {
 		"nom": "Sauce Vincent",
 		"desc": "Sorrel + Parsley + Tarragon + Chervil + Chives + Salad Burnet + Watercress + Spinach + Yolks + Sauce Mayonnaise + Derby Sauce",
-		"ingredients": ["herbs", "egg"],
+		"ingredients": ["herbs", "chives", "egg"],
 		"temp": "froide"
 	},
 	"zingara": { "nom": "Sauce à la Zingara", "desc": "", "ingredients": [] }
