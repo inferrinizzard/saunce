@@ -92,7 +92,7 @@
 	"poivrade": ["chevreuil", "diane", "moscovite", "venaison", "réforme"],
 	"périgueux": ["périgourdine"],
 	"robert": ["charcutière"],
-	"suprême": ["albuféra", "toulouse"],
+	"suprême": ["albuféra", "ivoire", "toulouse"],
 	"tomate": ["bolognaise", "milanaise", "portugaise", "hachée", "zingara", "tortue"],
 	"tyrolienne": ["véron"],
 	"velouté de poisson": [
@@ -109,7 +109,7 @@
 		"champignons velouté"
 	],
 	"velouté de veau": ["hongroise", "ravigote chaud", "villageoise", "allemande", "poulette"],
-	"velouté de volaille": ["chivry", "ivoire", "suprême", "estragon velouté"],
+	"velouté de volaille": ["chivry", "suprême", "estragon velouté"],
 	"vin blanc": ["saint-malo", "souchet", "vénitienne", "fines herbes"],
 	"vinaigrette": ["ravigote", "pêcheur", "norvégienne"]
 }

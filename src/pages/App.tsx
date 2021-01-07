@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import { MapInteractionCSS as TransformComponent } from 'react-map-interaction';
 
 import styled, { ThemeProvider } from 'styled-components';
 import '../css/main.css';
@@ -24,29 +24,26 @@ let AppHead = styled.div`
 `;
 
 export default function App() {
+	// let [transform, setTransform] = useState({ scale: 1, translation: { x: 0, y: 0 } });
 	return (
 		<AppHead>
 			<ThemeProvider theme={theme}>
 				<Overlay />
-				<TransformWrapper
-					defaultPositionX={0}
-					defaultPositionY={0}
-					wheel={{ step: 15 }}
-					// onPanningStop={(e: any) => console.log(e)}
-					options={{
-						minScale: 0.35,
-						maxScale: 1,
-						centerContent: false,
-						limitToBounds: false,
-						maxPositionX: 11 * CardBlockSize.x,
-						minPositionX: -12 * CardBlockSize.x,
-						maxPositionY: 1 * CardBlockSize.y,
-						minPositionY: -10 * CardBlockSize.y,
-					}}>
-					<TransformComponent>
-						<Main />
-					</TransformComponent>
-				</TransformWrapper>
+				<TransformComponent
+					// value={transform}
+					minScale={0.35}
+					maxScale={1}
+					translationBounds={{
+						xMin: -14 * CardBlockSize.x,
+						xMax: 6.5 * CardBlockSize.x,
+						yMin: -10 * CardBlockSize.y,
+						yMax: 0.5 * CardBlockSize.y,
+					}}
+					// onChange={(e: typeof transform) => setTransform(e)}
+					// onChange={(e: typeof transform) => console.log(e)}
+				>
+					<Main />
+				</TransformComponent>
 			</ThemeProvider>
 		</AppHead>
 	);

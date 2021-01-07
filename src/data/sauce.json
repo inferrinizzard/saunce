@@ -464,12 +464,12 @@
 		"ingredients": ["butter", "onion", "wine"]
 	},
 	"romaine": {
-		"nom": "Sauce Romaine",
+		"nom": "Sauce à la Romaine",
 		"desc": "Sugar + Vinegar + Sauce Espagnole + Game Stock + Pine Nuts + Sultanas + Currants",
 		"ingredients": ["stock", "nuts"]
 	},
 	"rouennaise": {
-		"nom": "Sauce Rouennaise",
+		"nom": "Sauce à la Rouennaise",
 		"desc": "Sauce Bordelaise + Duck Liver",
 		"ingredients": ["meat"]
 	},
