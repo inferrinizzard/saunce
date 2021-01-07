@@ -113,7 +113,7 @@
 	"chevreuil": {
 		"nom": "Sauce Chevreuil",
 		"desc": "Sauce Poivrade + (Bacon or Gibier) + Red Wine + Sugar + Cayenne",
-		"ingredients": ["meat", "wine"]
+		"ingredients": ["meat", "wine", "spice"]
 	},
 	"châteaubriand": { "nom": "Sauce Châteaubriand", "desc": "", "ingredients": [] },
 	"chivry": {
@@ -135,7 +135,7 @@
 	"crevettes": {
 		"nom": "Sauce aux Crevettes",
 		"desc": "(Sauce Velouté de Poisson or Sauce Béchamel) + Cream + Fish Stock + Shrimp Butter + Cayenne",
-		"ingredients": ["crème", "stock", "shrimp"]
+		"ingredients": ["crème", "stock", "shrimp", "spice"]
 	},
 	"demi-glace": {
 		"nom": "Sauce Demi-glace",
@@ -145,7 +145,7 @@
 	"diable": {
 		"nom": "Sauce à la Diable",
 		"desc": "White Wine + Shallot + Sauce Demi-glace + Cayenne",
-		"ingredients": ["wine"]
+		"ingredients": ["wine", "spice"]
 	},
 	"diane": {
 		"nom": "Sauce à la Diane",
@@ -312,7 +312,7 @@
 	"matelote": {
 		"nom": "Sauce Matelote",
 		"desc": "Red Wine + Court-bouillon + Mushroom + Sauce Espagnole (Fish) + Butter + Cayenne",
-		"ingredients": ["wine", "mushroom", "butter"]
+		"ingredients": ["wine", "mushroom", "butter", "spice"]
 	},
 	"mayonnaise": {
 		"nom": "Sauce Mayonnaise",
@@ -377,7 +377,7 @@
 	"orientale": {
 		"nom": "Sauce Orientale",
 		"desc": "Sauce Américaine + Curry + Cream",
-		"ingredients": ["spices", "crème"]
+		"ingredients": ["spice", "crème"]
 	},
 	"paloise": {
 		"nom": "Sauce Paloise",
@@ -541,7 +541,7 @@
 	"tortue": {
 		"nom": "Sauce Tortue",
 		"desc": "Veal Stock + Sage + Basil + Marjoram + Rosemary + Thyme + Parsley + Bay leaf + Mushroom + Peppercorn + Sauce Demi-glace + Sauce Tomate + Madeira Wine + Truffle + Cayenne",
-		"ingredients": ["stock", "herbs", "mushroom", "pepper", "wine"]
+		"ingredients": ["stock", "herbs", "mushroom", "pepper", "wine", "spice"]
 	},
 	"toulouse": {
 		"nom": "Sauce Toulouse",
@@ -551,7 +551,7 @@
 	"tyrolienne": {
 		"nom": "Sauce Tyrolienne",
 		"desc": "Sauce Béarnaise + Tomato Purée + Yolks + Oil + Cayenne",
-		"ingredients": ["tomato", "egg", "oil"]
+		"ingredients": ["tomato", "egg", "oil", "spice"]
 	},
 	"velouté de poisson": {
 		"nom": "Sauce Velouté de Poisson",
@@ -610,7 +610,7 @@
 	"vin rouge": {
 		"nom": "Sauce au Vin Rouge",
 		"desc": "Butter + Mirepoix + Red Wine + Garlic + Sauce Espagnole + Anchovy Essence + Cayenne",
-		"ingredients": ["butter", "carrot", "celery", "onion", "wine", "garlic", "fish"]
+		"ingredients": ["butter", "carrot", "celery", "onion", "wine", "garlic", "fish", "spice"]
 	},
 	"vinaigrette": {
 		"nom": "Sauce Vinaigrette",
