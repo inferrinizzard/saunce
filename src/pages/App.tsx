@@ -16,11 +16,8 @@ let theme = {
 };
 
 let AppHead = styled.div`
-	&,
-	> div.react-transform-component {
-		height: 100%;
-		width: 100%;
-	}
+	height: 100%;
+	width: 100%;
 `;
 
 export default function App() {
