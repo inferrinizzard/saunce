@@ -24,22 +24,22 @@ let AppHead = styled.div`
 `;
 
 export default function App() {
-	// let [transform, setTransform] = useState({ scale: 1, translation: { x: 0, y: 0 } });
+	let [transform, setTransform] = useState({ scale: 1, translation: { x: 0, y: 0 } });
 	return (
 		<AppHead>
 			<ThemeProvider theme={theme}>
 				<Overlay />
 				<TransformComponent
-					// value={transform}
+					value={transform}
 					minScale={0.35}
 					maxScale={1}
 					translationBounds={{
-						xMin: -14 * CardBlockSize.x,
-						xMax: 6.5 * CardBlockSize.x,
-						yMin: -10 * CardBlockSize.y,
-						yMax: 0.5 * CardBlockSize.y,
+						xMin: -11.5 * CardBlockSize.x * transform.scale ** 1.75,
+						xMax: 10.5 * CardBlockSize.x * transform.scale,
+						yMin: -10 * CardBlockSize.y * transform.scale ** 1.5,
+						yMax: 0.5 * CardBlockSize.y * transform.scale,
 					}}
-					// onChange={(e: typeof transform) => setTransform(e)}
+					onChange={(e: typeof transform) => setTransform(e)}
 					// onChange={(e: typeof transform) => console.log(e)}
 				>
 					<Main />
