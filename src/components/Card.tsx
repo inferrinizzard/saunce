@@ -10,7 +10,7 @@ import Ingredient from './Ingredient';
 import Buttons from './Buttons';
 
 const phi = 1.618;
-const cardSize = 250;
+export const cardSize = 250;
 let ceilToNearestFive = (x: number) => Math.ceil(x / 5) * 5;
 let smoothPhi = (x: number) => ceilToNearestFive(x * phi) - x * phi;
 
@@ -46,7 +46,7 @@ let StyledCard = styled('section')({
 
 		h2 {
 			margin: 0;
-			font-size: ${p => p.size / 11}px;
+			font-size: ${p => p.size / (p?.textScale ?? 11)}px;
 		}
 
 		hr {
@@ -89,7 +89,10 @@ class Card extends React.Component<CardProps, CardState> {
 
 	render() {
 		return (
-			<StyledCard accentColour={this.colour} pos={this.state.pos}>
+			<StyledCard
+				accentColour={this.colour}
+				pos={this.state.pos}
+				textScale={(this.name === 'tortue' && 14) || (this.sauce.desc.length > 100 && 12)}>
 				<div className="card-content">
 					{(split =>
 						split ? (
@@ -105,10 +108,19 @@ class Card extends React.Component<CardProps, CardState> {
 							<h1>{this.sauce.nom}</h1>
 						))(this.sauce.nom.match(/\s(à(\sla)?|aux?|de)\s/g)?.pop())}
 					<hr />
-					<h2>{this.sauce.desc}</h2>
-					{this.sauce.ingredients.map((i, k) => (
-						<Ingredient key={k} name={i} colour={this.colour} />
-					))}
+					<h2>
+						{this.sauce.desc.length > 90 ? this.sauce.desc.replace(/\s\+/g, ',') : this.sauce.desc}
+					</h2>
+					<div style={{ position: 'absolute', bottom: 0, left: 0 }}>
+						{this.sauce.ingredients.map((i, k) => (
+							<Ingredient
+								key={k}
+								name={i}
+								colour={this.colour}
+								count={this.sauce.ingredients.length}
+							/>
+						))}
+					</div>
 				</div>
 			</StyledCard>
 		);

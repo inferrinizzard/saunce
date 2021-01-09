@@ -6,7 +6,7 @@
 	},
 	"aïoli": {
 		"nom": "Aïoli",
-		"desc": "Garlic + Yolks + Oil + Lemon",
+		"desc": "Sauce Mayonnaise + Garlic + Yolks + Oil + Lemon",
 		"ingredients": ["garlic", "egg", "oil", "lemon"],
 		"temp": "froide"
 	},
@@ -429,8 +429,8 @@
 	},
 	"mousseuse": {
 		"nom": "Sauce Mousseuse",
-		"desc": "Sauce Hollandaise + Whipped Cream",
-		"ingredients": ["crème"]
+		"desc": "Butter + Lemon + Whipped Cream",
+		"ingredients": ["butter", "lemon", "crème"]
 	},
 	"moutarde": {
 		"nom": "Sauce Moutarde",
@@ -514,8 +514,8 @@
 	},
 	"provençale": {
 		"nom": "Sauce à la Provençale",
-		"desc": "Sauce Tomate + Oil + Garlic + Bell Pepper + Olive + Parsley + Herbes de Provence",
-		"ingredients": ["oil", "garlic", "capsicum", "herbs"]
+		"desc": "Tomato + Oil + Garlic + Bell Pepper + Olive + Parsley + Herbes de Provence",
+		"ingredients": ["tomato", "oil", "garlic", "capsicum", "herbs"]
 	},
 	"raifort": {
 		"nom": "Sauce au Raifort",
@@ -646,7 +646,7 @@
 	"tortue": {
 		"nom": "Sauce Tortue",
 		"desc": "Veal Stock + Sage + Basil + Marjoram + Rosemary + Thyme + Parsley + Bay leaf + Mushroom + Peppercorn + Sauce Demi-glace + Sauce Tomate + Madeira Wine + Truffle + Cayenne",
-		"ingredients": ["stock", "herbs", "mushroom", "pepper", "wine", "spice"]
+		"ingredients": ["stock", "herbs", "mushroom", "pepper", "wine", "truffle", "spice"]
 	},
 	"toulouse": {
 		"nom": "Sauce Toulouse",
