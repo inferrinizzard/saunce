@@ -21,7 +21,7 @@ let AppHead = styled.div`
 `;
 
 export default function App() {
-	let [transform, setTransform] = useState({ scale: 1, translation: { x: 0, y: 0 } });
+	let [transform, setTransform] = useState({ scale: 0.7, translation: { x: 0, y: 0 } });
 	return (
 		<AppHead>
 			<ThemeProvider theme={theme}>

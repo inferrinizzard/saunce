@@ -9,18 +9,10 @@ import Ingredient from './Ingredient';
 
 import Buttons from './Buttons';
 
-let ceilToNearestFive = (x: number) => Math.ceil(x / 5) * 5;
-let smoothPhi = (x: number) => ceilToNearestFive(x * 1.618) - x * 1.618;
 const phi = 1.618;
 const cardSize = 250;
-
-// margin border
-// &::before {
-// 	content: '';
-// 	position: absolute;
-// 	${p => Object.entries(p.margins).reduce((a, [k, v]) => `${a}\n${k}: -${v}px;`, '')}
-// 	border: 1px solid #000;
-// }
+let ceilToNearestFive = (x: number) => Math.ceil(x / 5) * 5;
+let smoothPhi = (x: number) => ceilToNearestFive(x * phi) - x * phi;
 
 let StyledCard = styled('section')({
 	size: cardSize,
@@ -43,12 +35,18 @@ let StyledCard = styled('section')({
 		
 		h1 {
 			margin: 0;
-			font-size: ${p => p.size / 6}px;
+			font-size: ${p => p.size / 7}px;
+
+			&.aux {
+				padding-left: 7.5px;
+				padding-right: 7.5px;
+				font-size: ${p => p.size / 8}px;
+			}
 		}
 
 		h2 {
 			margin: 0;
-			font-size: ${p => p.size / 10}px;
+			font-size: ${p => p.size / 11}px;
 		}
 
 		hr {
@@ -61,7 +59,7 @@ let StyledCard = styled('section')({
 
 export type Pos = { x: number; y: number };
 export type SauceName = keyof typeof Sauces;
-export const CardBlockSize: Pos = { x: 525, y: 400 };
+export const CardBlockSize: Pos = { x: ceilToNearestFive(cardSize * phi) + 120, y: cardSize + 150 }; // 525, 400
 
 export interface CardProps {
 	name: SauceName;
@@ -93,7 +91,19 @@ class Card extends React.Component<CardProps, CardState> {
 		return (
 			<StyledCard accentColour={this.colour} pos={this.state.pos}>
 				<div className="card-content">
-					<h1>{this.sauce.nom}</h1>
+					{(split =>
+						split ? (
+							(([a, b]) => [a, split, b])(this.sauce.nom.split(split)).map((frag, i) => (
+								<h1
+									key={`${this.name} ${frag}`}
+									className={i == 1 ? 'aux' : ''}
+									style={{ display: 'inline-block' }}>
+									{i == 1 ? ` ${frag} ` : frag}
+								</h1>
+							))
+						) : (
+							<h1>{this.sauce.nom}</h1>
+						))(this.sauce.nom.match(/\s(à(\sla)?|aux?|de)\s/g)?.pop())}
 					<hr />
 					<h2>{this.sauce.desc}</h2>
 					{this.sauce.ingredients.map((i, k) => (
