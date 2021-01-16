@@ -34,7 +34,9 @@ let tiers: { [k: string]: string } = new Array(5)
 import Card, { SauceName, Pos, CardBlockSize } from './Card';
 import Arrow from './Arrow';
 
-export interface MainProps {}
+export interface MainProps {
+	active: string;
+}
 
 const Main: React.FC<MainProps> = () => {
 	let [cards, setCards] = useState({} as { [k: string]: Card });

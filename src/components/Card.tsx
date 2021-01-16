@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import { navigate } from '@reach/router';
+
 import styled from '../util/Styled';
 import { lighten } from 'polished';
 
@@ -92,7 +94,10 @@ class Card extends React.Component<CardProps, CardState> {
 			<StyledCard
 				accentColour={this.colour}
 				pos={this.state.pos}
-				textScale={(this.name === 'tortue' && 14) || (this.sauce.desc.length > 100 && 12)}>
+				textScale={(this.name === 'tortue' && 14) || (this.sauce.desc.length > 100 && 12)}
+				onClick={(e: MouseEvent) =>
+					!e.defaultPrevented && navigate('/#' + this.name.replace(/\s/, '_'))
+				}>
 				<div className="card-content">
 					{(split =>
 						split ? (
