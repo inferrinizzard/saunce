@@ -31,15 +31,16 @@ export default function App() {
 					minScale={0.35}
 					maxScale={1}
 					translationBounds={{
-						xMin: -11.5 * CardBlockSize.x * transform.scale ** 1.75,
-						xMax: 10.5 * CardBlockSize.x * transform.scale,
-						yMin: -10 * CardBlockSize.y * transform.scale ** 1.5,
-						yMax: 0.5 * CardBlockSize.y * transform.scale,
+						xMax: (CardBlockSize.x / 5) * transform.scale,
+						yMax: (CardBlockSize.y / 5) * transform.scale,
+						xMin:
+							-((24 + 1) * CardBlockSize.x - window.innerWidth) * transform.scale +
+							window.innerWidth * (1 - transform.scale),
+						yMin:
+							-((11 + 1) * CardBlockSize.y - window.innerHeight) * transform.scale +
+							window.innerHeight * (1 - transform.scale),
 					}}
-					onChange={(e: typeof transform) => setTransform(e)}
-					// onChange={(e: typeof transform) => console.log(e)}
-				>
-					<Main />
+					onChange={(e: typeof transform) => setTransform(e)}>
 				</TransformComponent>
 			</ThemeProvider>
 		</AppHead>
