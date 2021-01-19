@@ -6,6 +6,10 @@
 		"pre-commit": "^1.2.2"
 	},
 	"dependencies": {
+		"@bit/mui-org.material-ui-icons.add-rounded": "^3.9.2",
+		"@bit/mui-org.material-ui-icons.close-rounded": "^3.9.2",
+		"@bit/mui-org.material-ui-icons.remove-rounded": "^3.9.2",
+		"@bit/mui-org.material-ui-icons.search-rounded": "^3.9.2",
 		"@bit/mui-org.material-ui.tooltip": "^4.9.10",
 		"gatsby": "^2.29.1",
 		"gatsby-plugin-manifest": "^2.10.0",

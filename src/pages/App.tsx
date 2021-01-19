@@ -41,7 +41,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 	return (
 		<AppHead>
 			<ThemeProvider theme={theme}>
-				<Overlay />
+				<Overlay transform={transform} setTransform={setTransform} />
 				<TransformComponent
 					value={transform}
 					minScale={0.35}
