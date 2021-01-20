@@ -13,13 +13,14 @@ const styled = (
 ) =>
 	_styled(Element)<StyledProps>((componentProps: StyledProps) =>
 		((props: StyledProps) =>
-			`${tail.reduce((acc, curr, i) => {
-				let item =
-					(tags[i].toString() in props && props[tags[i] as keyof StyledProps]) ||
-					(typeof tags[i] == 'function' && (tags[i] as StyledPropFunc)(props));
-				if (!item) throw new Error(`${tags[i]} does not exist in props!`);
-				return acc + item + curr;
-			}, head)}`)({ ...staticProps, ...componentProps })
+			`${tail.reduce(
+				(acc, curr, i) =>
+					acc +
+					((tags[i].toString() in props && props[tags[i] as keyof StyledProps]) ||
+						(tags[i] instanceof Function && (tags[i] as StyledPropFunc)(props))) +
+					curr,
+				head
+			)}`)({ ...staticProps, ...componentProps })
 	);
 
 export const styledStrings = (Element: AnyStyledComponent) => (props: StyledProps) => (
