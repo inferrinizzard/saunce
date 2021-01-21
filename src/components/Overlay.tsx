@@ -7,9 +7,11 @@ import Minus from '@bit/mui-org.material-ui-icons.remove-rounded';
 import Cross from '@bit/mui-org.material-ui-icons.close-rounded';
 import Search from '@bit/mui-org.material-ui-icons.search-rounded';
 
-const Raised = styled('div')({ shadow: true, position: 'fixed' })`
+import AutoComplete, { deaccent } from './AutoComplete';
+
+export const Raised = styled('div')({ shadow: true, position: 'fixed' })`
 	position: ${p => p.position};
-	height: 3rem;
+	min-height: 3rem;
 	min-width: 3rem;
 
 	display: flex;
@@ -31,33 +33,44 @@ export interface OverlayProps {
 const SEARCHOFF = 'thisisoff';
 
 const Overlay: React.FC<OverlayProps> = ({ transform, setTransform }) => {
-	const [search, setSearch] = useState(SEARCHOFF);
+	const [search, _setSearch] = useState(SEARCHOFF);
+	const [display, setDisplay] = useState('');
+
+	const setSearch = (nom: string) => (
+		setDisplay(nom), _setSearch(deaccent(nom.toLowerCase().trim()))
+	);
+
 	return (
 		<div style={{ position: 'fixed', right: 0, top: 0, zIndex: 3 }}>
 			<Raised
 				// wait for MUI v5 collapse to do shrink
 				as="div"
 				style={{ right: '10rem', top: '2rem' }}>
-				{search !== SEARCHOFF && (
-					<Raised
-						as="input" // make auto-expand as span?
-						placeholder="Search for Sauces!"
-						shadow={false}
-						position="relative"
-						style={{
-							display: 'inline-block',
-							padding: '0 0 0 0.5rem',
-							fontFamily: 'Courgette',
-							fontSize: '1.5rem',
-							minWidth: '15rem',
-						}}
-					/>
-				)}
+				<div>
+					{search !== SEARCHOFF && (
+						<Raised
+							as="input" // make auto-expand as span?
+							placeholder="Search for Sauces!"
+							shadow={false}
+							position="relative"
+							onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+								setSearch(e.currentTarget.value)
+							}
+							value={display}
+							style={{
+								display: 'inline-block',
+								padding: '0 0 0 0.5rem',
+								fontFamily: 'Courgette',
+								fontSize: '1.5rem',
+								minWidth: '15rem',
+							}}
+						/>
+					)}
+					{display && <AutoComplete {...{ search, setSearch }} />}
+				</div>
 				<Raised
 					as="button"
-					onClick={() => {
-						search === SEARCHOFF && setSearch('');
-					}}
+					onClick={() => (search === SEARCHOFF ? setSearch('') : console.log(search))}
 					shadow={false}
 					position="relative"
 					style={{ display: 'inline-flex' }}>
