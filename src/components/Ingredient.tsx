@@ -1,6 +1,5 @@
 import React from 'react';
 
-// @ts-ignore: @bit components
 import Tooltip from '@bit/mui-org.material-ui.tooltip';
 
 import styled from '../util/Styled';

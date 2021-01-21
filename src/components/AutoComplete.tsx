@@ -12,7 +12,7 @@ const sauces = Object.entries(_sauces).reduce(
 		[deaccent(k)]: { nom: v.nom, key: deaccent(v.nom.toLowerCase()) },
 	}),
 	{}
-) as { [k: string]: { nom: string; key: string } };
+) as Record<SauceName, { nom: string; key: string }>;
 
 const Item = styled('li')({})`
 	list-style: none;

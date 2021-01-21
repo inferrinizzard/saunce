@@ -31,7 +31,7 @@ let tiers: { [k: string]: string } = new Array(5)
 		} as { q: string[]; acc: { [k: string]: string } }
 	).acc;
 
-import Card, { SauceName, Pos, CardBlockSize } from './Card';
+import Card, { CardBlockSize } from './Card';
 import Arrow from './Arrow';
 
 export interface MainProps {

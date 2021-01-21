@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
-
 import { navigate } from '@reach/router';
 
 import styled from '../util/Styled';
 import { lighten } from 'polished';
 
 import Sauces from '../data/sauce.json';
-type Sauce = { nom: string; desc: string; ingredients: string[]; temp?: string };
-import Ingredient from './Ingredient';
 
+import Ingredient from './Ingredient';
 import Buttons from './Buttons';
 
 const phi = 1.618;
@@ -59,8 +57,6 @@ let StyledCard = styled('section')({
 	}
 `;
 
-export type Pos = { x: number; y: number };
-export type SauceName = keyof typeof Sauces;
 export const CardBlockSize: Pos = { x: ceilToNearestFive(cardSize * phi) + 120, y: cardSize + 150 }; // 525, 400
 
 export interface CardProps {

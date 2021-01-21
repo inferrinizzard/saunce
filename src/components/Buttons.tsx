@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Pos, CardBlockSize } from './Card';
+import { CardBlockSize } from './Card';
 
 export interface ButtonsProps {
 	pos: Pos;
