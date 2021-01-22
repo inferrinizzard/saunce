@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { navigate } from '@reach/router';
 
-import styled from '../util/Styled';
-import { deaccent } from '../util/util';
+import styled from '../scripts/Styled';
+import { deaccent } from '../scripts/util';
 
 import Plus from '@bit/mui-org.material-ui-icons.add-rounded';
 import Minus from '@bit/mui-org.material-ui-icons.remove-rounded';

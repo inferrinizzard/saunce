@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { nav } from '../util/util';
-import styled from '../util/Styled';
+import { nav } from '../scripts/util';
+import styled from '../scripts/Styled';
 
 import sauces from '../data/sauce.json';
 import filles from '../data/filles.json';

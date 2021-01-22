@@ -2,7 +2,7 @@ import React from 'react';
 
 import Tooltip from '@bit/mui-org.material-ui.tooltip';
 
-import styled from '../util/Styled';
+import styled from '../scripts/Styled';
 
 import { list as ingredientsList } from '../data/ingredients.json';
 // type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType[number];

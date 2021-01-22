@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { nav } from '../util/util';
+import { nav } from '../scripts/util';
 
-import styled from '../util/Styled';
+import styled from '../scripts/Styled';
 import { lighten } from 'polished';
 
 import Sauces from '../data/sauce.json';

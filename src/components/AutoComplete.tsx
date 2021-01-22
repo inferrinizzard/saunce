@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import styled from '../util/Styled';
+import styled from '../scripts/Styled';
 
 import { Raised } from './Overlay';
-import { deaccent } from '../util/util';
+import { deaccent } from '../scripts/util';
 
 import _sauces from '../data/sauce.json';
 const sauces = Object.entries(_sauces).reduce(
