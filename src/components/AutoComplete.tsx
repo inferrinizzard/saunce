@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import styled from '../util/Styled';
 
 import { Raised } from './Overlay';
+import { deaccent } from '../util/util';
 
 import _sauces from '../data/sauce.json';
-export const deaccent = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 const sauces = Object.entries(_sauces).reduce(
 	(a, [k, v]) => ({
 		...a,
@@ -16,7 +16,7 @@ const sauces = Object.entries(_sauces).reduce(
 
 const Item = styled('li')({})`
 	list-style: none;
-	font-family: Courgette;
+	font-family: ${p => p.theme.font};
 	font-size: 1.25rem;
 	margin: 0.25rem 0;
 	padding-left: 0.5rem;

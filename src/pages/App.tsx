@@ -15,20 +15,22 @@ import pos from '../data/pos.json';
 
 let theme = {
 	offwhite: '#f7f7f2', // #faf3dd
+	bg: '#f9f9ff',
 	font: 'Courgette',
 };
 
 let AppHead = styled.div`
 	height: 100%;
 	width: 100%;
+	background-color: ${p => p.theme.bg};
 `;
 
 let baseScale = 0.7;
 
 const App: React.FC<LocationContext> = ({ location }) => {
-	let active = decodeURI(location.hash).slice(1).replace('_', ' ');
+	const active = decodeURI(location.hash).slice(1).replace(/[_]/g, ' ') as SauceName;
 
-	let [transform, setTransform] = useState({
+	const [transform, setTransform] = useState({
 		scale: baseScale,
 		translation: active
 			? {
@@ -41,7 +43,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 	return (
 		<AppHead>
 			<ThemeProvider theme={theme}>
-				<Overlay transform={transform} setTransform={setTransform} />
+				<Overlay transform={transform} setTransform={setTransform} active={active} />
 				<TransformComponent
 					value={transform}
 					minScale={0.35}

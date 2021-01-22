@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import { navigate } from '@reach/router';
 
 import styled from '../util/Styled';
+import { deaccent } from '../util/util';
 
 import Plus from '@bit/mui-org.material-ui-icons.add-rounded';
 import Minus from '@bit/mui-org.material-ui-icons.remove-rounded';
 import Cross from '@bit/mui-org.material-ui-icons.close-rounded';
 import Search from '@bit/mui-org.material-ui-icons.search-rounded';
 
-import AutoComplete, { deaccent } from './AutoComplete';
+import AutoComplete from './AutoComplete';
+import ActivePanel from './ActivePanel';
 
-export const Raised = styled('div')({ shadow: true, position: 'fixed' })`
+export const Raised = styled('div')({ shadow: true, position: 'absolute' })`
 	position: ${p => p.position};
 	min-height: 3rem;
 	min-width: 3rem;
@@ -28,11 +31,12 @@ export const Raised = styled('div')({ shadow: true, position: 'fixed' })`
 export interface OverlayProps {
 	transform: { scale: number; translation: { x: number; y: number } };
 	setTransform: (transform: { scale: number; translation: { x: number; y: number } }) => void;
+	active: SauceName;
 }
 
 const SEARCHOFF = 'thisisoff';
 
-const Overlay: React.FC<OverlayProps> = ({ transform, setTransform }) => {
+const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) => {
 	const [search, _setSearch] = useState(SEARCHOFF);
 	const [display, setDisplay] = useState('');
 
@@ -41,69 +45,74 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform }) => {
 	);
 
 	return (
-		<div style={{ position: 'fixed', right: 0, top: 0, zIndex: 3 }}>
-			<Raised
-				// wait for MUI v5 collapse to do shrink
-				as="div"
-				style={{ right: '10rem', top: '2rem' }}>
-				<div>
-					{search !== SEARCHOFF && (
-						<Raised
-							as="input" // make auto-expand as span?
-							placeholder="Search for Sauces!"
-							shadow={false}
-							position="relative"
-							onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-								setSearch(e.currentTarget.value)
-							}
-							value={display}
-							style={{
-								display: 'inline-block',
-								padding: '0 0 0 0.5rem',
-								fontFamily: 'Courgette',
-								fontSize: '1.5rem',
-								minWidth: '15rem',
-							}}
-						/>
-					)}
-					{display && <AutoComplete {...{ search, setSearch }} />}
-				</div>
+		<>
+			<div style={{ position: 'fixed', right: active ? '33.3%' : 0, top: 0, zIndex: 3 }}>
+				<Raised
+					// wait for MUI v5 collapse to do shrink
+					as="div"
+					style={{ right: '10rem', top: '2rem' }}>
+					<div>
+						{search !== SEARCHOFF && (
+							<Raised
+								as="input" // make auto-expand as span?
+								placeholder="Search for Sauces!"
+								shadow={false}
+								position="relative"
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+									setSearch(e.currentTarget.value)
+								}
+								value={display}
+								style={{
+									display: 'inline-block',
+									padding: '0 0 0 0.5rem',
+									fontFamily: 'Courgette',
+									fontSize: '1.5rem',
+									minWidth: '15rem',
+								}}
+							/>
+						)}
+						{display && <AutoComplete {...{ search, setSearch }} />}
+					</div>
+					<Raised
+						as="button"
+						onClick={() => (search === SEARCHOFF ? setSearch('') : console.log(search))}
+						shadow={false}
+						position="relative"
+						style={{ display: 'inline-flex' }}>
+						<Search />
+					</Raised>
+				</Raised>
 				<Raised
 					as="button"
-					onClick={() => (search === SEARCHOFF ? setSearch('') : console.log(search))}
-					shadow={false}
-					position="relative"
-					style={{ display: 'inline-flex' }}>
-					<Search />
+					onClick={() => setTransform({ ...transform, scale: transform.scale + 0.1 })} // lerp this, also unbounded
+					style={{ right: '6rem', top: '2rem' }}>
+					<Plus />
 				</Raised>
-			</Raised>
-			<Raised
-				as="button"
-				onClick={() => setTransform({ ...transform, scale: transform.scale + 0.1 })} // lerp this, also unbounded
-				style={{ right: '6rem', top: '2rem' }}>
-				<Plus />
-			</Raised>
-			<Raised
-				as="button"
-				onClick={() => setTransform({ ...transform, scale: transform.scale - 0.1 })} // lerp this, also unbounded
-				style={{ right: '2rem', top: '2rem' }}>
-				<Minus />
-			</Raised>
-			{false && (
 				<Raised
 					as="button"
-					// onClick={() => setTransform({ ...transform, scale: transform.scale - 0.1 })} // lerp this
-					style={{ left: '2rem', top: '2rem' }}>
-					<Cross />
+					onClick={() => setTransform({ ...transform, scale: transform.scale - 0.1 })} // lerp this, also unbounded
+					style={{ right: '2rem', top: '2rem' }}>
+					<Minus />
 				</Raised>
-			)}
-			<Raised
-				as="button"
-				// onClick={() => setTransform({ ...transform, scale: transform.scale - 0.1 })} // lerp this
-				style={{ right: '2rem', bottom: '2rem' }}>
-				<h2>Credits</h2>
-			</Raised>
-		</div>
+				{active && (
+					<Raised
+						as="button"
+						position="fixed"
+						onClick={() => navigate('/')}
+						style={{ left: '2rem', top: '2rem' }}>
+						<Cross />
+					</Raised>
+				)}
+				<Raised
+					as="button"
+					position="fixed"
+					onClick={() => navigate('/credits')}
+					style={{ left: '2rem', bottom: '2rem' }}>
+					<h2>Credits</h2>
+				</Raised>
+			</div>
+			{active && <ActivePanel active={active} />}
+		</>
 	);
 };
 
