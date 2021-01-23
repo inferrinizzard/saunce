@@ -13,7 +13,7 @@ const Panel = styled('div')({ pad: 2.5 })`
 	height: calc(100% - ${p => p.pad}rem);
 	z-index: 3;
 	background-color: ${p => p.theme.bg};
-	border-left 0.125rem solid salmon;
+	border-left 0.125rem solid ${p => p.theme.activeColour};
 	padding: ${p => p.pad / 2}rem ${p => p.pad}rem;
 `;
 
@@ -22,7 +22,7 @@ const ActiveCard = styled('div')({})`
 	padding: 1rem;
 	margin-bottom: 1.5rem;
 	background-color: ${p => p.theme.offwhite};
-	box-shadow: 0.5rem 0.5rem 0 salmon;
+	box-shadow: 0.5rem 0.5rem 0 ${p => p.theme.activeColour};
 
 	> h2 {
 		margin: 0;
@@ -31,7 +31,7 @@ const ActiveCard = styled('div')({})`
 	> hr {
 		height: 3px;
 		border: none;
-		background-color: salmon;
+		background-color: ${p => p.theme.activeColour};
 	}
 `;
 
@@ -39,10 +39,17 @@ const Chip = styled('span')({})`
 	border-radius: 1rem;
 	display: inline-block;
 	font-family: ${p => p.theme.font};
-	border: 0.125rem solid salmon;
+	border: 0.125rem solid ${p => p.theme.activeColour};
 	margin: 0.25rem;
 	padding: 0.375rem;
+	cursor: pointer;
+
+	&:hover {
+		background-color: ${p => p.theme.activeColour};
+	}
 `;
+
+const Row = styled('hr')({})` border: 0.125rem solid ${p => p.theme.activeColour};`;
 
 export interface ActivePanelProps {
 	active: SauceName;
@@ -50,12 +57,10 @@ export interface ActivePanelProps {
 
 const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
 	const [data, setData] = useState({
-		name: 'Sauce Name',
 		recipe: 'Recipe Here',
-		mère: ['Mother Sauces Here'],
-		filles: ['Daughter Sauces Here'],
 		links: ['Links Here'],
 	});
+
 	// useEffect(() => import('').then(() => setData({})), []);
 	const mères = Object.entries(filles).reduce(
 		(a, [k, v]) => (v.includes(active) ? ([...a, k] as SauceName[]) : a),
@@ -74,7 +79,7 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
 	return (
 		<Panel>
 			<ActiveCard as="h1">{sauces[active].nom}</ActiveCard>
-			<hr style={{ border: '0.125rem solid salmon' }} />
+			<Row />
 			<ActiveCard>
 				<h2>Recipe</h2>
 				<hr />

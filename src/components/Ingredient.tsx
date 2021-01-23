@@ -22,7 +22,7 @@ const IngredientIcon = styled('span')({})`
 
 const Ingredient: React.FC<IngredientProps> = ({ name, colour, count }) => {
 	return (
-		<Tooltip title={name[0].toUpperCase() + name.slice(1)}>
+		<Tooltip title={name[0].toUpperCase() + name.slice(1)} placement="bottom">
 			<IngredientIcon
 				className={`ingredient-${ingredientsList.includes(name) ? name : 'missing'}`}
 				colour={colour}

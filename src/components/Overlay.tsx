@@ -25,7 +25,7 @@ export const Raised = styled('div')({ shadow: true, position: 'absolute' })`
 	outline: none;
 	border: none;
 	border-radius: 0.75rem;
-	${p => p.shadow && 'box-shadow: 0.125rem 0.25rem 0.5rem salmon;'}
+	${p => p.shadow && `box-shadow: 0.125rem 0.25rem 0.5rem ${p.theme.activeColour};`}
 `;
 
 export interface OverlayProps {
@@ -78,20 +78,20 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 						onClick={() => (search === SEARCHOFF ? setSearch('') : console.log(search))}
 						shadow={false}
 						position="relative"
-						style={{ display: 'inline-flex' }}>
+						style={{ display: 'inline-flex', cursor: 'pointer' }}>
 						<Search />
 					</Raised>
 				</Raised>
 				<Raised
 					as="button"
 					onClick={() => setTransform({ ...transform, scale: transform.scale + 0.1 })} // lerp this, also unbounded
-					style={{ right: '6rem', top: '2rem' }}>
+					style={{ right: '6rem', top: '2rem', cursor: 'zoom-in' }}>
 					<Plus />
 				</Raised>
 				<Raised
 					as="button"
 					onClick={() => setTransform({ ...transform, scale: transform.scale - 0.1 })} // lerp this, also unbounded
-					style={{ right: '2rem', top: '2rem' }}>
+					style={{ right: '2rem', top: '2rem', cursor: 'zoom-out' }}>
 					<Minus />
 				</Raised>
 				{active && (
@@ -99,7 +99,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 						as="button"
 						position="fixed"
 						onClick={() => navigate('/')}
-						style={{ left: '2rem', top: '2rem' }}>
+						style={{ left: '2rem', top: '2rem', cursor: 'pointer' }}>
 						<Cross />
 					</Raised>
 				)}
@@ -107,7 +107,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 					as="button"
 					position="fixed"
 					onClick={() => navigate('/credits')}
-					style={{ left: '2rem', bottom: '2rem' }}>
+					style={{ left: '2rem', bottom: '2rem', cursor: 'pointer' }}>
 					<h2>Credits</h2>
 				</Raised>
 			</div>

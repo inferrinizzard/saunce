@@ -12,12 +12,22 @@ import Main from '../components/Main';
 import { CardBlockSize } from '../components/Card';
 
 import pos from '../data/pos.json';
+import filles from '../data/filles.json';
+const colours = new Array(5).fill(['lightsalmon', 'salmon', 'indianred', 'firebrick', 'maroon']).reduce(
+	({ q, acc }: { q: SauceName[]; acc: Record<SauceName, string> }, colours, i) => ({
+		q: q.reduce((a, mère) => [...a, ...(filles[mère as keyof typeof filles] ?? [])], [] as string[]),
+		acc: { ...acc, ...q.reduce((a, sauce) => ({ ...a, [sauce]: colours[i] ?? 'salmon' }), {}) },
+	}),
+	{ q: Object.keys(filles).filter(k => !Object.values(filles).some(v => v.includes(k))), acc: {} } as { q: SauceName[]; acc: Record<SauceName, string> }
+).acc;
 
-let theme = {
+const theme = (sauce?: SauceName) => ({
 	offwhite: '#f7f7f2', // #faf3dd
 	bg: '#f9f9ff',
 	font: 'Courgette',
-};
+	activeColour: sauce ? colours[sauce] : 'salmon',
+	colours
+});
 
 let AppHead = styled.div`
 	height: 100%;
@@ -53,7 +63,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 
 	return (
 		<AppHead>
-			<ThemeProvider theme={theme}>
+			<ThemeProvider theme={active ? theme(active) : theme()}>
 				<Overlay transform={transform} setTransform={setTransform} active={active} />
 				<TransformComponent
 					value={transform}

@@ -29,8 +29,13 @@ let StyledCard = styled('section')({
 	border-radius: ${p => smoothPhi(p.size) + 20}px;
 	box-shadow: ${p => smoothPhi(p.size) + 20}px ${p => smoothPhi(p.size) + 20}px 0px 0px ${p =>
 	lighten(0.05, p.accentColour)};
+
+	&:hover {
+		border: 2px solid ${p => p.accentColour};
+	}
 	
 	div {
+		cursor: pointer;
 		padding: 20px;
 		
 		h1 {
