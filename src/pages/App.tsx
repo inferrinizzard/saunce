@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { MapInteractionCSS as TransformComponent } from 'react-map-interaction';
 import { LocationContext } from '@reach/router';
@@ -40,6 +40,17 @@ const App: React.FC<LocationContext> = ({ location }) => {
 			: { x: 0, y: 0 },
 	});
 
+	const [minBounds, setBounds] = useState({ xMin: -(24 + 1) * CardBlockSize.x, yMin: -(11 + 1) * CardBlockSize.y });
+
+	useEffect(
+		() =>
+			setBounds({
+				xMin: -((24 + 1) * CardBlockSize.x - window.innerWidth) * transform.scale + window.innerWidth * (1 - transform.scale),
+				yMin: -((11 + 1) * CardBlockSize.y - window.innerHeight) * transform.scale + window.innerHeight * (1 - transform.scale),
+			}),
+		[transform.scale]
+	);
+
 	return (
 		<AppHead>
 			<ThemeProvider theme={theme}>
@@ -51,12 +62,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 					translationBounds={{
 						xMax: (CardBlockSize.x / 5) * transform.scale,
 						yMax: (CardBlockSize.y / 5) * transform.scale,
-						xMin:
-							-((24 + 1) * CardBlockSize.x - window.innerWidth) * transform.scale +
-							window.innerWidth * (1 - transform.scale),
-						yMin:
-							-((11 + 1) * CardBlockSize.y - window.innerHeight) * transform.scale +
-							window.innerHeight * (1 - transform.scale),
+						...minBounds,
 					}}
 					onChange={(e: typeof transform) => setTransform(e)}>
 					<Main active={active} />
