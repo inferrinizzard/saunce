@@ -4,6 +4,7 @@ import styled from '../scripts/Styled';
 
 import sauces from '../data/sauce.json';
 import filles from '../data/filles.json';
+import recipes from '../data/guide.json';
 
 const Panel = styled('div')({ pad: 2.5 })`
 	position: fixed;
@@ -83,7 +84,11 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
 			<ActiveCard>
 				<h2>Recipe</h2>
 				<hr />
-				<h4>{data.recipe}</h4>
+				{(recipes[(active as unknown) as keyof typeof recipes]?.recette ?? sauces[active].nom)
+					.split('\n')
+					.map((line, i) => (
+						<h4 key={`${active}-recipes-${i}`}>{line}</h4>
+					))}
 			</ActiveCard>
 			{!!mères.length && (
 				<ActiveCard>
@@ -95,7 +100,7 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
 					))}
 				</ActiveCard>
 			)}
-			{activeFilles && (
+			{!!activeFilles.length && (
 				<ActiveCard>
 					<h2>Daughters</h2>
 					<hr />
