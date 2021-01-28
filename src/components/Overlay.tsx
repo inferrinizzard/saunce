@@ -40,7 +40,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 	const [display, setDisplay] = useState('');
 
 	const setSearch = (nom: string, dis?: string) => (
-		setDisplay(dis ?? nom), _setSearch(nom.toLowerCase().trim()), console.log(nom)
+		setDisplay(dis ?? nom), _setSearch(nom.toLowerCase().trim())
 	);
 
 	return (
@@ -63,7 +63,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 					<Raised
 						as="button"
 						position="fixed"
-						onClick={() => navigate('/')}
+						onClick={() => (navigate('/'), setSearch(''))}
 						style={{ left: '2rem', top: '2rem', cursor: 'pointer' }}>
 						<Cross />
 					</Raised>

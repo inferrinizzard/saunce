@@ -16,6 +16,7 @@ const Panel = styled('div')({ pad: 2.5 })`
 	background-color: ${p => p.theme.bg};
 	border-left 0.125rem solid ${p => p.theme.activeColour};
 	padding: ${p => p.pad / 2}rem ${p => p.pad}rem;
+	overflow-y: auto;
 `;
 
 const ActiveCard = styled('div')({})`

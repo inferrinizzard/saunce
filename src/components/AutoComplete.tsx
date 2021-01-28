@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import styled from '../scripts/Styled';
 import Search from '@bit/mui-org.material-ui-icons.search-rounded';
@@ -8,12 +8,9 @@ import { nav, deaccent } from '../scripts/util';
 
 import _sauces from '../data/sauce.json';
 const sauces = Object.entries(_sauces).reduce(
-	(a, [k, v]) => ({
-		...a,
-		[deaccent(k)]: { nom: v.nom, key: deaccent(v.nom.toLowerCase()), raw: k },
-	}),
+	(a, [k, v]) => ({ ...a, [deaccent(k)]: { nom: v.nom, key: k } }),
 	{}
-) as Record<string, { nom: string; key: string; raw: SauceName }>;
+) as Record<string, { nom: string; key: SauceName }>;
 
 const Item = styled('li')({})`
 	list-style: none;
@@ -36,10 +33,11 @@ interface AutoCompleteProps {
 }
 
 const AutoComplete: React.FC<AutoCompleteProps> = ({ search: _search, setSearch, display, SEARCHOFF }) => {
-	const [found, setFound] = useState(false);
 	const search = deaccent(_search);
-	const items = Object.entries(sauces).filter(([k, v]) => k.includes(search) || v.key.includes(search)); // prettier-ignore
-	const bestGuess = () => items.length && (setSearch(items[0][1].raw, items[0][1].nom), setFound(true));
+	const items = Object.entries(sauces).filter(([k, v]) => k.includes(search) || v.nom.includes(search)); // prettier-ignore
+	const found = items.some(([_, v]) => display === v.nom);
+	
+	const bestGuess = () => items.length && setSearch(items[0][1].key, items[0][1].nom);
 	const runSearch = (sauce: string) => (found ? nav(sauce as SauceName) : bestGuess());
 	const enterPress = (e: React.KeyboardEvent<Element>) => e.key === 'Enter' && runSearch(_search);
 
@@ -85,7 +83,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({ search: _search, setSearch,
 							overflowY: 'auto',
 						}}>
 						{items.map(([k, v]) => (
-							<Item key={k + '-li'} onClick={() => (setSearch(v.raw, v.nom), setFound(true))}>
+							<Item key={k + '-li'} onClick={() => setSearch(v.key, v.nom)}>
 								{v.nom}
 							</Item>
 						))}
