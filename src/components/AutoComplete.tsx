@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import styled from '../scripts/Styled';
+import Search from '@bit/mui-org.material-ui-icons.search-rounded';
 
 import { Raised } from './Overlay';
-import { deaccent } from '../scripts/util';
+import { nav, deaccent } from '../scripts/util';
 
 import _sauces from '../data/sauce.json';
 const sauces = Object.entries(_sauces).reduce(
 	(a, [k, v]) => ({
 		...a,
-		[deaccent(k)]: { nom: v.nom, key: deaccent(v.nom.toLowerCase()) },
+		[deaccent(k)]: { nom: v.nom, key: deaccent(v.nom.toLowerCase()), raw: k },
 	}),
 	{}
-) as Record<SauceName, { nom: string; key: string }>;
+) as Record<string, { nom: string; key: string; raw: SauceName }>;
 
 const Item = styled('li')({})`
 	list-style: none;
@@ -29,35 +30,77 @@ const Item = styled('li')({})`
 
 interface AutoCompleteProps {
 	search: string;
-	setSearch: (s: string) => void;
+	setSearch: (s: string, d?: string) => void;
+	display: string;
+	SEARCHOFF: string;
 }
 
-const AutoComplete: React.FC<AutoCompleteProps> = ({ search, setSearch }) => {
+const AutoComplete: React.FC<AutoCompleteProps> = ({ search: _search, setSearch, display, SEARCHOFF }) => {
 	const [found, setFound] = useState(false);
+	const search = deaccent(_search);
+	const items = Object.entries(sauces).filter(([k, v]) => k.includes(search) || v.key.includes(search)); // prettier-ignore
+	const bestGuess = () => items.length && (setSearch(items[0][1].raw, items[0][1].nom), setFound(true));
+	const runSearch = (sauce: string) => (found ? nav(sauce as SauceName) : bestGuess());
+	const enterPress = (e: React.KeyboardEvent<Element>) => e.key === 'Enter' && runSearch(_search);
+
+	useEffect(() => {
+		document.addEventListener('keydown', (enterPress as unknown) as EventListener, false);
+		return () => document.removeEventListener('keydown', (enterPress as unknown) as EventListener, false);
+	}, []);
+
 	return (
-		(!found && (
+		<Raised
+			// wait for MUI v5 collapse to do shrink
+			as="div"
+			style={{ right: '10rem', top: '2rem' }}>
+			<div>
+				{search !== SEARCHOFF && (
+					<Raised
+						as="input" // make auto-expand as span?
+						placeholder="Search for Sauces!"
+						shadow={false}
+						position="relative"
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.currentTarget.value)}
+						value={display}
+						style={{
+							display: 'inline-block',
+							padding: '0 0 0 0.5rem',
+							fontFamily: 'Courgette',
+							fontSize: '1.5rem',
+							minWidth: '15rem',
+						}}
+					/>
+				)}
+				{display && !found && (
+					<Raised
+						as="ul"
+						position="absolute"
+						style={{
+							display: 'block',
+							top: '3rem',
+							left: 0,
+							width: '15rem',
+							paddingInlineStart: 0,
+							maxHeight: '12rem',
+							overflowY: 'auto',
+						}}>
+						{items.map(([k, v]) => (
+							<Item key={k + '-li'} onClick={() => (setSearch(v.raw, v.nom), setFound(true))}>
+								{v.nom}
+							</Item>
+						))}
+					</Raised>
+				)}
+			</div>
 			<Raised
-				as="ul"
-				position="absolute"
-				style={{
-					display: 'block',
-					top: '3rem',
-					left: 0,
-					width: '15rem',
-					paddingInlineStart: 0,
-					maxHeight: '12rem',
-					overflowY: 'auto',
-				}}>
-				{Object.entries(sauces)
-					.filter(([k, v]) => k.includes(search) || v.key.includes(search))
-					.map(([k, v]) => (
-						<Item key={k + '-li'} onClick={() => (setSearch(v.nom), setFound(true))}>
-							{v.nom}
-						</Item>
-					))}
+				as="button"
+				onClick={() => (search === SEARCHOFF ? setSearch('') : runSearch(_search))}
+				shadow={false}
+				position="relative"
+				style={{ display: 'inline-flex', cursor: 'pointer' }}>
+				<Search />
 			</Raised>
-		)) ||
-		null
+		</Raised>
 	);
 };
 

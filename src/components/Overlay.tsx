@@ -7,7 +7,6 @@ import { deaccent } from '../scripts/util';
 import Plus from '@bit/mui-org.material-ui-icons.add-rounded';
 import Minus from '@bit/mui-org.material-ui-icons.remove-rounded';
 import Cross from '@bit/mui-org.material-ui-icons.close-rounded';
-import Search from '@bit/mui-org.material-ui-icons.search-rounded';
 
 import AutoComplete from './AutoComplete';
 import ActivePanel from './ActivePanel';
@@ -40,48 +39,14 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 	const [search, _setSearch] = useState(SEARCHOFF);
 	const [display, setDisplay] = useState('');
 
-	const setSearch = (nom: string) => (
-		setDisplay(nom), _setSearch(deaccent(nom.toLowerCase().trim()))
+	const setSearch = (nom: string, dis?: string) => (
+		setDisplay(dis ?? nom), _setSearch(nom.toLowerCase().trim()), console.log(nom)
 	);
 
 	return (
 		<>
 			<div style={{ position: 'fixed', right: active ? '33.3%' : 0, top: 0, zIndex: 3 }}>
-				<Raised
-					// wait for MUI v5 collapse to do shrink
-					as="div"
-					style={{ right: '10rem', top: '2rem' }}>
-					<div>
-						{search !== SEARCHOFF && (
-							<Raised
-								as="input" // make auto-expand as span?
-								placeholder="Search for Sauces!"
-								shadow={false}
-								position="relative"
-								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-									setSearch(e.currentTarget.value)
-								}
-								value={display}
-								style={{
-									display: 'inline-block',
-									padding: '0 0 0 0.5rem',
-									fontFamily: 'Courgette',
-									fontSize: '1.5rem',
-									minWidth: '15rem',
-								}}
-							/>
-						)}
-						{display && <AutoComplete {...{ search, setSearch }} />}
-					</div>
-					<Raised
-						as="button"
-						onClick={() => (search === SEARCHOFF ? setSearch('') : console.log(search))}
-						shadow={false}
-						position="relative"
-						style={{ display: 'inline-flex', cursor: 'pointer' }}>
-						<Search />
-					</Raised>
-				</Raised>
+				<AutoComplete {...{ search, setSearch, display, SEARCHOFF }} />
 				<Raised
 					as="button"
 					onClick={() => setTransform({ ...transform, scale: transform.scale + 0.1 })} // lerp this, also unbounded
