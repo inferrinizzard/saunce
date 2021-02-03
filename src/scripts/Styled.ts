@@ -3,7 +3,7 @@ import _styled, { AnyStyledComponent } from 'styled-components';
 interface StyledProps {
 	[key: string]: any;
 }
-type StyledPropFunc = (p: StyledProps) => string | number;
+type StyledPropFunc = (p: StyledProps) => string | number | null | undefined;
 
 const styled = (
 	Element: AnyStyledComponent | keyof JSX.IntrinsicElements | React.ComponentType<any>
@@ -16,8 +16,9 @@ const styled = (
 			`${tail.reduce(
 				(acc, curr, i) =>
 					acc +
-					((tags[i].toString() in props && props[tags[i] as keyof StyledProps]) ||
-						(tags[i] instanceof Function && (tags[i] as StyledPropFunc)(props))) +
+					(((tags[i].toString() in props && props[tags[i] as keyof StyledProps]) ||
+						(tags[i] instanceof Function && (tags[i] as StyledPropFunc)(props))) ??
+						'') +
 					curr,
 				head
 			)}`)({ ...staticProps, ...componentProps })

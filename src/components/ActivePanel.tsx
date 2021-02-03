@@ -37,7 +37,7 @@ const ActiveCard = styled('div')({})`
 	}
 `;
 
-const Chip = styled('span')({})`
+export const Chip = styled('span')({})`
 	border-radius: 1rem;
 	display: inline-block;
 	font-family: ${p => p.theme.font};

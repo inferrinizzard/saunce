@@ -1,18 +1,36 @@
 {
-	"orphans": [
-		"vierge",
-		"canotière",
-		"châteaubriand → demi-glace?",
-		"mousseuse",
-		"new-burg",
-		"rubens",
-		"smitane → velouté?",
-		"solférino"
-	],
-	"dupes": ["bercy", "crevettes", "gratin", "hachée", "poulette", "véron", "zingara"],
+	"profile": [{ "GitHub": "https://github.com/inferrinizzard/saunce" }],
 	"credits": [
-		"http://www.fooduniversity.com/foodu/food_c/Sauces/sauce/sauce_main.htm",
-		"https://sites.google.com/site/hosp210classicalcuisine/mother-sauces"
+		{ "name": "Alex French Guy", "link": "https://www.youtube.com/watch?v=pMXvAjH0Nco" },
+		{
+			"name": "Le Guide Culinaire (BnF Gallica)",
+			"link": "https://gallica.bnf.fr/ark:/12148/bpt6k65768837/f143.item"
+		},
+		{ "name": "Wikipedia", "link": "https://en.wikipedia.org/wiki/French_mother_sauces" },
+		{
+			"name": "Greta de Normandie",
+			"link": "http://e-greta.ac-rouen.fr/RO76014002000/RO76A00002416/cours_sauces_derives.pdf"
+		},
+		{
+			"name": "Fine Dining Lovers",
+			"link": "https://www.finedininglovers.com/article/mother-and-daughter-extended-family-sauces"
+		},
+		{
+			"name": "Le Guide Culinaire (Wikisources.fr)",
+			"link": "https://fr.wikisource.org/wiki/Page:Auguste_Escoffier_-_Le_Guide_Culinaire_-_Aide-m%C3%A9moire_de_cuisine_pratique,_1903.djvu/35"
+		},
+		{
+			"name": "CKBK Recipes",
+			"link": "https://app.ckbk.com/search?q=recipes&sort=popularity&course[0]=Sauce&book_full_title[0]=Le%20Guide%20Culinaire"
+		},
+		{
+			"name": "Food University",
+			"link": "http://www.fooduniversity.com/foodu/food_c/Sauces/sauce/sauce_main.htm"
+		},
+		{
+			"name": "Ivy Tech",
+			"link": "https://sites.google.com/site/hosp210classicalcuisine/mother-sauces"
+		}
 	],
 	"neglected": [
 		"Sauce Currie",
