@@ -75,7 +75,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 						...minBounds,
 					}}
 					onChange={(e: typeof transform) => setTransform(e)}>
-					<Main active={active} />
+					<Main active={active} transform={transform}/>
 				</TransformComponent>
 			</ThemeProvider>
 		</AppHead>
