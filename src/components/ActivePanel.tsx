@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { nav } from '../scripts/util';
-import styled from '../scripts/Styled';
+import styled from 'styled-components';
 
+import { nav } from '../scripts/util';
 import sauces from '../data/sauce.json';
 import filles from '../data/filles.json';
 import recipes from '../data/guide.json';
 
-const Panel = styled('div')({ pad: 2.5 })`
+const Panel = styled.div.attrs({ pad: 2.5 })`
 	position: fixed;
 	right: 0;
 	top: 0;
@@ -19,7 +19,7 @@ const Panel = styled('div')({ pad: 2.5 })`
 	overflow-y: auto;
 `;
 
-const ActiveCard = styled('div')({})`
+const ActiveCard = styled.div`
 	border-radius: 1rem;
 	padding: 1rem;
 	margin-bottom: 1.5rem;
@@ -37,7 +37,7 @@ const ActiveCard = styled('div')({})`
 	}
 `;
 
-export const Chip = styled('span')({})`
+export const Chip = styled.span`
 	border-radius: 1rem;
 	display: inline-block;
 	font-family: ${p => p.theme.font};
@@ -51,7 +51,9 @@ export const Chip = styled('span')({})`
 	}
 `;
 
-const Row = styled('hr')({})` border: 0.125rem solid ${p => p.theme.activeColour};`;
+const Row = styled.hr`
+	border: 0.125rem solid ${p => p.theme.activeColour};
+`;
 
 export interface ActivePanelProps {
 	active: SauceName;

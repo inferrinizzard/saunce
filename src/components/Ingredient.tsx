@@ -1,8 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import Tooltip from '@bit/mui-org.material-ui.tooltip';
-
-import styled from '../scripts/Styled';
 
 import { list as ingredientsList } from '../data/ingredients.json';
 // type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType[number];
@@ -14,8 +13,8 @@ export interface IngredientProps {
 	count: number;
 }
 
-const IngredientIcon = styled('span')({})`
-	padding: ${'pad'}px;
+const IngredientIcon = styled.span<{ colour: string; size: number; pad: number }>`
+	padding: ${p => p.pad}px;
 	color: ${p => p.colour};
 	font-size: ${p => p.size}px;
 `;

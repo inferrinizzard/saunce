@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { navigate } from '@reach/router';
+import styled from 'styled-components';
 
-import styled from '../scripts/Styled';
 import { deaccent } from '../scripts/util';
 
 import Plus from '@bit/mui-org.material-ui-icons.add-rounded';
@@ -12,15 +12,18 @@ import AutoComplete from './AutoComplete';
 import ActivePanel from './ActivePanel';
 import CreditsPanel from './CreditsPanel';
 
-export const Raised = styled('div')({ shadow: true, position: 'absolute' })`
+export const Raised = styled.div.attrs((p: { position: string; shadow?: boolean }) => ({
+	shadow: p.shadow ?? true,
+	position: p.position || 'absolute',
+}))`
 	position: ${p => p.position};
 	min-height: 3rem;
 	min-width: 3rem;
 
 	display: flex;
-  align-items: center;
+	align-items: center;
 	justify-content: center;
-	
+
 	background-color: ${p => p.theme.offwhite};
 	outline: none;
 	border: none;

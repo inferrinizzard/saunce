@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 
-import styled from '../scripts/Styled';
 import Search from '@bit/mui-org.material-ui-icons.search-rounded';
 
 import { Raised } from './Overlay';
@@ -12,7 +12,7 @@ const sauces = Object.entries(_sauces).reduce(
 	{}
 ) as Record<string, { nom: string; key: SauceName }>;
 
-const Item = styled('li')({})`
+const Item = styled.li`
 	list-style: none;
 	font-family: ${p => p.theme.font};
 	font-size: 1.25rem;

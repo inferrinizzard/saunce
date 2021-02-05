@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { nav } from '../scripts/util';
-
-import styled from '../scripts/Styled';
+import styled from 'styled-components';
 import { lighten } from 'polished';
 
+import { nav } from '../scripts/util';
 import Sauces from '../data/sauce.json';
 
 import Ingredient from './Ingredient';
@@ -14,10 +13,10 @@ export const cardSize = 250;
 let ceilToNearestFive = (x: number) => Math.ceil(x / 5) * 5;
 let smoothPhi = (x: number) => ceilToNearestFive(x * phi) - x * phi;
 
-let StyledCard = styled('section')({
+const StyledCard = styled('section').attrs({
 	size: cardSize,
 	shadowSize: 20,
-})`
+})<{ pos: Pos; accentColour: string; textScale?: number }>`
 	display: block;
 	position: fixed;
 	left: ${p => p.pos.x.toString()}px;
@@ -25,19 +24,19 @@ let StyledCard = styled('section')({
 	height: ${p => p.size}px;
 	width: ${p => phi * p.size}px;
 	background-color: ${p => p.theme.offwhite};
-	
+
 	border-radius: ${p => smoothPhi(p.size) + 20}px;
-	box-shadow: ${p => smoothPhi(p.size) + 20}px ${p => smoothPhi(p.size) + 20}px 0px 0px ${p =>
-	lighten(0.05, p.accentColour)};
+	box-shadow: ${p => smoothPhi(p.size) + 20}px ${p => smoothPhi(p.size) + 20}px 0px 0px
+		${p => lighten(0.05, p.accentColour)};
 
 	&:hover {
 		border: 2px solid ${p => p.accentColour};
 	}
-	
+
 	div {
 		cursor: pointer;
 		padding: 20px;
-		
+
 		h1 {
 			margin: 0;
 			font-size: ${p => p.size / 7}px;
@@ -51,13 +50,13 @@ let StyledCard = styled('section')({
 
 		h2 {
 			margin: 0;
-			font-size: ${p => p.size / (p?.textScale ?? 11)}px;
+			font-size: ${p => p.size / (p.textScale ?? 11)}px;
 		}
 
 		hr {
 			height: 3px;
 			border: none;
-			background-color: ${'accentColour'}
+			background-color: ${'accentColour'};
 		}
 	}
 `;
@@ -95,8 +94,10 @@ class Card extends React.Component<CardProps, CardState> {
 			<StyledCard
 				accentColour={this.colour}
 				pos={this.state.pos}
-				textScale={(this.name === 'tortue' && 14) || (this.sauce.desc.length > 100 && 12)}
-				onClick={(e: MouseEvent) => !e.defaultPrevented && nav(this.name)}>
+				textScale={
+					(this.name === 'tortue' && 14) || (this.sauce.desc.length > 100 && 12) || undefined
+				}
+				onClick={e => !e.defaultPrevented && nav(this.name)}>
 				<div className="card-content">
 					{(split =>
 						split ? (
