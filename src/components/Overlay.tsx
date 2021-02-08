@@ -12,13 +12,16 @@ import AutoComplete from './AutoComplete';
 import ActivePanel from './ActivePanel';
 import CreditsPanel from './CreditsPanel';
 
-export const Raised = styled.div.attrs((p: { position: string; shadow?: boolean }) => ({
-	shadow: p.shadow ?? true,
-	position: p.position || 'absolute',
-}))`
+export const Raised = styled.div.attrs(
+	(p: { position: string; minWidth: string; shadow?: boolean }) => ({
+		position: p.position || 'absolute',
+		minWidth: p.minWidth || '3rem',
+		shadow: p.shadow ?? true,
+	})
+)`
 	position: ${p => p.position};
 	min-height: 3rem;
-	min-width: 3rem;
+	min-width: ${p => p.minWidth};
 
 	display: flex;
 	align-items: center;
@@ -80,7 +83,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 					<Cross />
 				</Raised>
 			)}
-			{active && <ActivePanel active={active} />}
+			<ActivePanel active={active} />
 			{credits && <CreditsPanel />}
 		</>
 	);
