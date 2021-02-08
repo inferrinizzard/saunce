@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { MapInteractionCSS as TransformComponent } from 'react-map-interaction';
-import { LocationContext, globalHistory } from '@reach/router';
+import { LocationContext, globalHistory, navigate } from '@reach/router';
 
 import styled, { ThemeProvider } from 'styled-components';
 import '../css/main.css';
@@ -15,7 +15,7 @@ import pos from '../data/pos.json';
 import filles from '../data/filles.json';
 const colours = new Array(5).fill(['lightsalmon', 'salmon', 'indianred', 'firebrick', 'maroon']).reduce(
 		({ q, acc }: { q: SauceName[]; acc: Record<SauceName, string> }, colours, i) => ({
-		q: q.reduce((a, mère) => [...a, ...(filles[mère as keyof typeof filles] ?? [])], [] as string[]),
+			q: q.reduce((a, mère) => [...a, ...(filles[mère as keyof typeof filles] ?? [])], [] as string[]),
 			acc: { ...acc, ...q.reduce((a, sauce) => ({ ...a, [sauce]: colours[i] ?? 'salmon' }), {}) },
 		}),
 	{ q: Object.keys(filles).filter(k => !Object.values(filles).some(v => v.includes(k))), acc: {} } as { q: SauceName[]; acc: Record<SauceName, string> }
@@ -38,7 +38,8 @@ let AppHead = styled.div`
 const baseScale = 0.7;
 
 const App: React.FC<LocationContext> = ({ location }) => {
-	const active = decodeURI(location.hash).slice(1).replace(/[_]/g, ' ') as SauceName;
+	const lang = decodeURI(location.hash).slice(1);
+	const active = decodeURI(location.search).slice(1).replace(/[_]/g, ' ') as SauceName;
 
 	const getActivePos = (active: keyof typeof pos) => ({
 		x: -(pos[active].x * CardBlockSize.x * baseScale),
@@ -49,7 +50,11 @@ const App: React.FC<LocationContext> = ({ location }) => {
 		translation: active ? getActivePos(active) : { x: 0, y: 0 },
 	});
 
-	// useEffect(() => globalHistory.listen(() => setTransform({ ...transform, translation: getActivePos(active) })), []);
+	useEffect(() => {
+		!lang && navigate(`/${location.search}#${localStorage.getItem('saunce-lang') ?? 'en'}`);
+		return globalHistory.listen(() => localStorage.setItem('saunce-lang', lang));
+		// setTransform({ ...transform, translation: getActivePos(active) })
+	}, []);
 
 	const [minBounds, setBounds] = useState({ xMin: -(24 + 1) * CardBlockSize.x, yMin: -(11 + 1) * CardBlockSize.y });
 

@@ -48,7 +48,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({ search: _search, setSearch,
 	}, []);
 
 	return (
-		<Raised as="div" style={{ right: '10rem', top: '2rem' }}>
+		<Raised as="div" style={{ right: '14rem', top: '2rem' }}>
 			<Transition in={search !== SEARCHOFF} mountOnEnter timeout={350}>
 				{state => (
 					<Raised
