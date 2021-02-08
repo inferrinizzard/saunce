@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { lighten } from 'polished';
+import { lighten } from 'polished'; // I kinda don't want you
 
 import { nav } from '../scripts/util';
-import Sauces from '../data/sauce.json';
+import SaucesEn from '../data/sauces.en.json';
+import SaucesFr from '../data/sauces.fr.json';
 
 import Ingredient from './Ingredient';
-import Buttons from './Buttons';
 
 const phi = 1.618;
 export const cardSize = 250;
@@ -65,6 +65,7 @@ export const CardBlockSize: Pos = { x: ceilToNearestFive(cardSize * phi) + 120, 
 
 export interface CardProps {
 	name: SauceName;
+	lang: string;
 	pos: Pos; // top-left corner of card, pre-margin
 	attach: (sauce: Card, force?: boolean) => void;
 	colour?: string;
@@ -72,15 +73,16 @@ export interface CardProps {
 
 export interface CardState {
 	pos: Pos;
+	sauce: Sauce;
 }
 
 class Card extends React.Component<CardProps, CardState> {
 	state = {
 		pos: { x: this.props.pos.x * CardBlockSize.x, y: this.props.pos.y * CardBlockSize.y },
+		sauce: (this.props.lang === 'en' ? SaucesEn : SaucesFr)[this.props.name] as Sauce,
 	};
 
 	name = this.props.name;
-	sauce = Sauces[this.props.name] as Sauce;
 	colour = this.props.colour ?? 'salmon';
 	in = { x: this.state.pos.x + (cardSize * phi) / 2, y: this.state.pos.y };
 	out = { x: this.state.pos.x + (cardSize * phi) / 2, y: this.state.pos.y + cardSize };
@@ -88,6 +90,9 @@ class Card extends React.Component<CardProps, CardState> {
 	componentDidMount() {
 		this.props.attach(this);
 	}
+	static getDerivedStateFromProps = ({ lang, name }: CardProps) => ({
+		sauce: (lang === 'en' ? SaucesEn : SaucesFr)[name] as Sauce,
+	});
 
 	render() {
 		return (
@@ -95,13 +100,13 @@ class Card extends React.Component<CardProps, CardState> {
 				accentColour={this.colour}
 				pos={this.state.pos}
 				textScale={
-					(this.name === 'tortue' && 14) || (this.sauce.desc.length > 100 && 12) || undefined
+					(this.name === 'tortue' && 14) || (this.state.sauce.desc.length > 100 && 12) || undefined
 				}
 				onClick={e => !e.defaultPrevented && nav(this.name)}>
 				<div className="card-content">
 					{(split =>
 						split ? (
-							(([a, b]) => [a, split, b])(this.sauce.nom.split(split)).map((frag, i) => (
+							(([a, b]) => [a, split, b])(this.state.sauce.nom.split(split)).map((frag, i) => (
 								<h1
 									key={`${this.name} ${frag}`}
 									className={i == 1 ? 'aux' : ''}
@@ -110,19 +115,21 @@ class Card extends React.Component<CardProps, CardState> {
 								</h1>
 							))
 						) : (
-							<h1>{this.sauce.nom}</h1>
-						))(this.sauce.nom.match(/\s(à(\sla)?|aux?|de)\s/g)?.pop())}
+							<h1>{this.state.sauce.nom}</h1>
+						))(this.state.sauce.nom.match(/\s(à(\sla)?|aux?|de)\s/g)?.pop())}
 					<hr />
 					<h2>
-						{this.sauce.desc.length > 90 ? this.sauce.desc.replace(/\s\+/g, ',') : this.sauce.desc}
+						{this.state.sauce.desc.length > 90
+							? this.state.sauce.desc.replace(/\s\+/g, ',')
+							: this.state.sauce.desc}
 					</h2>
 					<div style={{ position: 'absolute', bottom: 0, left: 0 }}>
-						{this.sauce.ingredients.map((i, k) => (
+						{this.state.sauce.ingredients.map((i, k) => (
 							<Ingredient
 								key={k}
 								name={i}
 								colour={this.colour}
-								count={this.sauce.ingredients.length}
+								count={this.state.sauce.ingredients.length}
 							/>
 						))}
 					</div>

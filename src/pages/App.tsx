@@ -38,8 +38,8 @@ let AppHead = styled.div`
 const baseScale = 0.7;
 
 const App: React.FC<LocationContext> = ({ location }) => {
-	const lang = decodeURI(location.hash).slice(1);
-	const active = decodeURI(location.search).slice(1).replace(/[_]/g, ' ') as SauceName;
+	const [lang, setLang] = useState(location.hash.slice(1));
+	const [active, setActive] = useState(decodeURI(location.search).slice(1).replace(/[_]/g, ' ') as SauceName);
 
 	const getActivePos = (active: keyof typeof pos) => ({
 		x: -(pos[active].x * CardBlockSize.x * baseScale),
@@ -51,8 +51,18 @@ const App: React.FC<LocationContext> = ({ location }) => {
 	});
 
 	useEffect(() => {
-		!lang && navigate(`/${location.search}#${localStorage.getItem('saunce-lang') ?? 'en'}`);
-		return globalHistory.listen(() => localStorage.setItem('saunce-lang', lang));
+		const local = localStorage.getItem('saunce-lang') ?? 'en';
+		if (!lang) {
+			navigate(`/${location.search}#${local}`);
+			setLang(local);
+		}
+		return globalHistory.listen(({ location: next }) => {
+			const newHash = next.hash.slice(1);
+			localStorage.setItem('saunce-lang', newHash);
+			setLang(newHash);
+
+			setActive(decodeURI(next.search).slice(1).replace(/[_]/g, ' ') as SauceName);
+		});
 		// setTransform({ ...transform, translation: getActivePos(active) })
 	}, []);
 
@@ -81,7 +91,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 						...minBounds,
 					}}
 					onChange={(e: typeof transform) => setTransform(e)}>
-					<Main active={active} transform={transform} />
+					<Main {...{ active, lang, transform }} />
 				</TransformComponent>
 			</ThemeProvider>
 		</AppHead>

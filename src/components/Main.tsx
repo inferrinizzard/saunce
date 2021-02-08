@@ -9,10 +9,11 @@ import Arrow from './Arrow';
 
 export interface MainProps {
 	active: SauceName;
+	lang: string;
 	transform: { scale: number; translation: Pos };
 }
 
-const Main: React.FC<MainProps> = ({ active, transform }) => {
+const Main: React.FC<MainProps> = ({ active, lang, transform }) => {
 	const [cards, setCards] = useState({} as { [k: string]: Card });
 	const linkCard = (sauce: Card) =>
 		!cards[sauce.name] && setCards(prev => ({ ...prev, [sauce.name]: sauce }));
@@ -37,6 +38,7 @@ const Main: React.FC<MainProps> = ({ active, transform }) => {
 				<Card
 					key={sauce}
 					name={sauce as SauceName}
+					lang={lang}
 					pos={pos}
 					colour={colours[sauce]}
 					attach={linkCard}
