@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { MapInteractionCSS as TransformComponent } from 'react-map-interaction';
-import { LocationContext } from '@reach/router';
+import { LocationContext, globalHistory } from '@reach/router';
 
 import styled, { ThemeProvider } from 'styled-components';
 import '../css/main.css';
@@ -14,19 +14,19 @@ import { CardBlockSize } from '../components/Card';
 import pos from '../data/pos.json';
 import filles from '../data/filles.json';
 const colours = new Array(5).fill(['lightsalmon', 'salmon', 'indianred', 'firebrick', 'maroon']).reduce(
-	({ q, acc }: { q: SauceName[]; acc: Record<SauceName, string> }, colours, i) => ({
+		({ q, acc }: { q: SauceName[]; acc: Record<SauceName, string> }, colours, i) => ({
 		q: q.reduce((a, mère) => [...a, ...(filles[mère as keyof typeof filles] ?? [])], [] as string[]),
-		acc: { ...acc, ...q.reduce((a, sauce) => ({ ...a, [sauce]: colours[i] ?? 'salmon' }), {}) },
-	}),
+			acc: { ...acc, ...q.reduce((a, sauce) => ({ ...a, [sauce]: colours[i] ?? 'salmon' }), {}) },
+		}),
 	{ q: Object.keys(filles).filter(k => !Object.values(filles).some(v => v.includes(k))), acc: {} } as { q: SauceName[]; acc: Record<SauceName, string> }
-).acc;
+	).acc;
 
 const theme = (sauce?: SauceName) => ({
 	offwhite: '#f7f7f2', // #faf3dd
 	bg: '#f9f9ff',
 	font: 'Courgette',
 	activeColour: sauce ? colours[sauce] : 'salmon',
-	colours
+	colours,
 });
 
 let AppHead = styled.div`
@@ -35,20 +35,21 @@ let AppHead = styled.div`
 	background-color: ${p => p.theme.bg};
 `;
 
-let baseScale = 0.7;
+const baseScale = 0.7;
 
 const App: React.FC<LocationContext> = ({ location }) => {
 	const active = decodeURI(location.hash).slice(1).replace(/[_]/g, ' ') as SauceName;
 
+	const getActivePos = (active: keyof typeof pos) => ({
+		x: -(pos[active].x * CardBlockSize.x * baseScale),
+		y: -(pos[active].y * CardBlockSize.y * baseScale),
+	});
 	const [transform, setTransform] = useState({
 		scale: baseScale,
-		translation: active
-			? {
-					x: -(pos[active as keyof typeof pos].x * CardBlockSize.x * baseScale),
-					y: -(pos[active as keyof typeof pos].y * CardBlockSize.y * baseScale),
-			  }
-			: { x: 0, y: 0 },
+		translation: active ? getActivePos(active) : { x: 0, y: 0 },
 	});
+
+	// useEffect(() => globalHistory.listen(() => setTransform({ ...transform, translation: getActivePos(active) })), []);
 
 	const [minBounds, setBounds] = useState({ xMin: -(24 + 1) * CardBlockSize.x, yMin: -(11 + 1) * CardBlockSize.y });
 
@@ -75,7 +76,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 						...minBounds,
 					}}
 					onChange={(e: typeof transform) => setTransform(e)}>
-					<Main active={active} transform={transform}/>
+					<Main active={active} transform={transform} />
 				</TransformComponent>
 			</ThemeProvider>
 		</AppHead>

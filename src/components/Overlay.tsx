@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { navigate } from '@reach/router';
 import styled from 'styled-components';
-
-import { deaccent } from '../scripts/util';
 
 import Plus from '@bit/mui-org.material-ui-icons.add-rounded';
 import Minus from '@bit/mui-org.material-ui-icons.remove-rounded';
@@ -49,6 +47,13 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 	const setSearch = (nom: string, dis?: string) => (setDisplay(dis ?? nom), _setSearch(nom.toLowerCase().trim())); // prettier-ignore
 
 	const [credits, setCredits] = useState(false);
+	const exit = () => (credits ? setCredits(false) : (navigate('/'), setSearch('')));
+
+	useEffect(() => {
+		const keyListener = (e: KeyboardEvent) => (e.key === 'Esc' || e.key === 'Escape') && exit();
+		window.addEventListener('keydown', keyListener);
+		return () => window.removeEventListener('keydown', keyListener);
+	}, []);
 
 	return (
 		<>
@@ -78,7 +83,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 				<Raised
 					as="button"
 					position="fixed"
-					onClick={() => (credits ? setCredits(false) : (navigate('/'), setSearch('')))}
+					onClick={exit}
 					style={{ left: '2rem', top: '2rem', cursor: 'pointer', zIndex: 5 }}>
 					<Cross />
 				</Raised>
