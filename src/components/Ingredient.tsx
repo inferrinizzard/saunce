@@ -9,6 +9,7 @@ import { list as ingredientsList } from '../data/ingredients.json';
 
 export interface IngredientProps {
 	name: string;
+	lang: string;
 	colour: string;
 	count: number;
 }
@@ -19,20 +20,14 @@ const IngredientIcon = styled.span<{ colour: string; size: number; pad: number }
 	font-size: ${p => p.size}px;
 `;
 
-const Ingredient: React.FC<IngredientProps> = ({ name, colour, count }) => {
+const Ingredient: React.FC<IngredientProps> = ({ name, lang, colour, count }) => {
 	return (
 		<Tooltip title={name[0].toUpperCase() + name.slice(1)} placement="bottom">
 			<IngredientIcon
-				className={`ingredient-${
-					ingredientsList.includes(name)
-						? name
-						: window.location.hash.includes('en')
-						? 'missing'
-						: 'absent'
-				}`}
+				className={`ingredient-${ingredientsList.includes(name) ? name : lang === 'en' ? 'missing' : 'absent'}`}
 				colour={colour}
-				size={45 + +(count > 6 && -count + 6) * 2}
-				pad={5 + +(count > 6 && -count + 6)}
+				size={45 + +(count > 5 && -count + 5) * 2}
+				pad={5 + +(count > 5 && -count + 5)}
 			/>
 		</Tooltip>
 	);

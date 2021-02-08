@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { navigate } from '@reach/router';
+import { navigate, useLocation } from '@reach/router';
 import styled from 'styled-components';
 
 import Plus from '@bit/mui-org.material-ui-icons.add-rounded';
@@ -42,16 +42,17 @@ export interface OverlayProps {
 const SEARCHOFF = 'thisisoff';
 
 const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) => {
+	const location = useLocation();
+
 	const [search, _setSearch] = useState(SEARCHOFF);
 	const [display, setDisplay] = useState('');
-	const setSearch = (nom: string, dis?: string) => (setDisplay(dis ?? nom), _setSearch(nom.toLowerCase().trim())); // prettier-ignore
+	const setSearch = (nom: string, dis?: string) => (setDisplay(dis ?? nom), _setSearch(nom.toLowerCase().trim()));
 
 	const [credits, setCredits] = useState(false);
-	const exit = () =>
-		credits ? setCredits(false) : (navigate('/' + window.location.hash), setSearch(''));
+	const exit = (lang?: string) => credits ? setCredits(false) : (navigate(`/${lang ?? location.hash}`), setSearch(''));
 
 	useEffect(() => {
-		const keyListener = (e: KeyboardEvent) => (e.key === 'Esc' || e.key === 'Escape') && exit();
+		const keyListener = (e: KeyboardEvent) => e.key.includes('Esc') && exit(window.location.hash);
 		window.addEventListener('keydown', keyListener);
 		return () => window.removeEventListener('keydown', keyListener);
 	}, []);
@@ -74,44 +75,22 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 				</Raised>
 				<Raised
 					as="button"
-					onClick={() =>
-						navigate(
-							`/${window.location.search}#${window.location.hash.slice(1) === 'en' ? 'fr' : 'en'}`
-						)
-					}
+					onClick={() => navigate(`/${location.search}#${location.hash.slice(1) === 'en' ? 'fr' : 'en'}`)}
 					style={{ right: '2rem', top: '2rem', cursor: 'pointer' }}>
 					<div
-						style={{
-							display: 'inline-block',
-							width: '1.5rem',
-							height: '1.5rem',
-							padding: '0.25rem',
-						}}>
+						style={{ display: 'inline-block', width: '1.5rem', height: '1.5rem', padding: '0.25rem' }}>
 						<img
 							src="https://raw.githubusercontent.com/lipis/flag-icon-css/master/flags/4x3/us.svg"
 							alt="🇺🇸"
-							style={
-								window.location.hash.slice(1) !== 'en'
-									? { filter: 'grayscale(100%)' }
-									: { outline: '3px solid salmon' }
-							}
+							style={location.hash.slice(1) !== 'en' ? { filter: 'grayscale(100%)' } : { outline: '3px solid salmon' }}
 						/>
 					</div>
 					<div
-						style={{
-							display: 'inline-block',
-							width: '1.5rem',
-							height: '1.5rem',
-							padding: '0.25rem',
-						}}>
+						style={{ display: 'inline-block', width: '1.5rem', height: '1.5rem', padding: '0.25rem' }}>
 						<img
 							src="https://raw.githubusercontent.com/lipis/flag-icon-css/master/flags/4x3/fr.svg"
 							alt="🇫🇷"
-							style={
-								window.location.hash.slice(1) !== 'fr'
-									? { filter: 'grayscale(100%)' }
-									: { outline: '3px solid salmon' }
-							}
+							style={location.hash.slice(1) !== 'fr' ? { filter: 'grayscale(100%)' } : { outline: '3px solid salmon' }}
 						/>
 					</div>
 				</Raised>
@@ -127,7 +106,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 				<Raised
 					as="button"
 					position="fixed"
-					onClick={exit}
+					onClick={() => exit(location.hash)}
 					style={{ left: '2rem', top: '2rem', cursor: 'pointer', zIndex: 5 }}>
 					<Cross />
 				</Raised>

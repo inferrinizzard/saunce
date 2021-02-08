@@ -15,8 +15,7 @@ export interface MainProps {
 
 const Main: React.FC<MainProps> = ({ active, lang, transform }) => {
 	const [cards, setCards] = useState({} as { [k: string]: Card });
-	const linkCard = (sauce: Card) =>
-		!cards[sauce.name] && setCards(prev => ({ ...prev, [sauce.name]: sauce }));
+	const linkCard = (sauce: Card) => !cards[sauce.name] && setCards(prev => ({ ...prev, [sauce.name]: sauce }));
 
 	const arrowExceptions: Partial<Record<SauceName, number>> = { 'bonnefoy': 4, 'vin blanc': 4 };
 	const colours = useContext(ThemeContext).colours;
@@ -25,7 +24,7 @@ const Main: React.FC<MainProps> = ({ active, lang, transform }) => {
 		(({ x: cx, y: cy }, { scale, translation: { x, y } }, { innerWidth, innerHeight }) =>
 			pos.x * cx * scale <= -x + innerWidth && (pos.x + 1) * cx * scale >= -x &&
 			pos.y * cy * scale <= -y + innerHeight && (pos.y + 1) * cy * scale >= -y
-		)(CardBlockSize, transform, window)
+		)(CardBlockSize, transform, typeof window ==='undefined' ? { innerWidth: 0, innerHeight: 0 } : window )
 	);
 	const arrows = Object.entries(filles).filter(([mère, filles]) => (
 			vis => (vis && visible.every(([sauce]) => sauce !== mère) && visible.push([mère, Positions[mère as SauceName]]), vis)
