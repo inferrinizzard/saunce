@@ -23,7 +23,13 @@ const Ingredient: React.FC<IngredientProps> = ({ name, colour, count }) => {
 	return (
 		<Tooltip title={name[0].toUpperCase() + name.slice(1)} placement="bottom">
 			<IngredientIcon
-				className={`ingredient-${ingredientsList.includes(name) ? name : 'missing'}`}
+				className={`ingredient-${
+					ingredientsList.includes(name)
+						? name
+						: window.location.hash.includes('en')
+						? 'missing'
+						: 'absent'
+				}`}
 				colour={colour}
 				size={45 + +(count > 6 && -count + 6) * 2}
 				pad={5 + +(count > 6 && -count + 6)}

@@ -1,635 +1,635 @@
 {
 	"africaine": {
-		"nom": "Sauce Africaine",
-		"desc": "Tomato + Onion + Bell Pepper + Basil + Thyme + Parsley + Red Wine + Sauce Espagnole",
+		"nom": "African Sauce",
+		"desc": "Tomato + Onion + Bell Pepper + Basil + Thyme + Parsley + Red Wine + Espagnole Sauce",
 		"ingredients": ["tomato", "onion", "capsicum", "herbs", "wine"]
 	},
 	"aïoli": {
 		"nom": "Aïoli",
-		"desc": "Sauce Mayonnaise + Garlic + Yolks + Oil + Lemon",
+		"desc": "Mayonnaise + Garlic + Yolks + Oil + Lemon",
 		"ingredients": ["garlic", "egg", "oil", "lemon"],
 		"temp": "froide"
 	},
 	"albuféra": {
-		"nom": "Sauce Albuféra",
+		"nom": "Albuféra Sauce",
 		"desc": "Sauce Suprême + Glace de Viande + Pimento Butter",
 		"ingredients": ["chili", "butter"]
 	},
 	"allemande": {
-		"nom": "Sauce Allemande",
-		"autrenom": "Sauce Parisienne",
+		"nom": "German Sauce",
+		"autrenom": "Parisian Sauce",
 		"desc": "Sauce Velouté + Yolks + Mushroom Liqour + Pepper + Butter + Nutmeg",
 		"ingredients": ["egg", "mushroom", "pepper", "butter"]
 	},
 	"américaine": {
-		"nom": "Sauce Américaine",
-		"autrenom": "Sauce Armoricaine",
-		"desc": "Sauce Velouté de Poisson + Lobster + Butter + Cayenne",
+		"nom": "American Sauce",
+		"autrenom": "Armoricaine Sauce",
+		"desc": "Fish Velouté + Lobster + Butter + Cayenne",
 		"ingredients": ["butter", "spice"]
 	},
 	"anchois": {
-		"nom": "Sauce Anchois",
-		"desc": "Sauce Normande + Anchovies",
+		"nom": "Anchovy Sauce",
+		"desc": "Normandy Sauce + Anchovies",
 		"ingredients": ["fish"]
 	},
 	"andalouse": {
-		"nom": "Sauce Andalouse",
-		"desc": "Sauce Mayonnaise + Tomato purée, + Pimento",
+		"nom": "Andalouse Sauce",
+		"desc": "Mayonnaise + Tomato purée, + Pimento",
 		"ingredients": ["tomato", "chili"],
 		"temp": "froide"
 	},
 	"bagration": {
-		"nom": "Sauce Bagration",
-		"desc": "Sauce Mayonnaise + Anchovy Purée + Caviar",
+		"nom": "Bagration Sauce",
+		"desc": "Mayonnaise + Anchovy Purée + Caviar",
 		"ingredients": ["fish"]
 	},
 	"bavaroise": {
-		"nom": "Sauce Bavaroise",
-		"desc": "Vinegar + Thyme + Bay leaf + Parsley + Peppercorn + Horseradish + Sauce Hollandaise + Crayfish butter",
+		"nom": "Bavaroise Sauce",
+		"desc": "Vinegar + Thyme + Bay leaf + Parsley + Peppercorn + Horseradish + Hollandaise Sauce + Crayfish butter",
 		"ingredients": ["herbs", "pepper"]
 	},
 	"beauharnais": {
-		"nom": "Sauce Beauharnais",
+		"nom": "Beauharnais Sauce",
 		"desc": "Sauce Béarnaise + Tarragon",
 		"ingredients": ["herbs"]
 	},
 	"bercy": {
-		"nom": "Sauce Bercy",
-		"desc": "Butter + Shallot + White Wine + Fish Stock + Sauce Velouté de Poisson + Parsley",
+		"nom": "Bercy Sauce",
+		"desc": "Butter + Shallot + White Wine + Fish Stock + Fish Velouté + Parsley",
 		"ingredients": ["stock", "wine", "butter", "herbs"]
 	},
 	"béarnaise": {
-		"nom": "Sauce Béarnaise",
-		"desc": "Sauce Hollandaise + Shallot + Chervil + Tarragon + Peppercorn",
+		"nom": "Béarnaise Sauce",
+		"desc": "Hollandaise Sauce + Shallot + Chervil + Tarragon + Peppercorn",
 		"ingredients": ["herbs", "pepper"]
 	},
 	"béchamel": {
-		"nom": "Sauce Béchamel",
+		"nom": "Béchamel Sauce",
 		"desc": "White Roux + Milk",
 		"ingredients": ["butter", "flour", "milk"]
 	},
 	"beurre": {
-		"nom": "Sauce au Beurre",
-		"autrenom": "Sauce Bâtarde",
+		"nom": "Butter Sauce",
+		"autrenom": "Bastard Sauce",
 		"desc": "White Roux + Yolks + Cream + Lemon",
-		"ingredients": ["butter", "flour", "egg", "crème", "lemon"]
+		"ingredients": ["butter", "flour", "egg", "cream", "lemon"]
 	},
 	"bigarrade": {
-		"nom": "Sauce Bigarrade",
-		"desc": "(Sauce Demi-Glace or Duck Stock) + Seville Oranges + Zest",
+		"nom": "Bigarrade Sauce",
+		"desc": "(Demi-Glace Sauce or Duck Stock) + Seville Oranges + Zest",
 		"ingredients": ["fruit"]
 	},
 	"bohémienne": {
-		"nom": "Sauce Bohémienne",
-		"desc": "Sauce Béchamel + Yolks + Pepper + Vinegar + Oil + Tarragon + Mustard",
+		"nom": "Bohemian Sauce",
+		"desc": "Béchamel Sauce + Yolks + Pepper + Vinegar + Oil + Tarragon + Mustard",
 		"ingredients": ["egg", "pepper", "oil", "herbs"],
 		"temp": "froide"
 	},
 	"bolognaise": {
-		"nom": "Sauce Bolognaise",
-		"desc": "Beef + Mirepoix + Sauce Tomate + Red Wine + Basil",
+		"nom": "Bolognaise Sauce",
+		"desc": "Beef + Mirepoix + Tomato Sauce + Red Wine + Basil",
 		"ingredients": ["meat", "carrot", "celery", "onion", "wine", "herbs"]
 	},
 	"bonnefoy": {
-		"nom": "Sauce Bonnefoy",
-		"desc": "White Wine + Shallot + Pepper + Bay leaf + Thyme + Sauce Velouté + Glace de Viande + Lemon + Bone Marrow",
+		"nom": "Bonnefoy Sauce",
+		"desc": "White Wine + Shallot + Pepper + Bay leaf + Thyme + Velouté + Glace de Viande + Lemon + Bone Marrow",
 		"ingredients": ["wine", "herbs", "pepper", "lemon"]
 	},
 	"bordelaise": {
-		"nom": "Sauce Bordelaise",
-		"desc": "Red Wine + Shallot + Pepper + Bay leaf + Thyme + Sauce Demi-glace + Glace de Viande + Lemon + Bone Marrow",
+		"nom": "Bordelaise Sauce",
+		"desc": "Red Wine + Shallot + Pepper + Bay leaf + Thyme + Demi-glace Sauce + Glace de Viande + Lemon + Bone Marrow",
 		"ingredients": ["wine", "herbs", "pepper", "lemon"]
 	},
 	"bourguignonne": {
-		"nom": "Sauce Bourguignonne",
-		"desc": "Red Wine + Shallot + Thyme + Parsley + Bay leaf + Mushroom + Kneaded Butter + Sauce Espagnole",
+		"nom": "Bourguignonne Sauce",
+		"desc": "Red Wine + Shallot + Thyme + Parsley + Bay leaf + Mushroom + Kneaded Butter + Espagnole Sauce",
 		"ingredients": ["wine", "herbs", "mushroom", "butter", "flour"]
 	},
 	"bretonne": {
-		"nom": "Sauce Bretonne",
-		"desc": "Butter + Leek + Celery + Onion + Mushroom + Sauce Velouté de Poisson + Cream",
-		"ingredients": ["butter", "celery", "onion", "mushroom", "crème"]
+		"nom": "Brittany Sauce",
+		"desc": "Butter + Leek + Celery + Onion + Mushroom + Fish Velouté + Cream",
+		"ingredients": ["butter", "celery", "onion", "mushroom", "cream"]
 	},
 	"canotière": {
-		"nom": "Sauce Canotière",
+		"nom": "Boater's Sauce",
 		"desc": "Fish Cooking Liquor + White Wine + Kneaded Butter + Cayenne",
 		"ingredients": ["fish", "wine", "butter", "flour", "spice"]
 	},
 	"câpres": {
-		"nom": "Sauce aux Câpres",
-		"desc": "Sauce au Beurre + Capers",
+		"nom": "Capers Sauce",
+		"desc": "Butter Sauce + Capers",
 		"ingredients": []
 	},
 	"cardinal": {
-		"nom": "Sauce Cardinal",
-		"desc": "Fish Stock + Truffle + Sauce Béchamel + Lobster Butter + Cayenne",
+		"nom": "Cardinal Sauce",
+		"desc": "Fish Stock + Truffle + Béchamel Sauce + Lobster Butter + Cayenne",
 		"ingredients": ["stock", "truffle", "butter", "spice"]
 	},
 	"champignons velouté": {
-		"nom": "Sauce aux Champignons",
-		"desc": "Mushroom Liqour + (Sauce Allemande or Sauce Velouté de Poisson) + Button Mushroom",
+		"nom": "Mushroom Sauce",
+		"desc": "Mushroom Liqour + (German Sauce or Fish Velouté) + Button Mushrooms",
 		"ingredients": ["mushroom"]
 	},
 	"champignons": {
-		"nom": "Sauce Champignons",
-		"desc": "Mushroom Liqour + Sauce Demi-glace + Butter + Button Mushroom",
+		"nom": "Mushroom Sauce",
+		"desc": "Mushroom Liqour + Demi-glace Sauce + Butter + Button Mushrooms",
 		"ingredients": ["mushroom", "butter"]
 	},
 	"chantilly": {
-		"nom": "Sauce Chantilly",
-		"desc": "Sauce Mayonnaise + Lemon + Cream",
-		"ingredients": ["lemon", "crème"],
+		"nom": "Chantilly Sauce",
+		"desc": "Mayonnaise + Lemon + Cream",
+		"ingredients": ["lemon", "cream"],
 		"temp": "froide"
 	},
 	"charcutière": {
-		"nom": "Sauce Charcutière",
-		"desc": "Sauce Robert + Gherkins",
+		"nom": "Butcher's Sauce",
+		"desc": "Robert Sauce + Gherkins",
 		"ingredients": ["pickle"]
 	},
 	"chasseur": {
-		"nom": "Sauce Chasseur",
-		"desc": "Butter + Button Mushroom + Shallots + White Wine + Sauce Tomate + Sauce Demi-glace + Tarragon + Chervil",
+		"nom": "Hunter's Sauce",
+		"desc": "Butter + Button Mushrooms + Shallots + White Wine + Tomato Sauce + Demi-glace Sauce + Tarragon + Chervil",
 		"ingredients": ["butter", "mushroom", "wine", "herbs"]
 	},
 	"chaudfroid": {
-		"nom": "Sauce Chaud-froid*",
-		"desc": "Sauce Demi-glace + Truffle + (Madère or Porto) Wine",
+		"nom": "Chaud-froid* Sauce",
+		"desc": "Demi-glace Sauce + Truffle + (Madère or Porto) Wine",
 		"ingredients": ["truffle", "wine"],
 		"temp": "froide"
 	},
 	"chevreuil": {
-		"nom": "Sauce Chevreuil",
-		"desc": "Sauce Poivrade + (Bacon or Gibier) + Red Wine + Sugar + Cayenne",
+		"nom": "Roebuck Sauce",
+		"desc": "Pepper Sauce + (Bacon or Gibier) + Red Wine + Sugar + Cayenne",
 		"ingredients": ["meat", "wine", "spice"]
 	},
 	"châteaubriand": {
-		"nom": "Sauce Châteaubriand",
-		"desc": "Butter + Shallot + White Wine + Sauce Espagnole + Thyme + Tarragon + Pepper",
+		"nom": "Châteaubriand Sauce",
+		"desc": "Butter + Shallot + White Wine + Espagnole Sauce + Thyme + Tarragon + Pepper",
 		"ingredients": ["butter", "wine", "herbs", "pepper"]
 	},
 	"chivry": {
-		"nom": "Sauce Chivry",
-		"desc": "White Wine + Chervil + Parsley + Tarragon + Shallot + Chives + Salad Burnet + Sauce Velouté",
+		"nom": "Chivry Sauce",
+		"desc": "White Wine + Chervil + Parsley + Tarragon + Shallot + Chives + Salad Burnet + Velouté",
 		"ingredients": ["wine", "herbs", "chives"]
 	},
 	"choron": {
-		"nom": "Sauce Choron",
-		"desc": "Sauce Béarnaise - Tarragon - Chervil + Tomato Purée",
+		"nom": "Choron Sauce",
+		"desc": "Béarnaise Sauce - Tarragon - Chervil + Tomato Purée",
 		"ingredients": ["herbs", "tomato"]
 	},
 	"colbert": {
-		"nom": "Sauce Colbert",
-		"desc": "Sauce Foyot + White Wine",
+		"nom": "Colbert Sauce",
+		"desc": "Foyot Sauce + White Wine",
 		"ingredients": ["wine"]
 	},
 	"crème": {
-		"nom": "Sauce à la Crème",
-		"desc": "Sauce Béchamel + Cream + Lemon",
-		"ingredients": ["crème", "lemon"]
+		"nom": "Cream Sauce",
+		"desc": "Béchamel Sauce + Cream + Lemon",
+		"ingredients": ["cream", "lemon"]
 	},
 	"crevettes": {
-		"nom": "Sauce aux Crevettes",
-		"desc": "(Sauce Velouté de Poisson or Sauce Béchamel) + Cream + Fish Stock + Shrimp Butter + Cayenne",
-		"ingredients": ["crème", "stock", "shrimp", "spice"]
+		"nom": "Shrimp Sauce",
+		"desc": "(Fish Velouté or Béchamel Sauce) + Cream + Fish Stock + Shrimp Butter + Cayenne",
+		"ingredients": ["cream", "stock", "shrimp", "spice"]
 	},
 	"demi-glace": {
-		"nom": "Sauce Demi-glace",
-		"desc": "Sauce Espagnole + Meat + Brown Stock",
+		"nom": "Demi-glace Sauce",
+		"desc": "Espagnole Sauce + Meat + Brown Stock",
 		"ingredients": ["meat", "stock"]
 	},
 	"diable": {
-		"nom": "Sauce à la Diable",
-		"desc": "White Wine + Shallot + Sauce Demi-glace + Cayenne",
+		"nom": "Devil Sauce",
+		"desc": "White Wine + Shallot + Demi-glace Sauce + Cayenne",
 		"ingredients": ["wine", "spice"]
 	},
 	"diane": {
-		"nom": "Sauce à la Diane",
-		"desc": "Cream + Sauce Poivrade + Truffle + Egg White",
-		"ingredients": ["crème", "truffle", "egg"]
+		"nom": "Diane Sauce",
+		"desc": "Cream + Pepper Sauce + Truffle + Egg White",
+		"ingredients": ["cream", "truffle", "egg"]
 	},
 	"diplomate": {
-		"nom": "Sauce Diplomate",
-		"desc": "Lobster + Butter + Sauce Normande + Truffle",
+		"nom": "Diplomat Sauce",
+		"desc": "Lobster + Butter + Normandy Sauce + Truffle",
 		"ingredients": ["butter", "truffle"]
 	},
 	"duxelles": {
-		"nom": "Sauce Duxelles",
-		"desc": "White Wine + Mushroom Liquor + Shallot + Sauce Demi-glace + Tomato Purée + Duxelles + Parsley",
+		"nom": "Duxelles Sauce",
+		"desc": "White Wine + Mushroom Liquor + Shallot + Demi-glace Sauce + Tomato Purée + Duxelles + Parsley",
 		"ingredients": ["wine", "mushroom", "tomato", "onion", "garlic", "herbs"]
 	},
 	"écossaise": {
-		"nom": "Sauce Écossaise",
-		"desc": "Brunoise(Mirepoix, French Beans) + Bouillon + Sauce à la Crème",
+		"nom": "Scotch Egg Sauce",
+		"desc": "Brunoise(Mirepoix, French Beans) + Bouillon + à la Crème",
 		"ingredients": ["onion", "carrot", "celery", "beans", "butter"]
 	},
 	"espagnole": {
-		"nom": "Sauce Espagnole",
+		"nom": "Espagnole Sauce",
 		"desc": "Brown Roux + Pork Belly + Carrot + Onion + Thyme + Bay leaf + Tomato + White Wine",
 		"ingredients": ["butter", "flour", "meat", "carrot", "onion", "herbs", "tomato", "wine"]
 	},
 	"estragon": {
-		"nom": "Sauce Estragon",
-		"desc": "White Wine + Tarragon + (Sauce Demi-glace or Veal Stock)",
+		"nom": "Tarragon Sauce",
+		"desc": "White Wine + Tarragon + (Demi-glace Sauce or Veal Stock)",
 		"ingredients": ["wine", "herbs", "stock"]
 	},
 	"estragon velouté": {
-		"nom": "Sauce Estragon",
+		"nom": "Tarragon Sauce",
 		"desc": "Sauce Velouté (de Poisson or de Volaille) + Tarragon",
 		"ingredients": ["herbs"]
 	},
 	"financière": {
-		"nom": "Sauce Financière",
+		"nom": "Financier Sauce",
 		"desc": "Sauce Madère + Truffle",
 		"ingredients": ["truffle"]
 	},
 	"fines herbes": {
-		"nom": "Sauce Fines Herbes",
-		"desc": "Sauce au Vin Blanc + Butter + Shallots + Parsley + Chervil + Tarragon",
+		"nom": "Herb Sauce",
+		"desc": "White Wine Sauce + Butter + Shallots + Parsley + Chervil + Tarragon",
 		"ingredients": ["butter", "herbs"]
 	},
 	"foyot": {
-		"nom": "Sauce Foyot",
-		"autrenom": "Sauce Valois",
+		"nom": "Foyot Sauce",
+		"autrenom": "Valois Sauce",
 		"desc": "Sauce Béarnaise + Glace de Viande",
 		"ingredients": []
 	},
 	"génevoise": {
-		"nom": "Sauce Génevoise",
-		"desc": "Butter + Carrot + Onion + Parsley + Thyme + Bay leaf + Salmon + Pepper + Red Wine + Sauce Espagnole (Fish) + Fish Stock + Anchovy Essence",
+		"nom": "Génevoise Sauce",
+		"desc": "Butter + Carrot + Onion + Parsley + Thyme + Bay leaf + Salmon + Pepper + Red Wine + Espagnole Sauce (Fish) + Fish Stock + Anchovy Essence",
 		"ingredients": ["butter", "carrot", "onion", "herbs", "fish", "pepper", "wine"]
 	},
 	"génoise": {
-		"nom": "Sauce Génoise",
-		"desc": "Pistachio + Pine Nuts + Sauce Béchamel + Yolks + Oil + Lemon + Parsley + Chervil + Tarragon + Chives + Salad Burnet",
+		"nom": "Génoise Sauce",
+		"desc": "Pistachio + Pine Nuts + Béchamel Sauce + Yolks + Oil + Lemon + Parsley + Chervil + Tarragon + Chives + Salad Burnet",
 		"ingredients": ["nuts", "egg", "oil", "lemon", "herbs", "chives"],
 		"temp": "froide"
 	},
 	"godard": {
-		"nom": "Sauce Godard",
-		"desc": "(Champagne or dry White Wine) + Mirepoix + Ham + Sauce Demi-glace + Mushroom Essence",
+		"nom": "Godard Sauce",
+		"desc": "(Champagne or dry White Wine) + Mirepoix + Ham + Demi-glace Sauce + Mushroom Essence",
 		"ingredients": ["wine", "carrot", "onion", "celery", "meat", "mushroom"]
 	},
 	"glace de viande": {
 		"nom": "Glace de Viande",
-		"desc": "Sauce Demi-glace + Reduction",
+		"desc": "Demi-glace Sauce + Reduction",
 		"ingredients": []
 	},
 	"grand-veneur": {
-		"nom": "Sauce Grand-Veneur",
-		"desc": "Sauce Poivrade + Cream + Redcurrant Jelly",
-		"ingredients": ["crème"]
+		"nom": "Grand-Veneur Sauce",
+		"desc": "Pepper Sauce + Cream + Redcurrant Jelly",
+		"ingredients": ["cream"]
 	},
 	"gratin": {
-		"nom": "Sauce Gratin",
-		"desc": "White Wine + Fish Stock + Shallot + Duxelles + (Sauce Espagnole (Fish) or Sauce Demi-glace) + Parsley",
+		"nom": "Gratin Sauce",
+		"desc": "White Wine + Fish Stock + Shallot + Duxelles + (Espagnole Sauce (Fish) or Demi-glace Sauce) + Parsley",
 		"ingredients": ["wine", "stock", "mushroom", "onion", "garlic", "herbs"]
 	},
 	"gribiche": {
-		"nom": "Sauce Gribiche",
+		"nom": "Gribiche Sauce",
 		"desc": "Yolks + Mustard + Vinegar + Cornichons + Capers + Parsley + Chervil + Tarragon + Egg Whites",
 		"ingredients": ["egg", "pickle", "herbs"],
 		"temp": "froide"
 	},
 	"groseilles": {
-		"nom": "Sauce Groseilles",
-		"desc": "Gooseberries + Sugar + White Wine + Sauce au Beurre",
+		"nom": "Groseilles Sauce",
+		"desc": "Gooseberries + Sugar + White Wine + Butter Sauce",
 		"ingredients": ["wine"]
 	},
 	"hachée": {
-		"nom": "Sauce Hachée",
-		"desc": "Butter + Onion + Shallot + Vinegar + Sauce Espagnole + Sauce Tomate + Ham + Capers + Duxelles + Parsley",
+		"nom": "Hachée Sauce",
+		"desc": "Butter + Onion + Shallot + Vinegar + Espagnole Sauce + Tomato Sauce + Ham + Capers + Duxelles + Parsley",
 		"ingredients": ["butter", "onion", "meat", "mushroom", "garlic", "herbs"]
 	},
 	"hollandaise": {
-		"nom": "Sauce Hollandaise",
+		"nom": "Hollandaise Sauce",
 		"desc": "Yolks + Butter + Lemon",
 		"ingredients": ["egg", "butter", "lemon"]
 	},
 	"homard": {
-		"nom": "Sauce Homard",
-		"desc": "Sauce Velouté de Poisson + Cream + Lobster Butter",
-		"ingredients": ["crème", "butter"]
+		"nom": "Lobster Sauce",
+		"desc": "Fish Velouté + Cream + Lobster Butter",
+		"ingredients": ["cream", "butter"]
 	},
 	"hongroise": {
-		"nom": "Sauce Hongroise",
+		"nom": "Hungarian Sauce",
 		"desc": "Butter + Onion + Paprika + Velouté",
 		"ingredients": ["butter", "onion", "chili"]
 	},
 	"hussarde": {
-		"nom": "Sauce à la Hussarde",
-		"desc": "Butter + Onion + Shallot + White Wine + Sauce Demi-glace + Tomato Purée + White Stock + Ham + Garlic + Bouquet garni + Horseradish + Parsley",
+		"nom": "Hussarde Sauce",
+		"desc": "Butter + Onion + Shallot + White Wine + Demi-glace Sauce + Tomato Purée + White Stock + Ham + Garlic + Bouquet garni + Horseradish + Parsley",
 		"ingredients": ["butter", "onion", "wine", "tomato", "stock", "meat", "garlic", "herbs"]
 	},
 	"huîtres": {
-		"nom": "Sauce aux Huîtres",
-		"desc": "Sauce Normande + Oyster Juice + Oyster",
+		"nom": "Oyster Sauce",
+		"desc": "Normandy Sauce + Oyster Juice + Oyster",
 		"ingredients": []
 	},
 	"italienne": {
-		"nom": "Sauce Italienne",
-		"desc": "Sauce Demi-glace + Tomato + Duxelles + Ham + Tarragon + Chervil + Parsley",
+		"nom": "Italian Sauce",
+		"desc": "Demi-glace Sauce + Tomato + Duxelles + Ham + Tarragon + Chervil + Parsley",
 		"ingredients": ["tomato", "mushroom", "onion", "garlic", "meat", "herbs"]
 	},
 	"ivoire": {
-		"nom": "Sauce Ivoire",
-		"desc": "Sauce Suprême + Glace de Viande",
+		"nom": "Ivory Sauce",
+		"desc": "Suprême Sauce + Glace de Viande",
 		"ingredients": []
 	},
 	"joinville": {
-		"nom": "Sauce Joinville",
-		"desc": "Sauce Normande + Crayfish Butter + Shrimp Butter + (Truffle)",
+		"nom": "Joinville Sauce",
+		"desc": "Normandy Sauce + Crayfish Butter + Shrimp Butter + (Truffle)",
 		"ingredients": ["shrimp", "butter", "truffle"]
 	},
 	"l'aurore": {
-		"nom": "Sauce à l'Aurore",
-		"desc": "Sauce Velouté + Tomato Purée + Butter",
+		"nom": "Aurore Sauce",
+		"desc": "Velouté Sauce + Tomato Purée + Butter",
 		"ingredients": ["tomato", "butter"]
 	},
 	"la vallière": {
-		"nom": "Sauce La Vallière",
+		"nom": "La Vallière Sauce",
 		"desc": "Butter + Oil + Mushroom + Shallot + White Wine + Madère + Truffle + Tarragon",
 		"ingredients": ["butter", "oil", "mushroom", "wine", "truffle", "herbs"]
 	},
 	"laguipierre": {
-		"nom": "Sauce Laguipierre",
-		"desc": "Sauce au Beurre + Lemon + (Glace au Poisson or Fish Stock)",
+		"nom": "Laguipierre Sauce",
+		"desc": "Butter Sauce + Lemon + (Glace au Poisson or Fish Stock)",
 		"ingredients": ["lemon", "fish", "stock"]
 	},
 	"livonienne": {
-		"nom": "Sauce Livonienne",
-		"desc": "Carrots + Celery + Mushroom + Onion + Butter + Sauce Velouté de Poisson + Truffle + Parsley",
+		"nom": "Livonian Sauce",
+		"desc": "Carrots + Celery + Mushroom + Onion + Butter + Fish Velouté + Truffle + Parsley",
 		"ingredients": ["carrot", "celery", "mushroom", "onion", "butter", "herbs", "truffle"]
 	},
 	"lyonnaise": {
-		"nom": "Sauce Lyonnaise",
-		"desc": "Butter + Onion + White Wine + Vinegar + Sauce Demi-glace",
+		"nom": "Lyonnaise Sauce",
+		"desc": "Butter + Onion + White Wine + Vinegar + Demi-glace Sauce",
 		"ingredients": ["butter", "onion", "wine"]
 	},
 	"madère": {
-		"nom": "Sauce Madère",
-		"desc": "Sauce Demi-glace + Madeira Wine",
+		"nom": "Madère Sauce",
+		"desc": "Demi-glace Sauce + Madeira Wine",
 		"ingredients": ["wine"]
 	},
 	"maltaise": {
-		"nom": "Sauce Maltaise",
-		"desc": "Sauce Hollandaise + Blood Oranges + Zest",
+		"nom": "Maltese Sauce",
+		"desc": "Hollandaise Sauce + Blood Oranges + Zest",
 		"ingredients": ["fruit"]
 	},
 	"marchand de vin": {
-		"nom": "Sauce Marchand de Vin",
-		"desc": "dry Red Wine + Shallots + Sauce Demi-glace",
+		"nom": "Wine Merchant's Sauce",
+		"desc": "dry Red Wine + Shallots + Demi-glace Sauce",
 		"ingredients": ["wine"]
 	},
 	"marinière": {
-		"nom": "Sauce Marinière",
-		"desc": "Sauce Bercy + Mussel Juice + Yolks",
+		"nom": "Mariner's Sauce",
+		"desc": "Bercy Sauce + Mussel Juice + Yolks",
 		"ingredients": ["egg"]
 	},
 	"matelote": {
-		"nom": "Sauce Matelote",
-		"desc": "Red Wine + Court-bouillon + Mushroom + Sauce Espagnole (Fish) + Butter + Cayenne",
+		"nom": "Matelote Sauce",
+		"desc": "Red Wine + Court-bouillon + Mushroom + Espagnole Sauce (Fish) + Butter + Cayenne",
 		"ingredients": ["wine", "mushroom", "butter", "spice"]
 	},
 	"mayonnaise": {
-		"nom": "Sauce Mayonnaise",
+		"nom": "Mayonnaise Sauce",
 		"desc": "Yolks + Oil + (Vinegar or Lemon) + White Pepper",
 		"ingredients": ["egg", "oil", "lemon", "pepper"]
 	},
 	"milanaise": {
-		"nom": "Sauce Milanaise",
-		"desc": "Sauce Tomate + Ox Tongue + Ham + Mushroom + Truffles + Gruyère + Parmesan + Butter",
+		"nom": "Milanese Sauce",
+		"desc": "Tomato Sauce + Ox Tongue + Ham + Mushroom + Truffles + Gruyère + Parmesan + Butter",
 		"ingredients": ["meat", "mushroom", "truffle", "cheese", "butter"]
 	},
 	"moelle": {
-		"nom": "Sauce à la Moelle",
-		"desc": "Sauce Bordelaise + Bone Marrow + Parsley",
+		"nom": "Marrow Sauce",
+		"desc": "Bordelaise Sauce + Bone Marrow + Parsley",
 		"ingredients": ["meat", "herbs"]
 	},
 	"mornay": {
-		"nom": "Sauce Mornay",
-		"desc": "Sauce Béchamel + Gruyère + Parmesan",
+		"nom": "Mornay Sauce",
+		"desc": "Béchamel Sauce + Gruyère + Parmesan",
 		"ingredients": ["cheese"]
 	},
 	"moscovite": {
-		"nom": "Sauce Moscovite",
-		"desc": "Sauce Poivrade + Malaga Wine + Juniper Berries + Pine Nuts + Currants",
+		"nom": "Moscovite Sauce",
+		"desc": "Pepper Sauce + Malaga Wine + Juniper Berries + Pine Nuts + Currants",
 		"ingredients": ["wine", "nuts"]
 	},
 	"mousquetaire": {
-		"nom": "Sauce Mousquetaire",
-		"desc": "Sauce Mayonnaise + Shallot + White Wine + Glace de Viande + Chives + (Cayenne or Pepper)",
+		"nom": "Musketeer Sauce",
+		"desc": "Mayonnaise + Shallot + White Wine + Glace de Viande + Chives + (Cayenne or Pepper)",
 		"ingredients": ["wine", "chives", "pepper"],
 		"temp": "froide"
 	},
 	"mousseline": {
-		"nom": "Sauce Mousseline",
-		"autrenom": "Sauce Chantilly",
-		"desc": "Sauce Hollandaise + Whipped Cream",
-		"ingredients": ["crème"]
+		"nom": "Mousseline Sauce",
+		"autrenom": "Chantilly Sauce",
+		"desc": "Hollandaise Sauce + Whipped Cream",
+		"ingredients": ["cream"]
 	},
 	"mousseuse": {
-		"nom": "Sauce Mousseuse",
+		"nom": "Mousseuse Sauce",
 		"desc": "Butter + Lemon + Whipped Cream",
-		"ingredients": ["butter", "lemon", "crème"]
+		"ingredients": ["butter", "lemon", "cream"]
 	},
 	"moutarde": {
-		"nom": "Sauce Moutarde",
-		"desc": "Sauce au Beurre + Mustard",
+		"nom": "Mustard Sauce",
+		"desc": "Butter Sauce + Mustard",
 		"ingredients": []
 	},
 	"nantua": {
-		"nom": "Sauce Nantua",
-		"desc": "Cream + Sauce Béchamel + Crayfish + Butter",
-		"ingredients": ["crème", "butter"]
+		"nom": "Nantua Sauce",
+		"desc": "Cream + Béchamel + Crayfish + Butter",
+		"ingredients": ["cream", "butter"]
 	},
 	"new-burg": {
-		"nom": "Sauce New-burg",
+		"nom": "New-burg Sauce",
 		"desc": "Lobster + Butter + Oil + Cayenne + (Marsala or Madère) Wine + Cream + Fish Stock",
-		"ingredients": ["butter", "oil", "spice", "wine", "crème", "stock"]
+		"ingredients": ["butter", "oil", "spice", "wine", "cream", "stock"]
 	},
 	"noisette": {
-		"nom": "Sauce Noisette",
-		"desc": "Sauce Hollandaise + Hazelnut Butter",
+		"nom": "Hazelnut Sauce",
+		"desc": "Hollandaise Sauce + Hazelnut Butter",
 		"ingredients": ["nuts"]
 	},
 	"normande": {
-		"nom": "Sauce Normande",
-		"desc": "Sauce Velouté de Poisson + Mushroom Liquor + Mussels Liquor + Fish Stock + Lemon + Yolks + Cream + Butter",
-		"ingredients": ["mushroom", "stock", "lemon", "crème", "butter"]
+		"nom": "Normandy Sauce",
+		"desc": "Fish Velouté + Mushroom Liquor + Mussels Liquor + Fish Stock + Lemon + Yolks + Cream + Butter",
+		"ingredients": ["mushroom", "stock", "lemon", "cream", "butter"]
 	},
 	"norvégienne": {
-		"nom": "Sauce Norvégienne",
-		"desc": "Sauce Vinaigrette + Yolks + Anchovies",
+		"nom": "Norwegian Sauce",
+		"desc": "Vinaigrette Sauce + Yolks + Anchovies",
 		"ingredients": ["egg", "fish"]
 	},
 	"orientale": {
-		"nom": "Sauce Orientale",
-		"desc": "Sauce Américaine + Curry + Cream",
-		"ingredients": ["spice", "crème"]
+		"nom": "Oriental Sauce",
+		"desc": "American Sauce + Curry + Cream",
+		"ingredients": ["spice", "cream"]
 	},
 	"paloise": {
-		"nom": "Sauce Paloise",
-		"desc": "Sauce Béarnaise - Tarragon + Mint",
+		"nom": "Paloise Sauce",
+		"desc": "Béarnaise Sauce - Tarragon + Mint",
 		"ingredients": ["herbs"]
 	},
 	"pêcheur": {
-		"nom": "Sauce à la Pêcheur",
-		"desc": "Sauce Vinaigrette + Crab Meat",
+		"nom": "Fisher's Sauce",
+		"desc": "Vinaigrette Sauce + Crab Meat",
 		"ingredients": []
 	},
 	"périgourdine": {
-		"nom": "Sauce Périgourdine",
-		"desc": "Sauce Périgueux, cut the truffles differently",
+		"nom": "Périgourdine Sauce",
+		"desc": "Périgueux Sauce, cut the truffles differently",
 		"ingredients": []
 	},
 	"périgueux": {
-		"nom": "Sauce Périgueux",
-		"desc": "Sauce Demi-glace + Truffle",
+		"nom": "Périgueux Sauce",
+		"desc": "Demi-glace Sauce + Truffle",
 		"ingredients": ["truffle"]
 	},
 	"piquante": {
-		"nom": "Sauce Piquante",
-		"desc": "White Wine + Vinegar + Shallot + Sauce Espagnole + Gherkins + Tarragon + Chervil + Parsley",
+		"nom": "Piquante Sauce",
+		"desc": "White Wine + Vinegar + Shallot + Espagnole Sauce + Gherkins + Tarragon + Chervil + Parsley",
 		"ingredients": ["wine", "pickle", "herbs"]
 	},
 	"poivrade": {
-		"nom": "Sauce Poivrade",
-		"desc": "Oil + Mirepoix + Parsley + Thyme + Bay leaf + Vinegar + Sauce Espagnole + Peppercorn + Butter",
+		"nom": "Pepper Sauce",
+		"desc": "Oil + Mirepoix + Parsley + Thyme + Bay leaf + Vinegar + Espagnole Sauce + Peppercorn + Butter",
 		"ingredients": ["oil", "carrot", "onion", "celery", "herbs", "pepper", "butter"]
 	},
 	"porto": {
-		"nom": "Sauce au Porto",
-		"desc": "Sauce Demi-glace + Port Wine",
+		"nom": "Port Wine Sauce",
+		"desc": "Demi-glace Sauce + Port Wine",
 		"ingredients": ["wine"]
 	},
 	"portugaise": {
-		"nom": "Sauce Portugaise",
-		"desc": "Oil + Onion + Tomato + Garlic + Pepper + Glace de Viande + Sauce Tomate + Parsley",
+		"nom": "Portugese Sauce",
+		"desc": "Oil + Onion + Tomato + Garlic + Pepper + Glace de Viande + Tomato Sauce + Parsley",
 		"ingredients": ["oil", "onion", "tomato", "garlic", "pepper", "herbs"]
 	},
 	"poulette": {
-		"nom": "Sauce Poulette",
-		"desc": "Mushroom Liquor + Sauce Allemande + Lemon + Butter + Parsley",
+		"nom": "Poulette Sauce",
+		"desc": "Mushroom Liquor + German Sauce + Lemon + Butter + Parsley",
 		"ingredients": ["mushroom", "lemon", "butter", "herbs"]
 	},
 	"provençale": {
-		"nom": "Sauce à la Provençale",
+		"nom": "Provençale Sauce",
 		"desc": "Tomato + Oil + Garlic + Bell Pepper + Olive + Parsley + Herbes de Provence",
 		"ingredients": ["tomato", "oil", "garlic", "capsicum", "herbs"]
 	},
 	"raifort": {
-		"nom": "Sauce au Raifort",
-		"desc": "Sauce Béchamel + Horseradish",
+		"nom": "Horseradish Sauce",
+		"desc": "Béchamel Sauce + Horseradish",
 		"ingredients": [],
 		"temp": "froide"
 	},
 	"ravigote": {
-		"nom": "Sauce Ravigote",
-		"desc": "Capers + Parsley + Chervil + Tarragon + Onion + Sauce Vinaigrette",
+		"nom": "Ravigote Sauce",
+		"desc": "Capers + Parsley + Chervil + Tarragon + Onion + Vinaigrette Sauce",
 		"ingredients": ["herbs", "onion"],
 		"temp": "froide"
 	},
 	"ravigote chaud": {
-		"nom": "Sauce Ravigote",
-		"desc": "White Wine + Vinegar + Sauce Velouté + Shallot + Butter + Chervil + Tarragon + Chives",
+		"nom": "Ravigote Sauce",
+		"desc": "White Wine + Vinegar + Velouté + Shallot + Butter + Chervil + Tarragon + Chives",
 		"ingredients": ["wine", "butter", "herbs", "chives"]
 	},
 	"réforme": {
-		"nom": "Sauce Réforme",
-		"desc": "Sauce Poivrade + Sauce Demi-glace + Cornichons + Egg White + Mushroom + Truffle + Beef Tongue",
+		"nom": "Réforme Sauce",
+		"desc": "Pepper Sauce + Demi-glace Sauce + Cornichons + Egg White + Mushroom + Truffle + Beef Tongue",
 		"ingredients": ["pickle", "egg", "mushroom", "meat", "truffle"]
 	},
 	"régence": {
-		"nom": "Sauce à la Régence",
-		"desc": "Rhine Wine + Mirepoix + Butter + Truffle + Sauce Demi-glace",
+		"nom": "Régence Sauce",
+		"desc": "Rhine Wine + Mirepoix + Butter + Truffle + Demi-glace Sauce",
 		"ingredients": ["wine", "carrot", "celery", "onion", "butter", "truffle"]
 	},
 	"rémoulade": {
-		"nom": "Sauce Rémoulade",
-		"desc": "Sauce Mayonnaise + Mustard + Gherkins + Capers + Parsley + Tarragon + Chervil + Anchovy Essence",
+		"nom": "Rémoulade Sauce",
+		"desc": "Mayonnaise + Mustard + Gherkins + Capers + Parsley + Tarragon + Chervil + Anchovy Essence",
 		"ingredients": ["pickle", "herbs", "fish"],
 		"temp": "froide"
 	},
 	"riche": {
-		"nom": "Sauce Riche",
-		"desc": "Sauce Diplomate + Truffle",
+		"nom": "Rich Sauce",
+		"desc": "Diplomat Sauce + Truffle",
 		"ingredients": ["truffle"]
 	},
 	"robert": {
-		"nom": "Sauce Robert",
-		"desc": "Butter + Onion + White Wine + Sauce Demi-glace + Sugar + Mustard",
+		"nom": "Robert Sauce",
+		"desc": "Butter + Onion + White Wine + Demi-glace Sauce + Sugar + Mustard",
 		"ingredients": ["butter", "onion", "wine"]
 	},
 	"romaine": {
-		"nom": "Sauce à la Romaine",
-		"desc": "Sugar + Vinegar + Sauce Espagnole + Game Stock + Pine Nuts + Sultanas + Zante Currants",
+		"nom": "Romaine Sauce",
+		"desc": "Sugar + Vinegar + Espagnole Sauce + Game Stock + Pine Nuts + Sultanas + Zante Currants",
 		"ingredients": ["stock", "nuts"]
 	},
 	"rouennaise": {
-		"nom": "Sauce à la Rouennaise",
-		"desc": "Sauce Bordelaise + Duck Liver",
+		"nom": "Rouennaise Sauce",
+		"desc": "Bordelaise Sauce + Duck Liver",
 		"ingredients": ["meat"]
 	},
 	"rubens": {
-		"nom": "Sauce Rubens",
+		"nom": "Rubens Sauce",
 		"desc": "Brunoise(Mirepoix) + White Wine + Fish Stock + Madeira Wine + Yolks + Anchovy Essence",
 		"ingredients": ["butter", "carrot", "celery", "onion", "wine", "stock", "wine", "egg", "fish"]
 	},
 	"russe": {
-		"nom": "Sauce Russe",
-		"desc": "(Lobster or Crayfish) + Caviar + Sauce Mayonnaise + Mustard + Derby Sauce",
+		"nom": "Russian Sauce",
+		"desc": "(Lobster or Crayfish) + Caviar + Mayonnaise Sauce + Mustard + Derby Sauce",
 		"ingredients": [],
 		"temp": "froide"
 	},
 	"saint-malo": {
-		"nom": "Sauce Saint-Malo",
-		"desc": "Sauce au Vin Blanc + Shallot + White Wine + Butter + Mustard + Anchovy Essence",
+		"nom": "Saint-Malo Sauce",
+		"desc": "White Wine Sauce + Shallot + White Wine + Butter + Mustard + Anchovy Essence",
 		"ingredients": ["wine", "butter", "fish"]
 	},
 	"salmis": {
-		"nom": "Sauce Salmis",
-		"desc": "Butter + Mirepoix + Skin of Gibier + White Wine + Sauce Demi-glace + Stock",
+		"nom": "Salmis Sauce",
+		"desc": "Butter + Mirepoix + Skin of Gibier + White Wine + Demi-glace Sauce + Stock",
 		"ingredients": ["butter", "carrot", "celery", "onion", "meat", "wine", "stock"]
 	},
 	"smitane": {
-		"nom": "Sauce Smitane",
+		"nom": "Smitane Sauce",
 		"desc": "Butter + Onion + White Wine + Sour Cream + Lemon",
 		"ingredients": ["butter", "onion", "wine", "lemon"]
 	},
 	"solférino": {
-		"nom": "Sauce Solférino",
+		"nom": "Solférino Sauce",
 		"desc": "Tomato + Glace de Viande + Cayenne + Lemon + Maître d'Hôtel Butter + Tarragon + Shallot",
 		"ingredients": ["tomato", "spice", "lemon", "butter", "herbs"]
 	},
 	"soubise": {
-		"nom": "Sauce Soubise",
-		"desc": "Onion + Butter + Sauce Béchamel + White Pepper + Sugar + Cream",
-		"ingredients": ["onion", "butter", "pepper", "crème"]
+		"nom": "Soubise Sauce",
+		"desc": "Onion + Butter + Béchamel + White Pepper + Sugar + Cream",
+		"ingredients": ["onion", "butter", "pepper", "cream"]
 	},
 	"souchet": {
-		"nom": "Sauce Souchet",
-		"desc": "Carrot + Celery + Parsley Root + Butter + Fish Stock + White Wine + Sauce au Vin Blanc + Kneaded Butter",
+		"nom": "Souchet Sauce",
+		"desc": "Carrot + Celery + Parsley Root + Butter + Fish Stock + White Wine + White Wine Sauce + Kneaded Butter",
 		"ingredients": ["carrot", "celery", "herbs", "butter", "stock", "wine", "flour"]
 	},
 	"suédoise": {
-		"nom": "Sauce Suédoise",
-		"desc": "Apples + White Wine + Sauce Mayonnaise + Horseradish",
+		"nom": "Swedish Sauce",
+		"desc": "Apples + White Wine + Mayonnaise Sauce + Horseradish",
 		"ingredients": ["fruit", "wine"],
 		"temp": "froide"
 	},
 	"suprême": {
-		"nom": "Sauce Suprême",
-		"desc": "Sauce Velouté de Volaille + Chicken Stock + Mushroom Liquor + Cream + Butter",
-		"ingredients": ["stock", "mushroom", "crème", "butter"]
+		"nom": "Suprême Sauce",
+		"desc": "Chicken Velouté + Chicken Stock + Mushroom Liquor + Cream + Butter",
+		"ingredients": ["stock", "mushroom", "cream", "butter"]
 	},
 	"tartare": {
-		"nom": "Sauce Tartare",
-		"desc": "Egg + Pepper + Vinegar + (Scallions or Chives) + Sauce Mayonnaise",
+		"nom": "Tartar Sauce",
+		"desc": "Egg + Pepper + Vinegar + (Scallions or Chives) + Mayonnaise Sauce",
 		"ingredients": ["egg", "pepper", "herbs", "chives"],
 		"temp": "froide"
 	},
 	"tomate": {
-		"nom": "Sauce Tomate",
+		"nom": "Tomato Sauce",
 		"desc": "Butter + Pork Belly + Flour + Carrot + Onion + Bay leaf + Thyme + Tomato + White Stock + Garlic + Sugar + Pepper",
 		"ingredients": [
 			"butter",
@@ -644,85 +644,85 @@
 		]
 	},
 	"tortue": {
-		"nom": "Sauce Tortue",
-		"desc": "Veal Stock + Sage + Basil + Marjoram + Rosemary + Thyme + Parsley + Bay leaf + Mushroom + Peppercorn + Sauce Demi-glace + Sauce Tomate + Madeira Wine + Truffle + Cayenne",
+		"nom": "Torture Sauce",
+		"desc": "Veal Stock + Sage + Basil + Marjoram + Rosemary + Thyme + Parsley + Bay leaf + Mushroom + Peppercorn + Demi-glace Sauce + Tomato Sauce + Madeira Wine + Truffle + Cayenne",
 		"ingredients": ["stock", "herbs", "mushroom", "pepper", "wine", "truffle", "spice"]
 	},
 	"toulouse": {
-		"nom": "Sauce Toulouse",
-		"desc": "Sauce Suprême + Truffle + Lemon + Butter",
+		"nom": "Toulouse Sauce",
+		"desc": "Suprême Sauce + Truffle + Lemon + Butter",
 		"ingredients": ["truffle", "lemon", "butter"]
 	},
 	"tyrolienne": {
-		"nom": "Sauce Tyrolienne",
-		"desc": "Sauce Béarnaise + Tomato Purée + Yolks + Oil + Cayenne",
+		"nom": "Tyrolienne Sauce",
+		"desc": "Béarnaise Sauce + Tomato Purée + Yolks + Oil + Cayenne",
 		"ingredients": ["tomato", "egg", "oil", "spice"]
 	},
 	"velouté de poisson": {
-		"nom": "Sauce Velouté de Poisson",
+		"nom": "Fish Velouté",
 		"desc": "Fish Stock + White Roux",
 		"ingredients": ["stock", "butter", "flour"]
 	},
 	"velouté de veau": {
-		"nom": "Sauce Velouté de Veau",
+		"nom": "Veal Velouté",
 		"desc": "Veal Stock + White Roux",
 		"ingredients": ["stock", "butter", "flour"]
 	},
 	"velouté de volaille": {
-		"nom": "Sauce Velouté de Volaille",
+		"nom": "Chicken Velouté",
 		"desc": "Chicken Stock + White Roux",
 		"ingredients": ["stock", "butter", "flour"]
 	},
 	"venaison": {
-		"nom": "Sauce Venaison",
-		"desc": "Sauce Poivrade + Redcurrant Jelly + Cream",
-		"ingredients": ["crème"]
+		"nom": "Venison Sauce",
+		"desc": "Pepper Sauce + Redcurrant Jelly + Cream",
+		"ingredients": ["cream"]
 	},
 	"vénitienne": {
-		"nom": "Sauce Vénitienne",
-		"desc": "Tarragon + Vinegar + Shallot + Chervil + Sauce au Vin Blanc + Butter",
+		"nom": "Venetian Sauce",
+		"desc": "Tarragon + Vinegar + Shallot + Chervil + White Wine Sauce + Butter",
 		"ingredients": ["herbs", "butter"]
 	},
 	"véron": {
-		"nom": "Sauce Véron",
-		"desc": "Sauce Normande + Sauce Tyrolienne + Glace de Viande + Anchovy Essence",
+		"nom": "Véron Sauce",
+		"desc": "Normandy Sauce + Tyrolienne Sauce + Glace de Viande + Anchovy Essence",
 		"ingredients": ["fish"]
 	},
 	"verte": {
-		"nom": "Sauce Verte",
-		"desc": "Spinach + Watercress + Parsley + Tarragon + Chervil + Sauce Mayonnaise",
+		"nom": "Green Sauce",
+		"desc": "Spinach + Watercress + Parsley + Tarragon + Chervil + Mayonnaise",
 		"ingredients": ["herbs"],
 		"temp": "froide"
 	},
 	"victoria": {
-		"nom": "Sauce Victoria",
-		"desc": "Sauce Homard + Lobster + Truffle",
+		"nom": "Victoria Sauce",
+		"desc": "Homard Sauce + Lobster + Truffle",
 		"ingredients": ["truffle"]
 	},
 	"vierge": {
-		"nom": "Sauce Vierge",
+		"nom": "Virgin Sauce",
 		"desc": "Oil + Lemon + Tomato + Basil",
 		"ingredients": ["oil", "lemon", "tomato", "herbs"]
 	},
 	"villageoise": {
-		"nom": "Sauce Villageoise",
-		"autrenom": "Sauce Blanquette",
-		"desc": "Veal Stock + Mushroom Liquor + Sauce Velouté de Veau + Sauce Soubise + Butter",
+		"nom": "Villager Sauce",
+		"autrenom": "Blanquette Sauce",
+		"desc": "Veal Stock + Mushroom Liquor + Veal Velouté + Soubise Sauce + Butter",
 		"ingredients": ["stock", "mushroom", "butter"]
 	},
 	"villeroy": {
-		"nom": "Sauce Villeroy",
-		"desc": "Sauce Allemande + Ham + Truffle",
+		"nom": "Villeroy Sauce",
+		"desc": "German Sauce + Ham + Truffle",
 		"ingredients": ["meat", "truffle"]
 	},
 	"vin blanc": {
-		"nom": "Sauce au Vin Blanc",
-		"desc": "White Wine + Shallot + Pepper + Bay leaf + Thyme + Sauce Béchamel + Glace de Viande + Lemon + Bone Marrow + Tarragon",
+		"nom": "White Wine Sauce",
+		"desc": "White Wine + Shallot + Pepper + Bay leaf + Thyme + Béchamel + Glace de Viande + Lemon + Bone Marrow + Tarragon",
 		"ingredients": ["wine", "herbs", "pepper", "lemon"]
 	},
 	"vin rouge": {
-		"nom": "Sauce au Vin Rouge",
-		"desc": "Kneaded Butter + Mirepoix + Red Wine + Garlic + Sauce Espagnole + Anchovy Essence + Cayenne",
+		"nom": "Red Wine Sauce",
+		"desc": "Kneaded Butter + Mirepoix + Red Wine + Garlic + Espagnole Sauce + Anchovy Essence + Cayenne",
 		"ingredients": [
 			"butter",
 			"flour",
@@ -736,20 +736,20 @@
 		]
 	},
 	"vinaigrette": {
-		"nom": "Sauce Vinaigrette",
+		"nom": "Vinaigrette Sauce",
 		"desc": "Oil + Vinegar + Capers + Parsley + Tarragon + Cervil + Chives + Onion + Pepper",
 		"ingredients": ["oil", "herbs", "onion", "pepper", "chives"],
 		"temp": "froide"
 	},
 	"vincent": {
-		"nom": "Sauce Vincent",
-		"desc": "Sorrel + Parsley + Tarragon + Chervil + Chives + Salad Burnet + Watercress + Spinach + Yolks + Sauce Mayonnaise + Derby Sauce",
+		"nom": "Vincent Sauce",
+		"desc": "Sorrel + Parsley + Tarragon + Chervil + Chives + Salad Burnet + Watercress + Spinach + Yolks + Mayonnaise Sauce + Derby Sauce",
 		"ingredients": ["herbs", "chives", "egg"],
 		"temp": "froide"
 	},
 	"zingara": {
-		"nom": "Sauce à la Zingara",
-		"desc": "White Wine + Mushroom Liquor + Sauce Demi-glace + Sauce Tomate + White Stock + Cayenne + Ham + Ox Tongue + Mushroom + Truffle",
+		"nom": "Zingara Sauce",
+		"desc": "White Wine + Mushroom Liquor + Demi-glace Sauce + Tomato Sauce + White Stock + Cayenne + Ham + Ox Tongue + Mushroom + Truffle",
 		"ingredients": ["wine", "mushroom", "stock", "spice", "meat"]
 	}
 }

@@ -47,7 +47,8 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 	const setSearch = (nom: string, dis?: string) => (setDisplay(dis ?? nom), _setSearch(nom.toLowerCase().trim())); // prettier-ignore
 
 	const [credits, setCredits] = useState(false);
-	const exit = () => credits ? setCredits(false) : (navigate('/' + window.location.hash), setSearch(''));
+	const exit = () =>
+		credits ? setCredits(false) : (navigate('/' + window.location.hash), setSearch(''));
 
 	useEffect(() => {
 		const keyListener = (e: KeyboardEvent) => (e.key === 'Esc' || e.key === 'Escape') && exit();
@@ -62,22 +63,57 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 				<Raised
 					as="button"
 					onClick={() => setTransform({ ...transform, scale: transform.scale + 0.1 })} // lerp this, also unbounded
-					style={{ right: '10rem', top: '2rem', cursor: 'zoom-in' }}>
+					style={{ right: '12rem', top: '2rem', cursor: 'zoom-in' }}>
 					<Plus />
 				</Raised>
 				<Raised
 					as="button"
 					onClick={() => setTransform({ ...transform, scale: transform.scale - 0.1 })} // lerp this, also unbounded
-					style={{ right: '6rem', top: '2rem', cursor: 'zoom-out' }}>
+					style={{ right: '8rem', top: '2rem', cursor: 'zoom-out' }}>
 					<Minus />
 				</Raised>
 				<Raised
 					as="button"
 					onClick={() =>
-						navigate(`/${window.location.search}#${window.location.hash.slice(1) === 'en' ? 'fr' : 'en'}`)
+						navigate(
+							`/${window.location.search}#${window.location.hash.slice(1) === 'en' ? 'fr' : 'en'}`
+						)
 					}
 					style={{ right: '2rem', top: '2rem', cursor: 'pointer' }}>
-					{window.location.hash.slice(1) === 'en' ? '🇺🇸' : '🇫🇷'}
+					<div
+						style={{
+							display: 'inline-block',
+							width: '1.5rem',
+							height: '1.5rem',
+							padding: '0.25rem',
+						}}>
+						<img
+							src="https://raw.githubusercontent.com/lipis/flag-icon-css/master/flags/4x3/us.svg"
+							alt="🇺🇸"
+							style={
+								window.location.hash.slice(1) !== 'en'
+									? { filter: 'grayscale(100%)' }
+									: { outline: '3px solid salmon' }
+							}
+						/>
+					</div>
+					<div
+						style={{
+							display: 'inline-block',
+							width: '1.5rem',
+							height: '1.5rem',
+							padding: '0.25rem',
+						}}>
+						<img
+							src="https://raw.githubusercontent.com/lipis/flag-icon-css/master/flags/4x3/fr.svg"
+							alt="🇫🇷"
+							style={
+								window.location.hash.slice(1) !== 'fr'
+									? { filter: 'grayscale(100%)' }
+									: { outline: '3px solid salmon' }
+							}
+						/>
+					</div>
 				</Raised>
 				<Raised
 					as="button"
