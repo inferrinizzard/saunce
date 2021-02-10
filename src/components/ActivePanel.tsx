@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Transition } from 'react-transition-group';
+import { globalHistory } from '@reach/router';
 
 import { nav } from '../scripts/util';
-import sauces from '../data/sauce.json';
+import SaucesEn from '../data/sauces.en.json';
+import SaucesFr from '../data/sauces.fr.json';
 import filles from '../data/filles.json';
 import recipes from '../data/guide.json';
 
@@ -25,7 +27,9 @@ const ActiveCard = styled.div`
 	background-color: ${p => p.theme.offwhite};
 	box-shadow: 0.5rem 0.5rem 0 ${p => p.theme.activeColour};
 
-	> h2 { margin: 0; }
+	> h2 {
+		margin: 0;
+	}
 
 	> hr {
 		height: 3px;
@@ -43,10 +47,14 @@ export const Chip = styled.span`
 	padding: 0.375rem;
 	cursor: pointer;
 
-	&:hover { background-color: ${p => p.theme.activeColour}; }
+	&:hover {
+		background-color: ${p => p.theme.activeColour};
+	}
 `;
 
-const Row = styled.hr` border: 0.125rem solid ${p => p.theme.activeColour}; `;
+const Row = styled.hr`
+	border: 0.125rem solid ${p => p.theme.activeColour};
+`;
 
 export interface ActivePanelProps {
 	active: SauceName;
@@ -58,13 +66,22 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
 		links: ['Links Here'],
 	});
 
+	const [lang, setLang] = useState(localStorage.getItem('saunce-lang'));
+	const sauces = lang === 'fr' ? SaucesFr : SaucesEn;
+
 	// useEffect(() => import('').then(() => setData({})), []);
+	useEffect(() => globalHistory.listen(({ location }) => setLang(location.hash.slice(1))), []);
 	const mères = Object.entries(filles).reduce(
 		(a, [k, v]) => (v.includes(active) ? ([...a, k] as SauceName[]) : a),
 		[] as SauceName[]
 	);
-	const activeFilles = filles[active as keyof typeof filles]?.reduce(
-			(a, f) => [...a, { fille: f, nom: sauces[f as keyof typeof sauces].nom }] as { fille: SauceName; nom: string; }[],
+	const activeFilles =
+		filles[active as keyof typeof filles]?.reduce(
+			(a, f) =>
+				[...a, { fille: f, nom: sauces[f as SauceName].nom }] as {
+					fille: SauceName;
+					nom: string;
+				}[],
 			[] as { fille: SauceName; nom: string }[]
 		) ?? [];
 
@@ -75,14 +92,27 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
 				active && (
 					<Panel
 						style={{
-							width: state === 'entered' || state === 'exiting' ? `calc(33.3% - ${panelPad * 2}rem)` : 0,
-							padding: state === 'entered' || state === 'exiting' ? `${panelPad / 2}rem ${panelPad}rem` : 0,
-							transition: (ease=> `width 350ms ease-${ease}, padding 350ms ease-${ease}`)(state.includes('enter') ? 'out' : 'in')
+							width:
+								state === 'entered' || state === 'exiting' ? `calc(33.3% - ${panelPad * 2}rem)` : 0,
+							padding:
+								state === 'entered' || state === 'exiting'
+									? `${panelPad / 2}rem ${panelPad}rem`
+									: 0,
+							transition: (ease => `width 350ms ease-${ease}, padding 350ms ease-${ease}`)(
+								state.includes('enter') ? 'out' : 'in'
+							),
 						}}>
-						<ActiveCard as="h1">{sauces[active].nom}</ActiveCard>
+						<ActiveCard as="div">
+							<h1>{sauces[active].nom}</h1>
+							{'autrenom' in sauces[active] && (
+								<h3 style={{ margin: 0 }}>{`${lang === 'fr' ? 'ou' : 'aka'} ${
+									(sauces[active] as Sauce).autrenom
+								}`}</h3>
+							)}
+						</ActiveCard>
 						<Row />
 						<ActiveCard>
-							<h2>Recipe</h2>
+							<h2>{lang === 'fr' ? 'Recette' : 'Recipe'}</h2>
 							<hr />
 							{(recipes[(active as unknown) as keyof typeof recipes]?.recette ?? sauces[active].nom)
 								.split('\n')
@@ -92,17 +122,19 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
 						</ActiveCard>
 						{!!mères.length && (
 							<ActiveCard>
-								<h2 style={{ display: 'inline-block' }}>Derived From: </h2>
+								<h2 style={{ display: 'inline-block' }}>{`${
+									lang === 'fr' ? 'Dérivée de' : 'Derived From'
+								}: `}</h2>
 								{mères.map(m => (
 									<Chip key={m + '-mère'} onClick={() => nav(m)}>
-										{sauces[m as keyof typeof sauces].nom}
+										{sauces[m as SauceName].nom}
 									</Chip>
 								))}
 							</ActiveCard>
 						)}
 						{!!activeFilles.length && (
 							<ActiveCard>
-								<h2>Daughters</h2>
+								<h2>{lang === 'fr' ? 'Filles' : 'Daughters'}</h2>
 								<hr />
 								{activeFilles?.map(({ fille, nom }) => (
 									<Chip key={fille + '-chip'} onClick={() => nav(fille)}>
@@ -112,7 +144,7 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
 							</ActiveCard>
 						)}
 						<ActiveCard>
-							<h2>Links</h2>
+							<h2>{lang === 'fr' ? 'Liens' : 'Links'}</h2>
 							<hr />
 							{data.links.map((link, i) => (
 								<h4 key={`${active}-link${i}`}>{link}</h4>

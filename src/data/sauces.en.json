@@ -18,7 +18,7 @@
 	"allemande": {
 		"nom": "German Sauce",
 		"autrenom": "Parisian Sauce",
-		"desc": "Sauce Velouté + Yolks + Mushroom Liqour + Pepper + Butter + Nutmeg",
+		"desc": "Velouté + Yolks + Mushroom Liqour + Pepper + Butter + Nutmeg",
 		"ingredients": ["egg", "mushroom", "pepper", "butter"]
 	},
 	"américaine": {
@@ -101,7 +101,7 @@
 		"ingredients": ["wine", "herbs", "pepper", "lemon"]
 	},
 	"bourguignonne": {
-		"nom": "Bourguignonne Sauce",
+		"nom": "Bourguignon Sauce",
 		"desc": "Red Wine + Shallot + Thyme + Parsley + Bay leaf + Mushroom + Kneaded Butter + Espagnole Sauce",
 		"ingredients": ["wine", "herbs", "mushroom", "butter", "flour"]
 	},
@@ -153,7 +153,7 @@
 	},
 	"chaudfroid": {
 		"nom": "Chaud-froid* Sauce",
-		"desc": "Demi-glace Sauce + Truffle + (Madère or Porto) Wine",
+		"desc": "Demi-glace Sauce + Truffle + (Madeira or Porto) Wine",
 		"ingredients": ["truffle", "wine"],
 		"temp": "froide"
 	},
@@ -234,12 +234,12 @@
 	},
 	"estragon velouté": {
 		"nom": "Tarragon Sauce",
-		"desc": "Sauce Velouté (de Poisson or de Volaille) + Tarragon",
+		"desc": "Velouté (Fish or Chicken) + Tarragon",
 		"ingredients": ["herbs"]
 	},
 	"financière": {
 		"nom": "Financier Sauce",
-		"desc": "Sauce Madère + Truffle",
+		"desc": "Madeira Sauce + Truffle",
 		"ingredients": ["truffle"]
 	},
 	"fines herbes": {
@@ -347,7 +347,7 @@
 	},
 	"la vallière": {
 		"nom": "La Vallière Sauce",
-		"desc": "Butter + Oil + Mushroom + Shallot + White Wine + Madère + Truffle + Tarragon",
+		"desc": "Butter + Oil + Mushroom + Shallot + White Wine + Madeira + Truffle + Tarragon",
 		"ingredients": ["butter", "oil", "mushroom", "wine", "truffle", "herbs"]
 	},
 	"laguipierre": {
@@ -366,7 +366,7 @@
 		"ingredients": ["butter", "onion", "wine"]
 	},
 	"madère": {
-		"nom": "Madère Sauce",
+		"nom": "Madeira Sauce",
 		"desc": "Demi-glace Sauce + Madeira Wine",
 		"ingredients": ["wine"]
 	},
@@ -444,7 +444,7 @@
 	},
 	"new-burg": {
 		"nom": "New-burg Sauce",
-		"desc": "Lobster + Butter + Oil + Cayenne + (Marsala or Madère) Wine + Cream + Fish Stock",
+		"desc": "Lobster + Butter + Oil + Cayenne + (Marsala or Madeira) Wine + Cream + Fish Stock",
 		"ingredients": ["butter", "oil", "spice", "wine", "cream", "stock"]
 	},
 	"noisette": {
@@ -535,7 +535,7 @@
 		"ingredients": ["wine", "butter", "herbs", "chives"]
 	},
 	"réforme": {
-		"nom": "Réforme Sauce",
+		"nom": "Reform Sauce",
 		"desc": "Pepper Sauce + Demi-glace Sauce + Cornichons + Egg White + Mushroom + Truffle + Beef Tongue",
 		"ingredients": ["pickle", "egg", "mushroom", "meat", "truffle"]
 	},
@@ -737,7 +737,7 @@
 	},
 	"vinaigrette": {
 		"nom": "Vinaigrette Sauce",
-		"desc": "Oil + Vinegar + Capers + Parsley + Tarragon + Cervil + Chives + Onion + Pepper",
+		"desc": "Oil + Vinegar + Capers + Parsley + Tarragon + Chervil + Chives + Onion + Pepper",
 		"ingredients": ["oil", "herbs", "onion", "pepper", "chives"],
 		"temp": "froide"
 	},

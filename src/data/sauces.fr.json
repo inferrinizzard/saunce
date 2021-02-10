@@ -397,7 +397,7 @@
 	},
 	"milanaise": {
 		"nom": "Sauce Milanaise",
-		"desc": "Sauce Tomate + Ox Tongue + Jambon + Champignons + Truffles + Gruyère + Parmesan + Beurre",
+		"desc": "Sauce Tomate + Langue de Bœuf + Jambon + Champignons + Truffles + Gruyère + Parmesan + Beurre",
 		"ingredients": ["viande", "champignon", "truffe", "cheese", "beurre"]
 	},
 	"moelle": {
@@ -536,7 +536,7 @@
 	},
 	"réforme": {
 		"nom": "Sauce Réforme",
-		"desc": "Sauce Poivrade + Sauce Demi-glace + Cornichons + Blanc d'œuf + Champignons + Truffe + Bœuf Tongue",
+		"desc": "Sauce Poivrade + Sauce Demi-glace + Cornichons + Blanc d'œuf + Champignons + Truffe + Langue de Bœuf",
 		"ingredients": ["cornichon", "œuf", "champignon", "viande", "truffe"]
 	},
 	"régence": {
@@ -588,7 +588,7 @@
 	},
 	"salmis": {
 		"nom": "Sauce Salmis",
-		"desc": "Beurre + Mirepoix + Skin of Gibier + Vin Blanc + Sauce Demi-glace + Stock",
+		"desc": "Beurre + Mirepoix + Skin of Gibier + Vin Blanc + Sauce Demi-glace + Fond",
 		"ingredients": ["beurre", "carotte", "céleri", "oignon", "viande", "vin", "fond"]
 	},
 	"smitane": {
@@ -598,7 +598,7 @@
 	},
 	"solférino": {
 		"nom": "Sauce Solférino",
-		"desc": "Tomate + Glace de Viande + Cayenne + Citron + Maître d'Hôtel Beurre + Estragon + Échalote",
+		"desc": "Tomate + Glace de Viande + Cayenne + Citron + Beurre Maître d'Hôtel + Estragon + Échalote",
 		"ingredients": ["tomate", "épice", "citron", "beurre", "herbes"]
 	},
 	"soubise": {
@@ -608,7 +608,7 @@
 	},
 	"souchet": {
 		"nom": "Sauce Souchet",
-		"desc": "Carrot + Céleri + Persil Root + Beurre + Fond de Poisson + Vin Blanc + Sauce au Vin Blanc + Beurre Manié",
+		"desc": "Carrot + Céleri + Racine de Persil + Beurre + Fond de Poisson + Vin Blanc + Sauce au Vin Blanc + Beurre Manié",
 		"ingredients": ["carotte", "céleri", "herbes", "beurre", "fond", "vin", "farine"]
 	},
 	"suédoise": {
@@ -619,7 +619,7 @@
 	},
 	"suprême": {
 		"nom": "Sauce Suprême",
-		"desc": "Sauce Velouté de Volaille + Chicken Stock + Cuisson de Champignons + Crème + Beurre",
+		"desc": "Sauce Velouté de Volaille + Fond de Volaille + Cuisson de Champignons + Crème + Beurre",
 		"ingredients": ["fond", "champignon", "crème", "beurre"]
 	},
 	"tartare": {
@@ -670,7 +670,7 @@
 	},
 	"velouté de volaille": {
 		"nom": "Sauce Velouté de Volaille",
-		"desc": "Chicken Stock + Roux Blanc",
+		"desc": "Fond de Volaille + Roux Blanc",
 		"ingredients": ["fond", "beurre", "farine"]
 	},
 	"venaison": {
@@ -690,7 +690,7 @@
 	},
 	"verte": {
 		"nom": "Sauce Verte",
-		"desc": "Spinach + Watercress + Persil + Estragon + Cerfeuil + Sauce Mayonnaise",
+		"desc": "Épinard + Cresson + Persil + Estragon + Cerfeuil + Sauce Mayonnaise",
 		"ingredients": ["herbes"],
 		"temp": "froide"
 	},
@@ -737,19 +737,19 @@
 	},
 	"vinaigrette": {
 		"nom": "Sauce Vinaigrette",
-		"desc": "Huile + Vinaigre + Câpres + Persil + Estragon + Cervil + Ciboulette + Oignon + Poivre",
+		"desc": "Huile + Vinaigre + Câpres + Persil + Estragon + Cerfeuil + Ciboulette + Oignon + Poivre",
 		"ingredients": ["huile", "herbes", "oignon", "poivre", "chives"],
 		"temp": "froide"
 	},
 	"vincent": {
 		"nom": "Sauce Vincent",
-		"desc": "Sorrel + Persil + Estragon + Cerfeuil + Ciboulette + Pimprenelle + Watercress + Spinach + Jaunes d'œufs + Sauce Mayonnaise + Sauce Derby",
+		"desc": "Sorrel + Persil + Estragon + Cerfeuil + Ciboulette + Pimprenelle + Cresson + Épinard + Jaunes d'œufs + Sauce Mayonnaise + Sauce Derby",
 		"ingredients": ["herbes", "chives", "œuf"],
 		"temp": "froide"
 	},
 	"zingara": {
 		"nom": "Sauce à la Zingara",
-		"desc": "Vin Blanc + Cuisson de Champignons + Sauce Demi-glace + Sauce Tomate + Fond Blanc + Cayenne + Jambon + Ox Tongue + Champignons + Truffe",
+		"desc": "Vin Blanc + Cuisson de Champignons + Sauce Demi-glace + Sauce Tomate + Fond Blanc + Cayenne + Jambon + Langue de Bœuf + Champignons + Truffe",
 		"ingredients": ["vin", "champignon", "fond", "épice", "viande"]
 	}
 }
