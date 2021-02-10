@@ -29,7 +29,9 @@ const StyledCard = styled('section').attrs({
 	box-shadow: ${p => smoothPhi(p.size) + 20}px ${p => smoothPhi(p.size) + 20}px 0px 0px
 		${p => lighten(0.05, p.accentColour)};
 
-	&:hover { border: 2px solid ${p => p.accentColour}; }
+	&:hover {
+		border: 2px solid ${p => p.accentColour};
+	}
 
 	div {
 		cursor: pointer;
@@ -97,7 +99,11 @@ class Card extends React.Component<CardProps, CardState> {
 			<StyledCard
 				accentColour={this.colour}
 				pos={this.state.pos}
-				textScale={(this.name === 'tortue' && 14) || (this.state.sauce.desc.length > 100 && 12) || undefined}
+				textScale={
+					(this.state.sauce.desc.length > 90 &&
+						12 + Math.floor((this.state.sauce.desc.length - 90) / 25)) ||
+					undefined
+				}
 				onClick={e => !e.defaultPrevented && nav(this.name)}>
 				<div className="card-content">
 					{(split =>

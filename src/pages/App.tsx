@@ -13,12 +13,20 @@ import { CardBlockSize } from '../components/Card';
 
 import pos from '../data/pos.json';
 import filles from '../data/filles.json';
-const colours = new Array(5).fill(['lightsalmon', 'salmon', 'indianred', 'firebrick', 'maroon']).reduce(
+const colours = new Array(5)
+	.fill(['lightsalmon', 'salmon', 'indianred', 'firebrick', 'maroon'])
+	.reduce(
 		({ q, acc }: { q: SauceName[]; acc: Record<SauceName, string> }, colours, i) => ({
-			q: q.reduce((a, mère) => [...a, ...(filles[mère as keyof typeof filles] ?? [])], [] as string[]),
+			q: q.reduce(
+				(a, mère) => [...a, ...(filles[mère as keyof typeof filles] ?? [])],
+				[] as string[]
+			),
 			acc: { ...acc, ...q.reduce((a, sauce) => ({ ...a, [sauce]: colours[i] ?? 'salmon' }), {}) },
 		}),
-	{ q: Object.keys(filles).filter(k => !Object.values(filles).some(v => v.includes(k))), acc: {} } as { q: SauceName[]; acc: Record<SauceName, string> }
+		{
+			q: Object.keys(filles).filter(k => !Object.values(filles).some(v => v.includes(k))),
+			acc: {},
+		} as { q: SauceName[]; acc: Record<SauceName, string> }
 	).acc;
 
 const theme = (sauce?: SauceName) => ({
@@ -39,7 +47,9 @@ const baseScale = 0.7;
 
 const App: React.FC<LocationContext> = ({ location }) => {
 	const [lang, setLang] = useState(location.hash.slice(1));
-	const [active, setActive] = useState(decodeURI(location.search).slice(1).replace(/[_]/g, ' ') as SauceName);
+	const [active, setActive] = useState(
+		decodeURI(location.search).slice(1).replace(/[_]/g, ' ') as SauceName
+	);
 
 	const getActivePos = (active: keyof typeof pos) => ({
 		x: -(pos[active].x * CardBlockSize.x * baseScale),
@@ -66,13 +76,20 @@ const App: React.FC<LocationContext> = ({ location }) => {
 		// setTransform({ ...transform, translation: getActivePos(active) })
 	}, []);
 
-	const [minBounds, setBounds] = useState({ xMin: -(24 + 1) * CardBlockSize.x, yMin: -(11 + 1) * CardBlockSize.y });
+	const [minBounds, setBounds] = useState({
+		xMin: -(24 + 1) * CardBlockSize.x,
+		yMin: -(11 + 1) * CardBlockSize.y,
+	});
 
 	useEffect(
 		() =>
 			setBounds({
-				xMin: -((24 + 1) * CardBlockSize.x - window.innerWidth) * transform.scale + window.innerWidth * (1 - transform.scale),
-				yMin: -((11 + 1) * CardBlockSize.y - window.innerHeight) * transform.scale + window.innerHeight * (1 - transform.scale),
+				xMin:
+					-((24 + 1) * CardBlockSize.x - window.innerWidth) * transform.scale +
+					window.innerWidth * (1 - transform.scale - (active && 0.33)),
+				yMin:
+					-((11 + 1) * CardBlockSize.y - window.innerHeight) * transform.scale +
+					window.innerHeight * (1 - transform.scale),
 			}),
 		[transform.scale]
 	);

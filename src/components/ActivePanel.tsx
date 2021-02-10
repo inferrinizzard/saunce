@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect, useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 import { Transition } from 'react-transition-group';
 import { globalHistory } from '@reach/router';
 
@@ -8,6 +8,8 @@ import SaucesEn from '../data/sauces.en.json';
 import SaucesFr from '../data/sauces.fr.json';
 import filles from '../data/filles.json';
 import recipes from '../data/guide.json';
+
+import Ingredient from './Ingredient';
 
 const Panel = styled.div.attrs({ pad: 2.5 })`
 	position: fixed;
@@ -61,13 +63,14 @@ export interface ActivePanelProps {
 }
 
 const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
+	const theme = useContext(ThemeContext);
 	const [data, setData] = useState({
 		recipe: 'Recipe Here',
 		links: ['Links Here'],
 	});
 
 	const [lang, setLang] = useState(localStorage.getItem('saunce-lang'));
-	const sauces = lang === 'fr' ? SaucesFr : SaucesEn;
+	const sauces: SauceList = lang === 'fr' ? SaucesFr : SaucesEn;
 
 	// useEffect(() => import('').then(() => setData({})), []);
 	useEffect(() => globalHistory.listen(({ location }) => setLang(location.hash.slice(1))), []);
@@ -109,6 +112,17 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
 									(sauces[active] as Sauce).autrenom
 								}`}</h3>
 							)}
+							<div>
+								{sauces[active].ingredients.map((i, k) => (
+									<Ingredient
+										key={k}
+										name={i}
+										lang={lang ?? 'en'}
+										colour={theme.activeColour}
+										count={sauces[active].ingredients.length}
+									/>
+								))}
+							</div>
 						</ActiveCard>
 						<Row />
 						<ActiveCard>
