@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { Transition } from 'react-transition-group';
 import { globalHistory } from '@reach/router';
+import { Fade, Slide } from 'react-awesome-reveal';
 
 import { nav } from '../scripts/util';
 import SaucesEn from '../data/sauces.en.json';
@@ -105,65 +106,80 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
 								state.includes('enter') ? 'out' : 'in'
 							),
 						}}>
-						<ActiveCard as="div">
-							<h1>{sauces[active].nom}</h1>
-							{'autrenom' in sauces[active] && (
-								<h3 style={{ margin: 0 }}>{`${lang === 'fr' ? 'ou' : 'aka'} ${
-									(sauces[active] as Sauce).autrenom
-								}`}</h3>
-							)}
-							<div>
-								{sauces[active].ingredients.map((i, k) => (
-									<Ingredient
-										key={k}
-										name={i}
-										lang={lang ?? 'en'}
-										colour={theme.activeColour}
-										count={sauces[active].ingredients.length}
-									/>
-								))}
-							</div>
-						</ActiveCard>
-						<Row />
-						<ActiveCard>
-							<h2>{lang === 'fr' ? 'Recette' : 'Recipe'}</h2>
-							<hr />
-							{(recipes[(active as unknown) as keyof typeof recipes]?.recette ?? sauces[active].nom)
-								.split('\n')
-								.map((line, i) => (
-									<h4 key={`${active}-recipes-${i}`}>{line}</h4>
-								))}
-						</ActiveCard>
-						{!!mères.length && (
-							<ActiveCard>
-								<h2 style={{ display: 'inline-block' }}>{`${
-									lang === 'fr' ? 'Dérivée de' : 'Derived From'
-								}: `}</h2>
-								{mères.map(m => (
-									<Chip key={m + '-mère'} onClick={() => nav(m)}>
-										{sauces[m as SauceName].nom}
-									</Chip>
-								))}
+						<Fade
+							direction="right"
+							cascade
+							triggerOnce
+							delay={350}
+							damping={5 / 35 / 2}
+							duration={800}>
+							<ActiveCard as="div">
+								<h1>{sauces[active].nom}</h1>
+								{'autrenom' in sauces[active] && (
+									<h3 style={{ margin: 0 }}>{`${lang === 'fr' ? 'ou' : 'aka'} ${
+										(sauces[active] as Sauce).autrenom
+									}`}</h3>
+								)}
+								<div>
+									{sauces[active].ingredients.map((i, k) => (
+										<Ingredient
+											key={k}
+											name={i}
+											lang={lang ?? 'en'}
+											colour={theme.activeColour}
+											count={sauces[active].ingredients.length}
+										/>
+									))}
+								</div>
 							</ActiveCard>
-						)}
-						{!!activeFilles.length && (
+							<Row />
 							<ActiveCard>
-								<h2>{lang === 'fr' ? 'Filles' : 'Daughters'}</h2>
+								<h2>{lang === 'fr' ? 'Recette' : 'Recipe'}</h2>
 								<hr />
-								{activeFilles?.map(({ fille, nom }) => (
-									<Chip key={fille + '-chip'} onClick={() => nav(fille)}>
-										{nom}
-									</Chip>
+								{(
+									recipes[(active as unknown) as keyof typeof recipes]?.recette ??
+									sauces[active].nom
+								)
+									.split('\n')
+									.map((line, i) => (
+										<h4 key={`${active}-recipes-${i}`}>{line}</h4>
+									))}
+							</ActiveCard>
+							<>
+								{!!mères.length && (
+									<ActiveCard>
+										<h2 style={{ display: 'inline-block' }}>{`${
+											lang === 'fr' ? 'Dérivée de' : 'Derived From'
+										}: `}</h2>
+										{mères.map(m => (
+											<Chip key={m + '-mère'} onClick={() => nav(m)}>
+												{sauces[m as SauceName].nom}
+											</Chip>
+										))}
+									</ActiveCard>
+								)}
+							</>
+							<>
+								{!!activeFilles.length && (
+									<ActiveCard>
+										<h2>{lang === 'fr' ? 'Filles' : 'Daughters'}</h2>
+										<hr />
+										{activeFilles?.map(({ fille, nom }) => (
+											<Chip key={fille + '-chip'} onClick={() => nav(fille)}>
+												{nom}
+											</Chip>
+										))}
+									</ActiveCard>
+								)}
+							</>
+							<ActiveCard>
+								<h2>{lang === 'fr' ? 'Liens' : 'Links'}</h2>
+								<hr />
+								{data.links.map((link, i) => (
+									<h4 key={`${active}-link${i}`}>{link}</h4>
 								))}
 							</ActiveCard>
-						)}
-						<ActiveCard>
-							<h2>{lang === 'fr' ? 'Liens' : 'Links'}</h2>
-							<hr />
-							{data.links.map((link, i) => (
-								<h4 key={`${active}-link${i}`}>{link}</h4>
-							))}
-						</ActiveCard>
+						</Fade>
 					</Panel>
 				)
 			}
