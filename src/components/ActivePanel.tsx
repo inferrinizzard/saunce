@@ -61,20 +61,19 @@ const Row = styled.hr`
 
 export interface ActivePanelProps {
 	active: SauceName;
+	lang: string;
 }
 
-const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
+const ActivePanel: React.FC<ActivePanelProps> = ({ active, lang }) => {
 	const theme = useContext(ThemeContext);
 	const [data, setData] = useState({
 		recipe: 'Recipe Here',
 		links: ['Links Here'],
 	});
 
-	const [lang, setLang] = useState(localStorage.getItem('saunce-lang'));
 	const sauces: SauceList = lang === 'fr' ? SaucesFr : SaucesEn;
 
 	// useEffect(() => import('').then(() => setData({})), []);
-	useEffect(() => globalHistory.listen(({ location }) => setLang(location.hash.slice(1))), []);
 	const mères = Object.entries(filles).reduce(
 		(a, [k, v]) => (v.includes(active) ? ([...a, k] as SauceName[]) : a),
 		[] as SauceName[]

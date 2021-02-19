@@ -37,19 +37,23 @@ export interface OverlayProps {
 	transform: { scale: number; translation: { x: number; y: number } };
 	setTransform: (transform: { scale: number; translation: { x: number; y: number } }) => void;
 	active: SauceName;
+	lang: string;
 }
 
 const SEARCHOFF = 'thisisoff';
 
-const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) => {
+const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active, lang }) => {
 	const location = useLocation();
 
 	const [search, _setSearch] = useState(SEARCHOFF);
 	const [display, setDisplay] = useState('');
-	const setSearch = (nom: string, dis?: string) => (setDisplay(dis ?? nom), _setSearch(nom.toLowerCase().trim()));
+	const setSearch = (nom: string, dis?: string) => (
+		setDisplay(dis ?? nom), _setSearch(nom.toLowerCase().trim())
+	);
 
 	const [credits, setCredits] = useState(false);
-	const exit = (lang?: string) => credits ? setCredits(false) : (navigate(`/${lang ?? location.hash}`), setSearch(''));
+	const exit = (lang?: string) =>
+		credits ? setCredits(false) : (navigate(`/${lang ?? location.hash}`), setSearch(''));
 
 	useEffect(() => {
 		const keyListener = (e: KeyboardEvent) => e.key.includes('Esc') && exit(window.location.hash);
@@ -75,22 +79,36 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 				</Raised>
 				<Raised
 					as="button"
-					onClick={() => navigate(`/${location.search}#${location.hash.slice(1) === 'en' ? 'fr' : 'en'}`)}
+					onClick={() => navigate(`/${location.search}#${lang === 'en' ? 'fr' : 'en'}`)}
 					style={{ right: '2rem', top: '2rem', cursor: 'pointer' }}>
 					<div
-						style={{ display: 'inline-block', width: '1.5rem', height: '1.5rem', padding: '0.25rem' }}>
+						style={{
+							display: 'inline-block',
+							width: '1.5rem',
+							height: '1.5rem',
+							padding: '0.25rem',
+						}}>
 						<img
 							src="https://raw.githubusercontent.com/lipis/flag-icon-css/master/flags/4x3/us.svg"
 							alt="🇺🇸"
-							style={location.hash.slice(1) !== 'en' ? { filter: 'grayscale(100%)' } : { outline: '3px solid salmon' }}
+							style={
+								lang !== 'en' ? { filter: 'grayscale(100%)' } : { outline: '3px solid salmon' }
+							}
 						/>
 					</div>
 					<div
-						style={{ display: 'inline-block', width: '1.5rem', height: '1.5rem', padding: '0.25rem' }}>
+						style={{
+							display: 'inline-block',
+							width: '1.5rem',
+							height: '1.5rem',
+							padding: '0.25rem',
+						}}>
 						<img
 							src="https://raw.githubusercontent.com/lipis/flag-icon-css/master/flags/4x3/fr.svg"
 							alt="🇫🇷"
-							style={location.hash.slice(1) !== 'fr' ? { filter: 'grayscale(100%)' } : { outline: '3px solid salmon' }}
+							style={
+								lang !== 'fr' ? { filter: 'grayscale(100%)' } : { outline: '3px solid salmon' }
+							}
 						/>
 					</div>
 				</Raised>
@@ -111,7 +129,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active }) =>
 					<Cross />
 				</Raised>
 			)}
-			<ActivePanel active={active} />
+			<ActivePanel active={active} lang={lang} />
 			{credits && <CreditsPanel />}
 		</>
 	);
