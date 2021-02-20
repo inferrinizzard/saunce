@@ -43,8 +43,6 @@ export interface OverlayProps {
 const SEARCHOFF = 'thisisoff';
 
 const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active, lang }) => {
-	const location = useLocation();
-
 	const [search, _setSearch] = useState(SEARCHOFF);
 	const [display, setDisplay] = useState('');
 	const setSearch = (nom: string, dis?: string) => (
@@ -52,11 +50,12 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active, lang
 	);
 
 	const [credits, setCredits] = useState(false);
-	const exit = (lang?: string) =>
-		credits ? setCredits(false) : (navigate(`/${lang ?? location.hash}`), setSearch(''));
+	const exit = (_lang?: string) =>
+		credits ? setCredits(false) : (navigate(`/#${_lang ?? lang}`), setSearch(''));
 
 	useEffect(() => {
-		const keyListener = (e: KeyboardEvent) => e.key.includes('Esc') && exit(window.location.hash);
+		const keyListener = (e: KeyboardEvent) =>
+			e.key.includes('Esc') && exit(window.location.hash.slice(1));
 		window.addEventListener('keydown', keyListener);
 		return () => window.removeEventListener('keydown', keyListener);
 	}, []);
@@ -79,7 +78,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active, lang
 				</Raised>
 				<Raised
 					as="button"
-					onClick={() => navigate(`/${location.search}#${lang === 'en' ? 'fr' : 'en'}`)}
+					onClick={() => navigate(`/${active}#${lang === 'en' ? 'fr' : 'en'}`)}
 					style={{ right: '2rem', top: '2rem', cursor: 'pointer' }}>
 					<div
 						style={{
@@ -124,7 +123,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active, lang
 				<Raised
 					as="button"
 					position="fixed"
-					onClick={() => exit(location.hash)}
+					onClick={() => exit(lang)}
 					style={{ left: '2rem', top: '2rem', cursor: 'pointer', zIndex: 5 }}>
 					<Cross />
 				</Raised>

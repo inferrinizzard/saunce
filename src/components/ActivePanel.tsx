@@ -144,7 +144,7 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active, lang }) => {
 										<h4 key={`${active}-recipes-${i}`}>{line}</h4>
 									))}
 							</ActiveCard>
-							<>
+							<div>
 								{!!mères.length && (
 									<ActiveCard>
 										<h2 style={{ display: 'inline-block' }}>{`${
@@ -157,8 +157,8 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active, lang }) => {
 										))}
 									</ActiveCard>
 								)}
-							</>
-							<>
+							</div>
+							<div>
 								{!!activeFilles.length && (
 									<ActiveCard>
 										<h2>{lang === 'fr' ? 'Filles' : 'Daughters'}</h2>
@@ -170,7 +170,7 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active, lang }) => {
 										))}
 									</ActiveCard>
 								)}
-							</>
+							</div>
 							<ActiveCard>
 								<h2>{lang === 'fr' ? 'Liens' : 'Links'}</h2>
 								<hr />

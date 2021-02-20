@@ -654,7 +654,7 @@
 		"ingredients": ["truffle", "lemon", "butter"]
 	},
 	"tyrolienne": {
-		"nom": "Tyrolienne Sauce",
+		"nom": "Tyrolian Sauce",
 		"desc": "Béarnaise Sauce + Tomato Purée + Yolks + Oil + Cayenne",
 		"ingredients": ["tomato", "egg", "oil", "spice"]
 	},
@@ -685,7 +685,7 @@
 	},
 	"véron": {
 		"nom": "Véron Sauce",
-		"desc": "Normandy Sauce + Tyrolienne Sauce + Glace de Viande + Anchovy Essence",
+		"desc": "Normandy Sauce + Tyrolian Sauce + Glace de Viande + Anchovy Essence",
 		"ingredients": ["fish"]
 	},
 	"verte": {
