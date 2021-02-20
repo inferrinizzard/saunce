@@ -128,7 +128,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active, lang
 					<Cross />
 				</Raised>
 			)}
-			<ActivePanel active={active} lang={lang} />
+			{active && <ActivePanel active={active} lang={lang} />}
 			{credits && <CreditsPanel />}
 		</>
 	);

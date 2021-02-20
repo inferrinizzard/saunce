@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
-import { Transition } from 'react-transition-group';
-import { globalHistory } from '@reach/router';
-import { Fade, Slide } from 'react-awesome-reveal';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { nav } from '../scripts/util';
 import SaucesEn from '../data/sauces.en.json';
@@ -12,6 +10,7 @@ import recipes from '../data/guide.json';
 
 import Ingredient from './Ingredient';
 
+// * styled components
 const Panel = styled.div.attrs({ pad: 2.5 })`
 	position: fixed;
 	right: 0;
@@ -59,6 +58,25 @@ const Row = styled.hr`
 	border: 0.125rem solid ${p => p.theme.activeColour};
 `;
 
+// * anim JSS
+const panelPad = (Panel.attrs[0] as { pad: number }).pad;
+const panelAnim = {
+	open: {
+		width: `calc(33.3% - ${panelPad * 2}rem)`,
+		padding: `${panelPad / 2}rem ${panelPad}rem`,
+		transition: { duration: 0.35, ease: 'easeOut', when: 'beforeChildren', staggerChildren: 0.15 },
+	},
+	close: {
+		width: 0,
+		padding: '0rem 0rem',
+		transition: { duration: 0.35, ease: 'easeIn', when: 'afterChildren' },
+	},
+};
+const fadeLeft = {
+	open: { opacity: 1, x: 0, transition: { duration: 0.8 } },
+	close: { opacity: 0, x: 100, transition: { duration: 0.8 } },
+};
+
 export interface ActivePanelProps {
 	active: SauceName;
 	lang: string;
@@ -78,111 +96,81 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active, lang }) => {
 		(a, [k, v]) => (v.includes(active) ? ([...a, k] as SauceName[]) : a),
 		[] as SauceName[]
 	);
+	type FilleList = { fille: SauceName; nom: string }[];
 	const activeFilles =
 		filles[active as keyof typeof filles]?.reduce(
-			(a, f) =>
-				[...a, { fille: f, nom: sauces[f as SauceName].nom }] as {
-					fille: SauceName;
-					nom: string;
-				}[],
-			[] as { fille: SauceName; nom: string }[]
+			(a, f) => [...a, { fille: f, nom: sauces[f as SauceName].nom }] as FilleList,
+			[] as FilleList
 		) ?? [];
 
-	const panelPad = (Panel.attrs[0] as { pad: number }).pad;
 	return (
-		<Transition in={!!active} mountOnEnter unmountOnExit timeout={350}>
-			{state =>
-				active && (
-					<Panel
-						style={{
-							width:
-								state === 'entered' || state === 'exiting' ? `calc(33.3% - ${panelPad * 2}rem)` : 0,
-							padding:
-								state === 'entered' || state === 'exiting'
-									? `${panelPad / 2}rem ${panelPad}rem`
-									: 0,
-							transition: (ease => `width 350ms ease-${ease}, padding 350ms ease-${ease}`)(
-								state.includes('enter') ? 'out' : 'in'
-							),
-						}}>
-						<Fade
-							direction="right"
-							cascade
-							triggerOnce
-							delay={350}
-							damping={5 / 35 / 2}
-							duration={800}>
-							<ActiveCard as="div">
-								<h1>{sauces[active].nom}</h1>
-								{'autrenom' in sauces[active] && (
-									<h3 style={{ margin: 0 }}>{`${lang === 'fr' ? 'ou' : 'aka'} ${
-										(sauces[active] as Sauce).autrenom
-									}`}</h3>
-								)}
-								<div>
-									{sauces[active].ingredients.map((i, k) => (
-										<Ingredient
-											key={k}
-											name={i}
-											lang={lang ?? 'en'}
-											colour={theme.activeColour}
-											count={sauces[active].ingredients.length}
-										/>
-									))}
-								</div>
-							</ActiveCard>
-							<Row />
-							<ActiveCard>
-								<h2>{lang === 'fr' ? 'Recette' : 'Recipe'}</h2>
-								<hr />
-								{(
-									recipes[(active as unknown) as keyof typeof recipes]?.recette ??
-									sauces[active].nom
-								)
-									.split('\n')
-									.map((line, i) => (
-										<h4 key={`${active}-recipes-${i}`}>{line}</h4>
-									))}
-							</ActiveCard>
-							<div>
-								{!!mères.length && (
-									<ActiveCard>
-										<h2 style={{ display: 'inline-block' }}>{`${
-											lang === 'fr' ? 'Dérivée de' : 'Derived From'
-										}: `}</h2>
-										{mères.map(m => (
-											<Chip key={m + '-mère'} onClick={() => nav(m)}>
-												{sauces[m as SauceName].nom}
-											</Chip>
-										))}
-									</ActiveCard>
-								)}
-							</div>
-							<div>
-								{!!activeFilles.length && (
-									<ActiveCard>
-										<h2>{lang === 'fr' ? 'Filles' : 'Daughters'}</h2>
-										<hr />
-										{activeFilles?.map(({ fille, nom }) => (
-											<Chip key={fille + '-chip'} onClick={() => nav(fille)}>
-												{nom}
-											</Chip>
-										))}
-									</ActiveCard>
-								)}
-							</div>
-							<ActiveCard>
-								<h2>{lang === 'fr' ? 'Liens' : 'Links'}</h2>
-								<hr />
-								{data.links.map((link, i) => (
-									<h4 key={`${active}-link${i}`}>{link}</h4>
-								))}
-							</ActiveCard>
-						</Fade>
-					</Panel>
-				)
-			}
-		</Transition>
+		<AnimatePresence>
+			<Panel as={motion.div} initial="close" animate="open" exit="close" variants={panelAnim}>
+				<ActiveCard as={motion.div} variants={fadeLeft}>
+					{<h1>{sauces[active].nom}</h1>}
+					{'autrenom' in sauces[active] && (
+						<h3 style={{ margin: 0 }}>{`${lang === 'fr' ? 'ou' : 'aka'} ${
+							(sauces[active] as Sauce).autrenom
+						}`}</h3>
+					)}
+					<div>
+						{sauces[active].ingredients.map((i, k) => (
+							<Ingredient
+								key={k}
+								name={i}
+								lang={lang ?? 'en'}
+								colour={theme.activeColour}
+								count={sauces[active].ingredients.length}
+							/>
+						))}
+					</div>
+				</ActiveCard>
+				<Row as={motion.hr} variants={fadeLeft} />
+				<ActiveCard as={motion.div} variants={fadeLeft}>
+					<h2>{lang === 'fr' ? 'Recette' : 'Recipe'}</h2>
+					<hr />
+					{(recipes[(active as unknown) as keyof typeof recipes]?.recette ?? sauces[active].nom)
+						.split('\n')
+						.map((line, i) => (
+							<h4 key={`${active}-recipes-${i}`}>{line}</h4>
+						))}
+				</ActiveCard>
+				<motion.div variants={fadeLeft}>
+					{!!mères.length && (
+						<ActiveCard>
+							<h2 style={{ display: 'inline-block' }}>{`${
+								lang === 'fr' ? 'Dérivée de' : 'Derived From'
+							}: `}</h2>
+							{mères.map(m => (
+								<Chip key={m + '-mère'} onClick={() => nav(m)}>
+									{sauces[m as SauceName].nom}
+								</Chip>
+							))}
+						</ActiveCard>
+					)}
+				</motion.div>
+				<motion.div variants={fadeLeft}>
+					{!!activeFilles.length && (
+						<ActiveCard>
+							<h2>{lang === 'fr' ? 'Filles' : 'Daughters'}</h2>
+							<hr />
+							{activeFilles?.map(({ fille, nom }) => (
+								<Chip key={fille + '-chip'} onClick={() => nav(fille)}>
+									{nom}
+								</Chip>
+							))}
+						</ActiveCard>
+					)}
+				</motion.div>
+				<ActiveCard as={motion.div} variants={fadeLeft}>
+					<h2>{lang === 'fr' ? 'Liens' : 'Links'}</h2>
+					<hr />
+					{data.links.map((link, i) => (
+						<h4 key={`${active}-link${i}`}>{link}</h4>
+					))}
+				</ActiveCard>
+			</Panel>
+		</AnimatePresence>
 	);
 };
 
