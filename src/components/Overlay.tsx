@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { navigate, useLocation } from '@reach/router';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import Plus from '@bit/mui-org.material-ui-icons.add-rounded';
 import Minus from '@bit/mui-org.material-ui-icons.remove-rounded';
@@ -33,6 +34,16 @@ export const Raised = styled.div.attrs(
 	${p => (p.shadow ? `box-shadow: 0.125rem 0.25rem 0.5rem ${p.theme.activeColour};` : undefined)}
 `;
 
+// * motion anim JSS
+const buttonGroupAnim = {
+	open: { right: '33.3%', transition: { ease: 'easeOut', duration: 0.35 } },
+	closed: { right: '0%', transition: { ease: 'easeIn', duration: 0.25 } },
+};
+const exitButtonAnim = {
+	open: { opacity: 1, transition: { ease: 'easeOut', duration: 0.35 } },
+	closed: { opacity: 0, transition: { ease: 'easeIn', duration: 0.25 } },
+};
+
 export interface OverlayProps {
 	transform: { scale: number; translation: { x: number; y: number } };
 	setTransform: (transform: { scale: number; translation: { x: number; y: number } }) => void;
@@ -62,7 +73,10 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active, lang
 
 	return (
 		<>
-			<div style={{ position: 'fixed', right: active ? '33.3%' : 0, top: 0, zIndex: 3 }}>
+			<motion.div
+				style={{ position: 'fixed', top: 0, zIndex: 3 }}
+				initial={buttonGroupAnim.closed}
+				animate={active ? buttonGroupAnim.open : buttonGroupAnim.closed}>
 				<AutoComplete {...{ search, setSearch, display, SEARCHOFF }} />
 				<Raised
 					as="button"
@@ -118,17 +132,20 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active, lang
 					style={{ left: '2rem', bottom: '2rem', cursor: 'pointer' }}>
 					<h2>Credits</h2>
 				</Raised>
-			</div>
+			</motion.div>
 			{(active || credits) && (
 				<Raised
-					as="button"
+					as={motion.button}
 					position="fixed"
 					onClick={() => exit(lang)}
-					style={{ left: '2rem', top: '2rem', cursor: 'pointer', zIndex: 5 }}>
+					style={{ left: '2rem', top: '2rem', cursor: 'pointer', zIndex: 5 }}
+					initial="closed"
+					animate="open"
+					variants={exitButtonAnim}>
 					<Cross />
 				</Raised>
 			)}
-			{active && <ActivePanel active={active} lang={lang} />}
+			<ActivePanel active={active} lang={lang} />
 			{credits && <CreditsPanel />}
 		</>
 	);
