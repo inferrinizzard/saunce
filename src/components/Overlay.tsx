@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { navigate, useLocation } from '@reach/router';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import Plus from '@bit/mui-org.material-ui-icons.add-rounded';
 import Minus from '@bit/mui-org.material-ui-icons.remove-rounded';
 import Cross from '@bit/mui-org.material-ui-icons.close-rounded';
 
 import AutoComplete from './AutoComplete';
-import ActivePanel from './ActivePanel';
+import ActivePanel, { slideDuration } from './ActivePanel';
 import CreditsPanel from './CreditsPanel';
 
 export const Raised = styled.div.attrs(
@@ -36,11 +36,11 @@ export const Raised = styled.div.attrs(
 
 // * motion anim JSS
 const buttonGroupAnim = {
-	open: { right: '33.3%', transition: { ease: 'easeOut', duration: 0.35 } },
-	closed: { right: '0%', transition: { ease: 'easeIn', duration: 0.25 } },
+	open: { right: '33.3%', transition: { ease: 'easeOut', duration: slideDuration } },
+	closed: { right: '0%', transition: { ease: 'easeIn', duration: slideDuration } },
 };
 const exitButtonAnim = {
-	open: { opacity: 1, transition: { ease: 'easeOut', duration: 0.35 } },
+	open: { opacity: 1, transition: { ease: 'easeOut', duration: slideDuration } },
 	closed: { opacity: 0, transition: { ease: 'easeIn', duration: 0.25 } },
 };
 
@@ -92,7 +92,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active, lang
 				</Raised>
 				<Raised
 					as="button"
-					onClick={() => navigate(`/${active}#${lang === 'en' ? 'fr' : 'en'}`)}
+					onClick={() => navigate(`/?${active}#${lang === 'en' ? 'fr' : 'en'}`)}
 					style={{ right: '2rem', top: '2rem', cursor: 'pointer' }}>
 					<div
 						style={{
@@ -133,18 +133,21 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active, lang
 					<h2>Credits</h2>
 				</Raised>
 			</motion.div>
-			{(active || credits) && (
-				<Raised
-					as={motion.button}
-					position="fixed"
-					onClick={() => exit(lang)}
-					style={{ left: '2rem', top: '2rem', cursor: 'pointer', zIndex: 5 }}
-					initial="closed"
-					animate="open"
-					variants={exitButtonAnim}>
-					<Cross />
-				</Raised>
-			)}
+			<AnimatePresence>
+				{(active || credits) && (
+					<Raised
+						as={motion.button}
+						position="fixed"
+						onClick={() => exit(lang)}
+						style={{ left: '2rem', top: '2rem', cursor: 'pointer', zIndex: 5 }}
+						initial="closed"
+						animate="open"
+						exit="closed"
+						variants={exitButtonAnim}>
+						<Cross />
+					</Raised>
+				)}
+			</AnimatePresence>
 			<ActivePanel active={active} lang={lang} />
 			{credits && <CreditsPanel />}
 		</>

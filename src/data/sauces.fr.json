@@ -398,7 +398,7 @@
 	"milanaise": {
 		"nom": "Sauce Milanaise",
 		"desc": "Sauce Tomate + Langue de Bœuf + Jambon + Champignons + Truffles + Gruyère + Parmesan + Beurre",
-		"ingredients": ["viande", "champignon", "truffe", "cheese", "beurre"]
+		"ingredients": ["viande", "champignon", "truffe", "fromage", "beurre"]
 	},
 	"moelle": {
 		"nom": "Sauce à la Moelle",
@@ -408,7 +408,7 @@
 	"mornay": {
 		"nom": "Sauce Mornay",
 		"desc": "Sauce Béchamel + Gruyère + Parmesan",
-		"ingredients": ["cheese"]
+		"ingredients": ["fromage"]
 	},
 	"moscovite": {
 		"nom": "Sauce Moscovite",
