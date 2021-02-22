@@ -11,6 +11,7 @@ import AutoComplete from './AutoComplete';
 import ActivePanel, { slideDuration } from './ActivePanel';
 import CreditsPanel from './CreditsPanel';
 
+// * styled components
 export const Raised = styled.div.attrs(
 	(p: { position: string; minWidth: string; shadow?: boolean }) => ({
 		position: p.position || 'absolute',
@@ -34,6 +35,43 @@ export const Raised = styled.div.attrs(
 	${p => (p.shadow ? `box-shadow: 0.125rem 0.25rem 0.5rem ${p.theme.activeColour};` : undefined)}
 `;
 
+export const RaisedButton = styled(Raised)`
+	svg {
+		transform: scale(1.25);
+	}
+	&:active {
+		background-color: ${p => p.theme.activeColour};
+
+		svg {
+			fill: ${p => p.theme.offwhite};
+		}
+	}
+`;
+
+const LangButtonWrapper = styled.div`
+	display: inline-block;
+	width: 1.5rem;
+	height: 1.5rem;
+	padding: 0.25rem;
+
+	img {
+		outline-style: solid;
+		outline-color: ${p => p.theme.activeColour};
+	}
+`;
+
+const LangButton = ({ src, alt, active }: { src: string; alt: string; active: boolean }) => (
+	<LangButtonWrapper>
+		<motion.img
+			src={src}
+			alt={alt}
+			initial="other"
+			animate={active ? 'active' : 'other'}
+			variants={flagAnim}
+		/>
+	</LangButtonWrapper>
+);
+
 // * motion anim JSS
 const buttonGroupAnim = {
 	open: { right: '33.3%', transition: { ease: 'easeOut', duration: slideDuration } },
@@ -43,17 +81,29 @@ const exitButtonAnim = {
 	open: { opacity: 1, transition: { ease: 'easeOut', duration: slideDuration } },
 	closed: { opacity: 0, transition: { ease: 'easeIn', duration: 0.25 } },
 };
+const flagAnim = {
+	active: {
+		outlineWidth: '3px',
+		filter: 'grayscale(0)',
+		transition: { ease: 'easeOut', duration: 0.25 },
+	},
+	other: {
+		outlineWidth: '0px',
+		filter: 'grayscale(100%)',
+		transition: { ease: 'easeIn', duration: 0.25 },
+	},
+};
 
 export interface OverlayProps {
 	transform: { scale: number; translation: { x: number; y: number } };
-	setTransform: (transform: { scale: number; translation: { x: number; y: number } }) => void;
+	updateScale: (step: number) => void;
 	active: SauceName;
 	lang: string;
 }
 
 const SEARCHOFF = 'thisisoff';
 
-const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active, lang }) => {
+const Overlay: React.FC<OverlayProps> = ({ transform, updateScale, active, lang }) => {
 	const [search, _setSearch] = useState(SEARCHOFF);
 	const [display, setDisplay] = useState('');
 	const setSearch = (nom: string, dis?: string) => (
@@ -78,64 +128,44 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active, lang
 				initial={buttonGroupAnim.closed}
 				animate={active ? buttonGroupAnim.open : buttonGroupAnim.closed}>
 				<AutoComplete {...{ search, setSearch, display, SEARCHOFF }} />
-				<Raised
+				<RaisedButton
 					as="button"
-					onClick={() => setTransform({ ...transform, scale: transform.scale + 0.1 })} // lerp this, also unbounded
+					onClick={() => updateScale(+0.1)}
 					style={{ right: '12rem', top: '2rem', cursor: 'zoom-in' }}>
 					<Plus />
-				</Raised>
-				<Raised
+				</RaisedButton>
+				<RaisedButton
 					as="button"
-					onClick={() => setTransform({ ...transform, scale: transform.scale - 0.1 })} // lerp this, also unbounded
+					onClick={() => updateScale(-0.1)}
 					style={{ right: '8rem', top: '2rem', cursor: 'zoom-out' }}>
 					<Minus />
-				</Raised>
+				</RaisedButton>
 				<Raised
 					as="button"
 					onClick={() => navigate(`/?${active}#${lang === 'en' ? 'fr' : 'en'}`)}
 					style={{ right: '2rem', top: '2rem', cursor: 'pointer' }}>
-					<div
-						style={{
-							display: 'inline-block',
-							width: '1.5rem',
-							height: '1.5rem',
-							padding: '0.25rem',
-						}}>
-						<img
-							src="https://raw.githubusercontent.com/lipis/flag-icon-css/master/flags/4x3/us.svg"
-							alt="🇺🇸"
-							style={
-								lang !== 'en' ? { filter: 'grayscale(100%)' } : { outline: '3px solid salmon' }
-							}
-						/>
-					</div>
-					<div
-						style={{
-							display: 'inline-block',
-							width: '1.5rem',
-							height: '1.5rem',
-							padding: '0.25rem',
-						}}>
-						<img
-							src="https://raw.githubusercontent.com/lipis/flag-icon-css/master/flags/4x3/fr.svg"
-							alt="🇫🇷"
-							style={
-								lang !== 'fr' ? { filter: 'grayscale(100%)' } : { outline: '3px solid salmon' }
-							}
-						/>
-					</div>
+					<LangButton
+						src="https://raw.githubusercontent.com/lipis/flag-icon-css/master/flags/4x3/us.svg"
+						alt="🇺🇸"
+						active={lang === 'en'}
+					/>
+					<LangButton
+						src="https://raw.githubusercontent.com/lipis/flag-icon-css/master/flags/4x3/fr.svg"
+						alt="🇫🇷"
+						active={lang === 'fr'}
+					/>
 				</Raised>
-				<Raised
+				<RaisedButton
 					as="button"
 					position="fixed"
 					onClick={() => setCredits(true)}
 					style={{ left: '2rem', bottom: '2rem', cursor: 'pointer' }}>
 					<h2>Credits</h2>
-				</Raised>
+				</RaisedButton>
 			</motion.div>
 			<AnimatePresence>
 				{(active || credits) && (
-					<Raised
+					<RaisedButton
 						as={motion.button}
 						position="fixed"
 						onClick={() => exit(lang)}
@@ -145,7 +175,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, setTransform, active, lang
 						exit="closed"
 						variants={exitButtonAnim}>
 						<Cross />
-					</Raised>
+					</RaisedButton>
 				)}
 			</AnimatePresence>
 			<ActivePanel active={active} lang={lang} />

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 import Search from '@bit/mui-org.material-ui-icons.search-rounded';
 
-import { Raised } from './Overlay';
+import { Raised, RaisedButton } from './Overlay';
 import { nav, deaccent } from '../scripts/util';
 
 import _sauces from '../data/sauce.json';
@@ -103,14 +103,14 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
 					))}
 				</Raised>
 			)}
-			<Raised
+			<RaisedButton
 				as="button"
 				onClick={() => search && (search === SEARCHOFF ? setSearch('') : runSearch(_search))}
 				shadow={false}
 				position="relative"
 				style={{ display: 'inline-flex', cursor: 'pointer' }}>
 				<Search />
-			</Raised>
+			</RaisedButton>
 		</Raised>
 	);
 };

@@ -43,7 +43,11 @@ let AppHead = styled.div`
 	background-color: ${p => p.theme.bg};
 `;
 
-const baseScale = 0.7;
+const scaleParams = {
+	default: 0.7,
+	min: 0.35,
+	max: 1,
+};
 
 const App: React.FC<LocationContext> = ({ location }) => {
 	const [lang, setLang] = useState(location.hash.slice(1));
@@ -52,11 +56,11 @@ const App: React.FC<LocationContext> = ({ location }) => {
 	);
 
 	const getActivePos = (active: keyof typeof pos) => ({
-		x: -(pos[active].x * CardBlockSize.x * baseScale),
-		y: -(pos[active].y * CardBlockSize.y * baseScale),
+		x: -(pos[active].x * CardBlockSize.x * scaleParams.default),
+		y: -(pos[active].y * CardBlockSize.y * scaleParams.default),
 	});
 	const [transform, setTransform] = useState({
-		scale: baseScale,
+		scale: scaleParams.default,
 		translation: active ? getActivePos(active) : { x: 0, y: 0 },
 	});
 
@@ -81,6 +85,12 @@ const App: React.FC<LocationContext> = ({ location }) => {
 		yMin: -(11 + 1) * CardBlockSize.y,
 	});
 
+	const updateScale = (step: number) =>
+		setTransform({
+			...transform,
+			scale: Math.max(Math.min(transform.scale + step, scaleParams.max), scaleParams.min),
+		});
+
 	useEffect(
 		() =>
 			setBounds({
@@ -97,11 +107,11 @@ const App: React.FC<LocationContext> = ({ location }) => {
 	return (
 		<AppHead>
 			<ThemeProvider theme={active ? theme(active) : theme()}>
-				<Overlay {...{ transform, setTransform, active, lang }} />
+				<Overlay {...{ transform, updateScale, active, lang }} />
 				<TransformComponent
 					value={transform}
-					minScale={0.35}
-					maxScale={1}
+					minScale={scaleParams.min}
+					maxScale={scaleParams.max}
 					translationBounds={{
 						xMax: (CardBlockSize.x / 5) * transform.scale,
 						yMax: (CardBlockSize.y / 5) * transform.scale,
