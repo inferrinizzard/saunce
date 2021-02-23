@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -7,7 +7,9 @@ import Search from '@bit/mui-org.material-ui-icons.search-rounded';
 import { Raised, RaisedButton } from './Overlay';
 import { nav, deaccent } from '../scripts/util';
 
+import { LangContext } from '../pages/App';
 import _sauces from '../data/sauce.json';
+
 const sauces = Object.entries(_sauces).reduce(
 	(a, [key, { nom }]) => ({
 		...a,
@@ -51,6 +53,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
 	display,
 	SEARCHOFF,
 }) => {
+	const lang = useContext(LangContext);
 	const search = deaccent(_search);
 	const items = Object.entries(sauces).filter(
 		([k, v]) => k.includes(search) || v.lower.includes(search)
@@ -72,7 +75,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
 			<Raised
 				className="search-bar"
 				as={motion.input}
-				placeholder="Search for Sauces!"
+				placeholder={lang === 'en' ? 'Search for Sauces!' : 'Chercher pour Sauces!'}
 				minWidth="0"
 				shadow={false}
 				position="relative"

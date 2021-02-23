@@ -8,6 +8,7 @@ import SaucesFr from '../data/sauces.fr.json';
 import filles from '../data/filles.json';
 import recipes from '../data/guide.json';
 
+import { LangContext } from '../pages/App';
 import Ingredient from './Ingredient';
 
 // * styled components
@@ -80,10 +81,10 @@ const fadeLeft = {
 
 export interface ActivePanelProps {
 	active: SauceName;
-	lang: string;
 }
 
-const ActivePanel: React.FC<ActivePanelProps> = ({ active, lang }) => {
+const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
+	const lang = useContext(LangContext);
 	const theme = useContext(ThemeContext);
 	const [data, setData] = useState({
 		recipe: 'Recipe Here',

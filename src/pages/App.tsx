@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 
 import { MapInteractionCSS as TransformComponent } from 'react-map-interaction';
 import { LocationContext, globalHistory, navigate } from '@reach/router';
@@ -48,6 +48,8 @@ const scaleParams = {
 	min: 0.35,
 	max: 1,
 };
+
+export const LangContext = React.createContext('en');
 
 const App: React.FC<LocationContext> = ({ location }) => {
 	const [lang, setLang] = useState(location.hash.slice(1));
@@ -106,21 +108,23 @@ const App: React.FC<LocationContext> = ({ location }) => {
 
 	return (
 		<AppHead>
-			<ThemeProvider theme={active ? theme(active) : theme()}>
-				<Overlay {...{ transform, updateScale, active, lang }} />
-				<TransformComponent
-					value={transform}
-					minScale={scaleParams.min}
-					maxScale={scaleParams.max}
-					translationBounds={{
-						xMax: (CardBlockSize.x / 5) * transform.scale,
-						yMax: (CardBlockSize.y / 5) * transform.scale,
-						...minBounds,
-					}}
-					onChange={(e: typeof transform) => setTransform(e)}>
-					<Main {...{ active, lang, transform }} />
-				</TransformComponent>
-			</ThemeProvider>
+			<LangContext.Provider value={lang}>
+				<ThemeProvider theme={active ? theme(active) : theme()}>
+					<Overlay {...{ transform, updateScale, active }} />
+					<TransformComponent
+						value={transform}
+						minScale={scaleParams.min}
+						maxScale={scaleParams.max}
+						translationBounds={{
+							xMax: (CardBlockSize.x / 5) * transform.scale,
+							yMax: (CardBlockSize.y / 5) * transform.scale,
+							...minBounds,
+						}}
+						onChange={(e: typeof transform) => setTransform(e)}>
+						<Main {...{ active, transform }} />
+					</TransformComponent>
+				</ThemeProvider>
+			</LangContext.Provider>
 		</AppHead>
 	);
 };

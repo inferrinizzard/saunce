@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { navigate, useLocation } from '@reach/router';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -7,6 +7,7 @@ import Plus from '@bit/mui-org.material-ui-icons.add-rounded';
 import Minus from '@bit/mui-org.material-ui-icons.remove-rounded';
 import Cross from '@bit/mui-org.material-ui-icons.close-rounded';
 
+import { LangContext } from '../pages/App';
 import AutoComplete from './AutoComplete';
 import ActivePanel, { slideDuration } from './ActivePanel';
 import CreditsPanel from './CreditsPanel';
@@ -98,12 +99,12 @@ export interface OverlayProps {
 	transform: { scale: number; translation: { x: number; y: number } };
 	updateScale: (step: number) => void;
 	active: SauceName;
-	lang: string;
 }
 
 const SEARCHOFF = 'thisisoff';
 
-const Overlay: React.FC<OverlayProps> = ({ transform, updateScale, active, lang }) => {
+const Overlay: React.FC<OverlayProps> = ({ transform, updateScale, active }) => {
+	const lang = useContext(LangContext);
 	const [search, _setSearch] = useState(SEARCHOFF);
 	const [display, setDisplay] = useState('');
 	const setSearch = (nom: string, dis?: string) => (
@@ -178,7 +179,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, updateScale, active, lang 
 					</RaisedButton>
 				)}
 			</AnimatePresence>
-			<ActivePanel active={active} lang={lang} />
+			<ActivePanel active={active} />
 			{credits && <CreditsPanel />}
 		</>
 	);
