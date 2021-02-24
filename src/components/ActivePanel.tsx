@@ -51,11 +51,12 @@ export const Chip = styled.span`
 	cursor: pointer;
 
 	&:hover {
+		color: ${p => p.theme.offwhite};
 		background-color: ${p => p.theme.activeColour};
 	}
 `;
 
-const Row = styled.hr`
+export const Row = styled.hr`
 	border: 0.125rem solid ${p => p.theme.activeColour};
 `;
 

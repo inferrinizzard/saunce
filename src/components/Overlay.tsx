@@ -40,12 +40,15 @@ export const RaisedButton = styled(Raised)`
 	svg {
 		transform: scale(1.25);
 	}
-	&:active {
+	&:active:enabled {
 		background-color: ${p => p.theme.activeColour};
 
 		svg {
 			fill: ${p => p.theme.offwhite};
 		}
+	}
+	&:disabled {
+		color: initial;
 	}
 `;
 
@@ -156,13 +159,6 @@ const Overlay: React.FC<OverlayProps> = ({ transform, updateScale, active }) => 
 						active={lang === 'fr'}
 					/>
 				</Raised>
-				<RaisedButton
-					as="button"
-					position="fixed"
-					onClick={() => setCredits(true)}
-					style={{ left: '2rem', bottom: '2rem', cursor: 'pointer' }}>
-					<h2>Credits</h2>
-				</RaisedButton>
 			</motion.div>
 			<AnimatePresence>
 				{(active || credits) && (
@@ -180,7 +176,7 @@ const Overlay: React.FC<OverlayProps> = ({ transform, updateScale, active }) => 
 				)}
 			</AnimatePresence>
 			<ActivePanel active={active} />
-			{credits && <CreditsPanel />}
+			<CreditsPanel active={credits} onClick={() => setCredits(true)} />
 		</>
 	);
 };
