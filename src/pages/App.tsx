@@ -57,13 +57,14 @@ const App: React.FC<LocationContext> = ({ location }) => {
 		decodeURI(location.search).slice(1).replace(/[_]/g, ' ') as SauceName
 	);
 
-	const getActivePos = (active: keyof typeof pos) => ({
-		x: -(pos[active].x * CardBlockSize.x * scaleParams.default),
-		y: -(pos[active].y * CardBlockSize.y * scaleParams.default),
-	});
 	const [transform, setTransform] = useState({
 		scale: scaleParams.default,
-		translation: active ? getActivePos(active) : { x: 0, y: 0 },
+		translation: active
+			? {
+					x: -(pos[active].x * CardBlockSize.x * scaleParams.default),
+					y: -(pos[active].y * CardBlockSize.y * scaleParams.default),
+			  }
+			: { x: 0, y: 0 },
 	});
 
 	useEffect(() => {
@@ -77,9 +78,16 @@ const App: React.FC<LocationContext> = ({ location }) => {
 			localStorage.setItem('saunce-lang', newHash);
 			setLang(newHash);
 
-			setActive(decodeURI(next.search).slice(1).replace(/[_]/g, ' ') as SauceName);
+			const nextActive = decodeURI(next.search).slice(1).replace(/[_]/g, ' ') as SauceName;
+			setActive(nextActive);
+			setTransform(prev => ({
+				...prev,
+				translation: {
+					x: -(pos[nextActive].x * CardBlockSize.x * prev.scale),
+					y: -(pos[nextActive].y * CardBlockSize.y * prev.scale),
+				},
+			}));
 		});
-		// setTransform({ ...transform, translation: getActivePos(active) })
 	}, []);
 
 	const [minBounds, setBounds] = useState({
@@ -110,7 +118,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 		<AppHead>
 			<LangContext.Provider value={lang}>
 				<ThemeProvider theme={active ? theme(active) : theme()}>
-					<Overlay {...{ transform, updateScale, active }} />
+					<Overlay {...{ updateScale, active }} />
 					<TransformComponent
 						value={transform}
 						minScale={scaleParams.min}
@@ -121,7 +129,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 							...minBounds,
 						}}
 						onChange={(e: typeof transform) => setTransform(e)}>
-						<Main {...{ active, transform }} />
+						<Main transform={transform} />
 					</TransformComponent>
 				</ThemeProvider>
 			</LangContext.Provider>

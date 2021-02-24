@@ -99,14 +99,13 @@ const flagAnim = {
 };
 
 export interface OverlayProps {
-	transform: { scale: number; translation: { x: number; y: number } };
 	updateScale: (step: number) => void;
 	active: SauceName;
 }
 
 const SEARCHOFF = 'thisisoff';
 
-const Overlay: React.FC<OverlayProps> = ({ transform, updateScale, active }) => {
+const Overlay: React.FC<OverlayProps> = ({ updateScale, active }) => {
 	const lang = useContext(LangContext);
 	const [search, _setSearch] = useState(SEARCHOFF);
 	const [display, setDisplay] = useState('');

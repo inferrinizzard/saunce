@@ -9,11 +9,10 @@ import Card, { CardBlockSize } from './Card';
 import Arrow from './Arrow';
 
 export interface MainProps {
-	active: SauceName;
 	transform: { scale: number; translation: Pos };
 }
 
-const Main: React.FC<MainProps> = ({ active, transform }) => {
+const Main: React.FC<MainProps> = ({ transform }) => {
 	const [cards, setCards] = useState({} as { [k: string]: Card });
 	const linkCard = (sauce: Card) =>
 		!cards[sauce.name] && setCards(prev => ({ ...prev, [sauce.name]: sauce }));

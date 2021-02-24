@@ -39,7 +39,7 @@ const StyledCard = styled('section').attrs({
 
 		h1 {
 			margin: 0;
-			font-size: ${p => p.size / 7}px;
+			font-size: ${p => p.size / 7.1}px;
 
 			&.aux {
 				padding-left: 7.5px;
