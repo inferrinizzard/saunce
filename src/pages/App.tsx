@@ -73,11 +73,28 @@ const App: React.FC<LocationContext> = ({ location }) => {
 		yMin: -(11 + 1) * CardBlockSize.y,
 	});
 
-	const updateScale = (step: number) =>
-		setTransform({
-			...transform,
-			scale: Math.max(Math.min(transform.scale + step, scaleParams.max), scaleParams.min),
-		});
+	const updateScale = (step: number) => {
+		const n = 30;
+		const nextScale = Math.max(Math.min(transform.scale + step, scaleParams.max), scaleParams.min);
+		const start = transform;
+		Math.abs(nextScale - start.scale) > 0 &&
+			[...new Array(n)].forEach((_, i) =>
+				setTimeout(() => {
+					const stepScale = ((nextScale - start.scale) / 30) * i + start.scale;
+					setTransform(prev => ({
+						translation: {
+							x:
+								start.translation.x -
+								((stepScale / prev.scale) * prev.translation.x - prev.translation.x),
+							y:
+								start.translation.y -
+								((stepScale / prev.scale) * prev.translation.y - prev.translation.y),
+						},
+						scale: stepScale,
+					}));
+				}, i * 100)
+			);
+	};
 
 	useEffect(() => {
 		const local = localStorage.getItem('saunce-lang') ?? 'en';
