@@ -48,6 +48,7 @@ const scaleParams = {
 	min: 0.35,
 	max: 1,
 };
+const transformWrapperId = 'transformWrapper';
 
 export const LangContext = React.createContext('en');
 
@@ -67,29 +68,6 @@ const App: React.FC<LocationContext> = ({ location }) => {
 			: { x: 0, y: 0 },
 	});
 
-	useEffect(() => {
-		const local = localStorage.getItem('saunce-lang') ?? 'en';
-		if (!lang) {
-			navigate(`/${location.search}#${local}`);
-			setLang(local);
-		}
-		return globalHistory.listen(({ location: next }) => {
-			const newHash = next.hash.slice(1);
-			localStorage.setItem('saunce-lang', newHash);
-			setLang(newHash);
-
-			const nextActive = decodeURI(next.search).slice(1).replace(/[_]/g, ' ') as SauceName;
-			setActive(nextActive);
-			setTransform(prev => ({
-				...prev,
-				translation: {
-					x: -(pos[nextActive].x * CardBlockSize.x * prev.scale),
-					y: -(pos[nextActive].y * CardBlockSize.y * prev.scale),
-				},
-			}));
-		});
-	}, []);
-
 	const [minBounds, setBounds] = useState({
 		xMin: -(24 + 1) * CardBlockSize.x,
 		yMin: -(11 + 1) * CardBlockSize.y,
@@ -100,6 +78,45 @@ const App: React.FC<LocationContext> = ({ location }) => {
 			...transform,
 			scale: Math.max(Math.min(transform.scale + step, scaleParams.max), scaleParams.min),
 		});
+
+	useEffect(() => {
+		const local = localStorage.getItem('saunce-lang') ?? 'en';
+		if (!lang) {
+			navigate(`/${location.search}#${local}`);
+			setLang(local);
+		}
+
+		return globalHistory.listen(({ location: next }) => {
+			const newHash = next.hash.slice(1);
+			localStorage.setItem('saunce-lang', newHash);
+			setLang(newHash);
+
+			const nextActive = decodeURI(next.search).slice(1).replace(/[_]/g, ' ') as SauceName;
+			if (nextActive) {
+				setActive(nextActive);
+
+				const nextPos = {
+					x: -(pos[nextActive].x * CardBlockSize.x * transform.scale),
+					y: -(pos[nextActive].y * CardBlockSize.y * transform.scale),
+				};
+				const startPos = transform.translation;
+				const n = 30;
+				[...new Array(n)].forEach((_, i) =>
+					setTimeout(
+						() =>
+							setTransform(prev => ({
+								...prev,
+								translation: {
+									x: ((nextPos.x - startPos.x) / n) * i + startPos.x,
+									y: ((nextPos.y - startPos.y) / n) * i + startPos.y,
+								},
+							})),
+						i * 100
+					)
+				);
+			}
+		});
+	}, [transform.translation]);
 
 	useEffect(
 		() =>
