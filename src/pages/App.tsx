@@ -48,6 +48,7 @@ const scaleParams = {
 	min: 0.35,
 	max: 1,
 };
+const transformWrapperId = 'transformWrapper';
 
 export const LangContext = React.createContext('en');
 
@@ -67,39 +68,72 @@ const App: React.FC<LocationContext> = ({ location }) => {
 			: { x: 0, y: 0 },
 	});
 
+	const [minBounds, setBounds] = useState({
+		xMin: -(24 + 1) * CardBlockSize.x,
+		yMin: -(11 + 1) * CardBlockSize.y,
+	});
+
+	const updateScale = (step: number) => {
+		const n = 30;
+		const nextScale = Math.max(Math.min(transform.scale + step, scaleParams.max), scaleParams.min);
+		const start = transform;
+		Math.abs(nextScale - start.scale) > 0 &&
+			[...new Array(n)].forEach((_, i) =>
+				setTimeout(() => {
+					const stepScale = ((nextScale - start.scale) / 30) * i + start.scale;
+					setTransform(prev => ({
+						translation: {
+							x:
+								start.translation.x -
+								((stepScale / prev.scale) * prev.translation.x - prev.translation.x),
+							y:
+								start.translation.y -
+								((stepScale / prev.scale) * prev.translation.y - prev.translation.y),
+						},
+						scale: stepScale,
+					}));
+				}, i * 100)
+			);
+	};
+
 	useEffect(() => {
 		const local = localStorage.getItem('saunce-lang') ?? 'en';
 		if (!lang) {
 			navigate(`/${location.search}#${local}`);
 			setLang(local);
 		}
+
 		return globalHistory.listen(({ location: next }) => {
 			const newHash = next.hash.slice(1);
 			localStorage.setItem('saunce-lang', newHash);
 			setLang(newHash);
 
 			const nextActive = decodeURI(next.search).slice(1).replace(/[_]/g, ' ') as SauceName;
-			setActive(nextActive);
-			setTransform(prev => ({
-				...prev,
-				translation: {
-					x: -(pos[nextActive].x * CardBlockSize.x * prev.scale),
-					y: -(pos[nextActive].y * CardBlockSize.y * prev.scale),
-				},
-			}));
-		});
-	}, []);
+			if (nextActive) {
+				setActive(nextActive);
 
-	const [minBounds, setBounds] = useState({
-		xMin: -(24 + 1) * CardBlockSize.x,
-		yMin: -(11 + 1) * CardBlockSize.y,
-	});
-
-	const updateScale = (step: number) =>
-		setTransform({
-			...transform,
-			scale: Math.max(Math.min(transform.scale + step, scaleParams.max), scaleParams.min),
+				const nextPos = {
+					x: -(pos[nextActive].x * CardBlockSize.x * transform.scale),
+					y: -(pos[nextActive].y * CardBlockSize.y * transform.scale),
+				};
+				const startPos = transform.translation;
+				const n = 30;
+				[...new Array(n)].forEach((_, i) =>
+					setTimeout(
+						() =>
+							setTransform(prev => ({
+								...prev,
+								translation: {
+									x: ((nextPos.x - startPos.x) / n) * i + startPos.x,
+									y: ((nextPos.y - startPos.y) / n) * i + startPos.y,
+								},
+							})),
+						i * 100
+					)
+				);
+			}
 		});
+	}, [transform.translation]);
 
 	useEffect(
 		() =>
