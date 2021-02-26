@@ -1,12 +1,11 @@
-import React, { useState, useEffect, createContext } from 'react';
-
-import { MapInteractionCSS as TransformComponent } from 'react-map-interaction';
+import React, { useState, useEffect, ReactPropTypes } from 'react';
 import { LocationContext, globalHistory, navigate } from '@reach/router';
 
 import styled, { ThemeProvider } from 'styled-components';
 import '../css/main.css';
 import '../css/ingredients.css';
 
+import TransformComponent from '../components/TransformComponent';
 import Overlay from '../components/Overlay';
 import Main from '../components/Main';
 import { CardBlockSize } from '../components/Card';
@@ -74,7 +73,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 	});
 
 	const updateScale = (step: number) => {
-		const n = 30;
+		const n = 60;
 		const nextScale = Math.max(Math.min(transform.scale + step, scaleParams.max), scaleParams.min);
 		const start = transform;
 		Math.abs(nextScale - start.scale) > 0 &&
@@ -92,7 +91,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 						},
 						scale: stepScale,
 					}));
-				}, i * 100)
+				}, i * 50)
 			);
 	};
 
@@ -117,7 +116,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 					y: -(pos[nextActive].y * CardBlockSize.y * transform.scale),
 				};
 				const startPos = transform.translation;
-				const n = 30;
+				const n = 60;
 				[...new Array(n)].forEach((_, i) =>
 					setTimeout(
 						() =>
@@ -128,7 +127,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 									y: ((nextPos.y - startPos.y) / n) * i + startPos.y,
 								},
 							})),
-						i * 100
+						i * 50
 					)
 				);
 			}
