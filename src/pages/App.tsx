@@ -80,13 +80,14 @@ const App: React.FC<LocationContext> = ({ location }) => {
 
 			const nextActive = decodeURI(next.search).slice(1).replace(/[_]/g, ' ') as SauceName;
 			setActive(nextActive);
-			setTransform(prev => ({
-				...prev,
-				translation: {
-					x: -(pos[nextActive].x * CardBlockSize.x * prev.scale),
-					y: -(pos[nextActive].y * CardBlockSize.y * prev.scale),
-				},
-			}));
+			if (nextActive)
+				setTransform(prev => ({
+					...prev,
+					translation: {
+						x: -(pos[nextActive].x * CardBlockSize.x * prev.scale),
+						y: -(pos[nextActive].y * CardBlockSize.y * prev.scale),
+					},
+				}));
 		});
 	}, []);
 
