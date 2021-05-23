@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext } from 'react';
 
-import { MapInteractionCSS as TransformComponent } from 'react-map-interaction';
+// import { MapInteractionCSS as TransformComponent } from 'react-map-interaction';
+import { MapInteractionCSS as TransformComponent } from '../components/Transform';
 import { LocationContext, globalHistory, navigate } from '@reach/router';
 
 import styled, { ThemeProvider } from 'styled-components';
