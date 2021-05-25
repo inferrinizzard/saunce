@@ -9,14 +9,14 @@ try {
 			return true;
 		},
 	};
-	window.addEventListener('test', options, options);
-	window.removeEventListener('test', options, options);
+	window.addEventListener('test' as keyof WindowEventMap, options as any, options);
+	window.removeEventListener('test' as keyof WindowEventMap, options as any, options as any);
 } catch {
 	passiveSupported = false;
 }
 
-function makePassiveEventOption(passive) {
-	return passiveSupported ? { passive } : passive;
+function makePassiveEventOption(passive: boolean) {
+	return passiveSupported ? { passive } : {};
 }
 
 export default makePassiveEventOption;

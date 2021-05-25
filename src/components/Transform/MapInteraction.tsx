@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { clamp, distance, midpoint, touchPt, touchDistance } from './geometry';
 import makePassiveEventOption from './makePassiveEventOption';
 
 // The amount that a value of a dimension will change given a new scale
-const coordChange = (coordinate, scaleRatio) => {
+const coordChange = (coordinate: number, scaleRatio: number) => {
 	return scaleRatio * coordinate - coordinate;
 };
 
-const translationShape = PropTypes.shape({ x: PropTypes.number, y: PropTypes.number });
+export type TranslationShape = { x: number; y: number };
+export type ClientPosShape = { clientX: number; clientY: number };
+type TransformShape = {
+	scale: number;
+	translation: TranslationShape;
+};
+
+type MapInteractionControlledProps = Omit<MapInteractionProps, 'defaultValue'>;
+
+interface MapInteractionControlledState {
+	shouldPreventTouchEndDefault: boolean;
+}
 
 /*
   This contains logic for providing a map-like interaction to any DOM node.
@@ -17,32 +27,10 @@ const translationShape = PropTypes.shape({ x: PropTypes.number, y: PropTypes.num
   It renders its children with the current state of the translation and does not do any scaling
   or translating on its own. This works on both desktop, and mobile.
 */
-export class MapInteractionControlled extends Component {
-	static get propTypes() {
-		return {
-			// The content that will be transformed
-			children: PropTypes.func,
-
-			// This is a controlled component
-			value: PropTypes.shape({
-				scale: PropTypes.number.isRequired,
-				translation: translationShape.isRequired,
-			}).isRequired,
-			onChange: PropTypes.func.isRequired,
-
-			disableZoom: PropTypes.bool,
-			disablePan: PropTypes.bool,
-			translationBounds: PropTypes.shape({
-				xMin: PropTypes.number,
-				xMax: PropTypes.number,
-				yMin: PropTypes.number,
-				yMax: PropTypes.number,
-			}),
-			minScale: PropTypes.number,
-			maxScale: PropTypes.number,
-		};
-	}
-
+export class MapInteractionControlled extends Component<
+	MapInteractionControlledProps,
+	MapInteractionControlledState
+> {
 	static get defaultProps() {
 		return {
 			minScale: 0.05,
@@ -53,14 +41,15 @@ export class MapInteractionControlled extends Component {
 		};
 	}
 
-	constructor(props) {
+	startPointerInfo?: {
+		pointers: TouchList | MouseEvent[];
+	} & TransformShape = undefined;
+
+	state = { shouldPreventTouchEndDefault: false };
+	containerNode!: HTMLDivElement;
+
+	constructor(props: MapInteractionControlledProps) {
 		super(props);
-
-		this.state = {
-			shouldPreventTouchEndDefault: false,
-		};
-
-		this.startPointerInfo = undefined;
 
 		this.onMouseDown = this.onMouseDown.bind(this);
 		this.onTouchStart = this.onTouchStart.bind(this);
@@ -122,26 +111,25 @@ export class MapInteractionControlled extends Component {
 
     https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Supporting_both_TouchEvent_and_MouseEvent
   */
-
-	onMouseDown(e) {
+	onMouseDown(e: MouseEvent) {
 		e.preventDefault();
 		this.setPointerState([e]);
 	}
 
-	onTouchStart(e) {
+	onTouchStart(e: TouchEvent) {
 		e.preventDefault();
 		this.setPointerState(e.touches);
 	}
 
-	onMouseUp(e) {
+	onMouseUp(e: MouseEvent) {
 		this.setPointerState();
 	}
 
-	onTouchEnd(e) {
+	onTouchEnd(e: TouchEvent) {
 		this.setPointerState(e.touches);
 	}
 
-	onMouseMove(e) {
+	onMouseMove(e: MouseEvent) {
 		if (!this.startPointerInfo || this.props.disablePan) {
 			return;
 		}
@@ -149,7 +137,7 @@ export class MapInteractionControlled extends Component {
 		this.onDrag(e);
 	}
 
-	onTouchMove(e) {
+	onTouchMove(e: TouchEvent) {
 		if (!this.startPointerInfo) {
 			return;
 		}
@@ -167,8 +155,8 @@ export class MapInteractionControlled extends Component {
 	}
 
 	// handles both touch and mouse drags
-	onDrag(pointer) {
-		const { translation, pointers } = this.startPointerInfo;
+	onDrag(pointer: ClientPosShape) {
+		const { translation, pointers } = this.startPointerInfo!;
 		const startPointer = pointers[0];
 		const dragX = pointer.clientX - startPointer.clientX;
 		const dragY = pointer.clientY - startPointer.clientY;
@@ -179,20 +167,15 @@ export class MapInteractionControlled extends Component {
 
 		const shouldPreventTouchEndDefault = Math.abs(dragX) > 1 || Math.abs(dragY) > 1;
 
-		this.setState(
-			{
-				shouldPreventTouchEndDefault,
-			},
-			() => {
-				this.props.onChange({
-					scale: this.props.value.scale,
-					translation: this.clampTranslation(newTranslation),
-				});
-			}
-		);
+		this.setState({ shouldPreventTouchEndDefault }, () => {
+			this.props.onChange({
+				scale: this.props.value.scale,
+				translation: this.clampTranslation(newTranslation),
+			});
+		});
 	}
 
-	onWheel(e) {
+	onWheel(e: WheelEvent) {
 		if (this.props.disableZoom) {
 			return;
 		}
@@ -213,7 +196,7 @@ export class MapInteractionControlled extends Component {
 		this.scaleFromPoint(newScale, mousePos);
 	}
 
-	setPointerState(pointers) {
+	setPointerState(pointers?: TouchList | MouseEvent[]) {
 		if (!pointers || pointers.length === 0) {
 			this.startPointerInfo = undefined;
 			return;
@@ -226,7 +209,7 @@ export class MapInteractionControlled extends Component {
 		};
 	}
 
-	clampTranslation(desiredTranslation, props = this.props) {
+	clampTranslation(desiredTranslation: TranslationShape, props = this.props) {
 		const { x, y } = desiredTranslation;
 		let { xMax, xMin, yMax, yMin } = props.translationBounds;
 		xMin = xMin !== undefined ? xMin : -Infinity;
@@ -250,7 +233,7 @@ export class MapInteractionControlled extends Component {
 
 	// From a given screen point return it as a point
 	// in the coordinate system of the given translation
-	clientPosToTranslatedPos({ x, y }, translation = this.props.value.translation) {
+	clientPosToTranslatedPos({ x, y }: TranslationShape, translation = this.props.value.translation) {
 		const origin = this.translatedOrigin(translation);
 		return {
 			x: x - origin.x,
@@ -258,7 +241,7 @@ export class MapInteractionControlled extends Component {
 		};
 	}
 
-	scaleFromPoint(newScale, focalPt) {
+	scaleFromPoint(newScale: number, focalPt: TranslationShape) {
 		const { translation, scale } = this.props.value;
 		const scaleRatio = newScale / (scale !== 0 ? scale : 1);
 
@@ -281,8 +264,8 @@ export class MapInteractionControlled extends Component {
 	// such that the initial midpoint remains as the new midpoint. This is
 	// to achieve the effect of keeping the content that was directly
 	// in the middle of the two fingers as the focal point throughout the zoom.
-	scaleFromMultiTouch(e) {
-		const startTouches = this.startPointerInfo.pointers;
+	scaleFromMultiTouch(e: TouchEvent) {
+		const startTouches = this.startPointerInfo!.pointers;
 		const newTouches = e.touches;
 
 		// calculate new scale
@@ -290,7 +273,7 @@ export class MapInteractionControlled extends Component {
 		const dist1 = touchDistance(newTouches[0], newTouches[1]);
 		const scaleChange = dist1 / dist0;
 
-		const startScale = this.startPointerInfo.scale;
+		const startScale = this.startPointerInfo!.scale;
 		const targetScale = startScale + (scaleChange - 1) * startScale;
 		const newScale = clamp(this.props.minScale, targetScale, this.props.maxScale);
 
@@ -308,7 +291,10 @@ export class MapInteractionControlled extends Component {
 		const scaleRatio = newScale / startScale;
 
 		// The point originally in the middle of the fingers on the initial zoom start
-		const focalPt = this.clientPosToTranslatedPos(startMidpoint, this.startPointerInfo.translation);
+		const focalPt = this.clientPosToTranslatedPos(
+			startMidpoint,
+			this.startPointerInfo!.translation
+		);
 
 		// The amount that the middle point has changed from this scaling
 		const focalPtDelta = {
@@ -320,8 +306,8 @@ export class MapInteractionControlled extends Component {
 		// minus what the scaling will do to the focal point. Subtracting the
 		// scaling factor keeps the midpoint in the middle of the touch points.
 		const newTranslation = {
-			x: this.startPointerInfo.translation.x - focalPtDelta.x + dragDelta.x,
-			y: this.startPointerInfo.translation.y - focalPtDelta.y + dragDelta.y,
+			x: this.startPointerInfo!.translation.x - focalPtDelta.x + dragDelta.x,
+			y: this.startPointerInfo!.translation.y - focalPtDelta.y + dragDelta.y,
 		};
 
 		this.props.onChange({
@@ -337,7 +323,7 @@ export class MapInteractionControlled extends Component {
 	}
 
 	// Scale using the center of the content as a focal point
-	changeScale(delta) {
+	changeScale(delta: number) {
 		const targetScale = this.props.value.scale + delta;
 		const { minScale, maxScale } = this.props;
 		const scale = clamp(minScale, targetScale, maxScale);
@@ -373,7 +359,7 @@ export class MapInteractionControlled extends Component {
       `e.defaultPrevented`. That value being true means that we are signalling that
       a drag event ended, not a click.
     */
-		const handleEventCapture = e => {
+		const handleEventCapture = (e: React.BaseSyntheticEvent) => {
 			if (this.state.shouldPreventTouchEndDefault) {
 				e.preventDefault();
 				this.setState({ shouldPreventTouchEndDefault: false });
@@ -383,7 +369,7 @@ export class MapInteractionControlled extends Component {
 		return (
 			<div
 				ref={node => {
-					this.containerNode = node;
+					this.containerNode = node!;
 				}}
 				style={{
 					height: '100%',
@@ -393,44 +379,41 @@ export class MapInteractionControlled extends Component {
 				}}
 				onClickCapture={handleEventCapture}
 				onTouchEndCapture={handleEventCapture}>
-				{(children || undefined) && children({ translation, scale })}
+				{(children || undefined) && (children as Function)({ translation, scale })}
 			</div>
 		);
 	}
 }
 
+export interface MapInteractionProps {
+	children: ((transform: TransformShape) => React.ReactNode) | React.ReactElement;
+	value: TransformShape;
+	defaultValue?: TransformShape;
+	disableZoom?: boolean;
+	disablePan?: boolean;
+	onChange: (transform: TransformShape) => void;
+	translationBounds: {
+		xMin: number;
+		xMax: number;
+		yMin: number;
+		yMax: number;
+	};
+	minScale: number;
+	maxScale: number;
+}
+
+interface MapInteractionState {
+	value?: TransformShape;
+	lastKnownValueFromProps?: TransformShape;
+}
 /*
   Main entry point component.
   Determines if it's parent is controlling (eg it manages state) or leaving us uncontrolled
   (eg we manage our own internal state)
 */
-class MapInteractionController extends Component {
-	static get propTypes() {
-		return {
-			children: PropTypes.func,
-			value: PropTypes.shape({
-				scale: PropTypes.number.isRequired,
-				translation: translationShape.isRequired,
-			}),
-			defaultValue: PropTypes.shape({
-				scale: PropTypes.number.isRequired,
-				translation: translationShape.isRequired,
-			}),
-			disableZoom: PropTypes.bool,
-			disablePan: PropTypes.bool,
-			onChange: PropTypes.func,
-			translationBounds: PropTypes.shape({
-				xMin: PropTypes.number,
-				xMax: PropTypes.number,
-				yMin: PropTypes.number,
-				yMax: PropTypes.number,
-			}),
-			minScale: PropTypes.number,
-			maxScale: PropTypes.number,
-		};
-	}
-
-	constructor(props) {
+class MapInteractionController extends Component<MapInteractionProps, MapInteractionState> {
+	state: MapInteractionState;
+	constructor(props: MapInteractionProps) {
 		super(props);
 
 		const controlled = MapInteractionController.isControlled(props);
@@ -459,7 +442,7 @@ class MapInteractionController extends Component {
 
     This tries to mimick how the React <input /> component behaves.
   */
-	static getDerivedStateFromProps(props, state) {
+	static getDerivedStateFromProps(props: MapInteractionProps, state: MapInteractionState) {
 		const nowControlled = MapInteractionController.isControlled(props);
 		const wasControlled =
 			state.lastKnownValueFromProps &&
@@ -492,7 +475,7 @@ class MapInteractionController extends Component {
 		}
 	}
 
-	static isControlled(props) {
+	static isControlled(props: Partial<MapInteractionProps>) {
 		// Similar to React's <input /> API, setting a value declares
 		// that you want to control this component.
 		return props.value !== undefined;
@@ -519,7 +502,7 @@ class MapInteractionController extends Component {
 				onChange={value => {
 					controlled ? onChange(value) : this.setState({ value });
 				}}
-				value={value}
+				value={value!}
 				{...this.innerProps()}>
 				{children}
 			</MapInteractionControlled>
