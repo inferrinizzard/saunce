@@ -82,13 +82,19 @@ const App: React.FC<LocationContext> = ({ location }) => {
 			const nextActive = decodeURI(next.search).slice(1).replace(/[_]/g, ' ') as SauceName;
 			setActive(nextActive);
 			if (nextActive)
-				setTransform(prev => ({
-					...prev,
-					translation: {
-						x: -(pos[nextActive].x * CardBlockSize.x * prev.scale),
-						y: -(pos[nextActive].y * CardBlockSize.y * prev.scale),
-					},
-				}));
+				setTransform(prev => {
+					const targetPos = {
+						x: clamp(minBounds.xMin, -(pos[nextActive].x * CardBlockSize.x * prev.scale), 0),
+						y: clamp(minBounds.yMin, -(pos[nextActive].y * CardBlockSize.y * prev.scale), 0),
+					};
+					const animDuration =
+						((targetPos.x - prev.translation.x) ** 2 + (targetPos.y - prev.translation.y) ** 2) **
+							0.5 *
+						(1.5 +
+							(1 - (prev.scale - scaleParams.min) / (scaleParams.max - scaleParams.min)) * 0.5);
+					window.requestAnimationFrame(stepPos(prev.translation, targetPos, animDuration));
+					return prev;
+				});
 		});
 	}, []);
 
@@ -96,6 +102,20 @@ const App: React.FC<LocationContext> = ({ location }) => {
 		xMin: -(24 + 1) * CardBlockSize.x,
 		yMin: -(11 + 1) * CardBlockSize.y,
 	});
+
+	const stepPos = (initial: Pos, final: Pos, dur = 2000, start = 0) => (time: number) => {
+		if (!start) start = time;
+		const elapsed = time - start;
+
+		setTransform(prev => ({
+			scale: prev.scale,
+			translation: {
+				x: initial.x + ((final.x - initial.x) * elapsed) / dur,
+				y: initial.y + ((final.y - initial.y) * elapsed) / dur,
+			},
+		}));
+		if (elapsed < dur) window.requestAnimationFrame(stepPos(initial, final, dur, start));
+	};
 
 	const stepScale = (initial: number, final: number, dur = 2000, start = 0) => (time: number) => {
 		if (!start) start = time;
