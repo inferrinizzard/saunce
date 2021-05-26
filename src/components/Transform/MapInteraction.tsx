@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 
 import { clamp, distance, midpoint, touchPt, touchDistance } from './geometry';
 import makePassiveEventOption from './makePassiveEventOption';
+export { clamp, distance, midpoint, touchPt, touchDistance };
 
 // The amount that a value of a dimension will change given a new scale
-const coordChange = (coordinate: number, scaleRatio: number) => {
+export const coordChange = (coordinate: number, scaleRatio: number) => {
 	return scaleRatio * coordinate - coordinate;
 };
 

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect } from 'react';
 
-// import { MapInteractionCSS as TransformComponent } from 'react-map-interaction';
 import { MapInteractionCSS as TransformComponent } from '../components/Transform';
+import { clamp, coordChange } from '../components/Transform/MapInteraction';
 import { LocationContext, globalHistory, navigate } from '@reach/router';
 
 import styled, { ThemeProvider } from 'styled-components';
@@ -97,11 +97,33 @@ const App: React.FC<LocationContext> = ({ location }) => {
 		yMin: -(11 + 1) * CardBlockSize.y,
 	});
 
-	const updateScale = (step: number) =>
-		setTransform({
-			...transform,
-			scale: Math.max(Math.min(transform.scale + step, scaleParams.max), scaleParams.min),
-		});
+	const stepScale = (initial: number, final: number, dur = 2000, start = 0) => (time: number) => {
+		if (!start) start = time;
+		const elapsed = time - start;
+
+		const newScale = initial + ((final - initial) * elapsed) / dur;
+		const center = {
+			x: window.innerWidth / 2 - transform.translation.x,
+			y: window.innerHeight / 2 - transform.translation.y,
+		};
+		const focalPtDelta = {
+			x: coordChange(center.x, newScale / initial),
+			y: coordChange(center.y, newScale / initial),
+		};
+		const newTranslation = {
+			x: transform.translation.x - focalPtDelta.x,
+			y: transform.translation.y - focalPtDelta.y,
+		};
+
+		setTransform({ scale: newScale, translation: newTranslation });
+		if (elapsed < dur) window.requestAnimationFrame(stepScale(initial, final, dur, start));
+	};
+
+	const updateScale = (step: number) => {
+		const initialScale = transform.scale;
+		const finalScale = clamp(scaleParams.min, initialScale + step, scaleParams.max);
+		window.requestAnimationFrame(stepScale(initialScale, finalScale, 300));
+	};
 
 	useEffect(
 		() =>
@@ -130,7 +152,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 							yMax: (CardBlockSize.y / 5) * transform.scale,
 							...minBounds,
 						}}
-						onChange={(e: typeof transform) => setTransform(e)}>
+						onChange={setTransform}>
 						<Main transform={transform} />
 					</TransformComponent>
 				</ThemeProvider>
