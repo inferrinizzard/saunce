@@ -26,81 +26,123 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.ingredient-wine:before {
-	content: '\e90c';
-}
-.ingredient-butter:before {
-	content: '\e900';
-}
-.ingredient-carrot:before {
-	content: '\e901';
-}
-.ingredient-celery:before {
-	content: '\e902';
-}
-.ingredient-cheese:before {
-	content: '\e903';
-}
-.ingredient-chicken:before {
-	content: '\e904';
-}
-.ingredient-chili:before {
-	content: '\e905';
-}
-.ingredient-chives:before {
-	content: '\e906';
-}
-.ingredient-crème:before {
-	content: '\e907';
-}
-.ingredient-egg:before {
-	content: '\e908';
-}
-.ingredient-fish:before {
-	content: '\e909';
-}
-.ingredient-flour:before {
-	content: '\e90a';
-}
-.ingredient-garlic:before {
-	content: '\e90b';
-}
-.ingredient-lemon:before {
-	content: '\e90d';
-}
-.ingredient-meat:before {
-	content: '\e90e';
-}
-.ingredient-milk:before {
-	content: '\e90f';
-}
-.ingredient-missing:before {
-	content: '\e910';
-}
-.ingredient-mushroom:before {
-	content: '\e911';
-}
-.ingredient-oil:before {
+.ingredient-truffle:before,
+.ingredient-truffe:before {
 	content: '\e912';
 }
-.ingredient-onion:before {
+.ingredient-capsicum:before,
+.ingredient-poivron:before {
+	content: '\e91a';
+}
+.ingredient-herbs:before,
+.ingredient-herbes:before {
+	content: '\e91b';
+}
+.ingredient-oil:before,
+.ingredient-huile:before {
+	content: '\e91c';
+}
+.ingredient-pickle:before,
+.ingredient-cornichon:before {
+	content: '\e91d';
+}
+.ingredient-butter:before,
+.ingredient-beurre:before {
+	content: '\e900';
+}
+.ingredient-carrot:before,
+.ingredient-carotte:before {
+	content: '\e901';
+}
+.ingredient-celery:before,
+.ingredient-céleri:before {
+	content: '\e902';
+}
+.ingredient-cheese:before,
+.ingredient-fromage:before {
+	content: '\e903';
+}
+.ingredient-chicken:before,
+.ingredient-poulet:before {
+	content: '\e904';
+}
+.ingredient-chili:before,
+.ingredient-piment:before {
+	content: '\e905';
+}
+.ingredient-chives:before,
+.ingredient-ciboulette:before {
+	content: '\e906';
+}
+.ingredient-crème:before,
+.ingredient-cream:before {
+	content: '\e907';
+}
+.ingredient-egg:before,
+.ingredient-œuf:before {
+	content: '\e908';
+}
+.ingredient-fish:before,
+.ingredient-poisson:before {
+	content: '\e909';
+}
+.ingredient-flour:before,
+.ingredient-farine:before {
+	content: '\e90a';
+}
+.ingredient-garlic:before,
+.ingredient-ail:before {
+	content: '\e90b';
+}
+.ingredient-wine:before,
+.ingredient-vin:before {
+	content: '\e90c';
+}
+.ingredient-lemon:before,
+.ingredient-citron:before {
+	content: '\e90d';
+}
+.ingredient-meat:before,
+.ingredient-viande:before {
+	content: '\e90e';
+}
+.ingredient-milk:before,
+.ingredient-lait:before {
+	content: '\e90f';
+}
+.ingredient-missing:before,
+.ingredient-absent:before {
+	content: '\e910';
+}
+.ingredient-mushroom:before,
+.ingredient-champignon:before {
+	content: '\e911';
+}
+.ingredient-onion:before,
+.ingredient-oignon:before {
 	content: '\e913';
 }
-.ingredient-pepper:before {
+.ingredient-pepper:before,
+.ingredient-poivre:before {
 	content: '\e914';
 }
-.ingredient-salt:before {
+.ingredient-salt:before,
+.ingredient-sel:before {
 	content: '\e915';
 }
-.ingredient-shrimp:before {
+.ingredient-shrimp:before,
+.ingredient-crevette:before {
 	content: '\e916';
 }
-.ingredient-spice:before {
+.ingredient-spice:before,
+.ingredient-épice:before {
 	content: '\e917';
 }
-.ingredient-stock:before {
+.ingredient-stock:before,
+.ingredient-fond:before {
 	content: '\e918';
 }
-.ingredient-tomato:before {
+.ingredient-tomato:before,
+.ingredient-tomate:before {
 	content: '\e919';
 }
