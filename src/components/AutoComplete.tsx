@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-import Search from '@bit/mui-org.material-ui-icons.search-rounded';
+import Search from '../svg/mui/SearchRounded';
 
 import { Raised, RaisedButton } from './Overlay';
 import { nav, deaccent } from '../scripts/util';
@@ -65,9 +65,9 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
 	const enterPress = (e: React.KeyboardEvent<Element>) => e.key === 'Enter' && runSearch(_search);
 
 	useEffect(() => {
-		document.addEventListener('keydown', (enterPress as unknown) as EventListener, false);
+		document.addEventListener('keydown', enterPress as unknown as EventListener, false);
 		return () =>
-			document.removeEventListener('keydown', (enterPress as unknown) as EventListener, false);
+			document.removeEventListener('keydown', enterPress as unknown as EventListener, false);
 	}, []);
 
 	return (
@@ -112,7 +112,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
 				shadow={false}
 				position="relative"
 				style={{ display: 'inline-flex', cursor: 'pointer' }}>
-				<Search />
+				<Search height="2rem" width="2rem" />
 			</RaisedButton>
 		</Raised>
 	);

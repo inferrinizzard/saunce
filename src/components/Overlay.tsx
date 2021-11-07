@@ -3,9 +3,9 @@ import { navigate, useLocation } from '@reach/router';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import Plus from '@bit/mui-org.material-ui-icons.add-rounded';
-import Minus from '@bit/mui-org.material-ui-icons.remove-rounded';
-import Cross from '@bit/mui-org.material-ui-icons.close-rounded';
+import Plus from '../svg/mui/AddRounded';
+import Minus from '../svg/mui/RemoveRounded';
+import Cross from '../svg/mui/CloseRounded';
 
 import { LangContext } from '../pages/App';
 import AutoComplete from './AutoComplete';
@@ -135,13 +135,13 @@ const Overlay: React.FC<OverlayProps> = ({ updateScale, active }) => {
 					as="button"
 					onClick={() => updateScale(+0.1)}
 					style={{ right: '12rem', top: '2rem', cursor: 'zoom-in' }}>
-					<Plus />
+					<Plus height="2rem" width="2rem" />
 				</RaisedButton>
 				<RaisedButton
 					as="button"
 					onClick={() => updateScale(-0.1)}
 					style={{ right: '8rem', top: '2rem', cursor: 'zoom-out' }}>
-					<Minus />
+					<Minus height="2rem" width="2rem" />
 				</RaisedButton>
 				<Raised
 					as="button"
@@ -170,7 +170,7 @@ const Overlay: React.FC<OverlayProps> = ({ updateScale, active }) => {
 						animate="open"
 						exit="closed"
 						variants={exitButtonAnim}>
-						<Cross />
+						<Cross height="2rem" width="2rem" />
 					</RaisedButton>
 				)}
 			</AnimatePresence>
