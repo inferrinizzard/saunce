@@ -1,8 +1,8 @@
 {
 	"devDependencies": {
-		"@types/reach__router": "^1.3.6",
-		"@types/react": "^17.0.0",
-		"@types/styled-components": "^5.1.7",
+		"@types/reach__router": "^1.3.9",
+		"@types/react": "^17.0.34",
+		"@types/styled-components": "^5.1.15",
 		"pre-commit": "^1.2.2"
 	},
 	"dependencies": {
@@ -11,15 +11,15 @@
 		"@bit/mui-org.material-ui-icons.remove-rounded": "^3.9.2",
 		"@bit/mui-org.material-ui-icons.search-rounded": "^3.9.2",
 		"@bit/mui-org.material-ui.tooltip": "^4.9.10",
-		"framer-motion": "^3.6.1",
-		"gatsby": "^2.29.1",
-		"gatsby-plugin-manifest": "^2.10.0",
-		"polished": "^4.1.0",
-		"react": "^17.0.1",
-		"react-dom": "^17.0.1",
-		"react-map-interaction": "^2.0.0",
-		"styled-components": "^5.2.1",
-		"typescript": "^4.1.3"
+		"framer-motion": "^5.2.1",
+		"gatsby": "^4.1.0",
+		"gatsby-plugin-manifest": "^4.1.0",
+		"polished": "^4.1.3",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-map-interaction": "^2.1.0",
+		"styled-components": "^5.3.3",
+		"typescript": "^4.4.4"
 	},
 	"name": "saunce",
 	"version": "0.0.1",
