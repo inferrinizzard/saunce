@@ -24,3 +24,17 @@
 - redo arrows (also update their start / dest relative to card centre)
 - update virtualisation strategy
 - animate arrows ?
+
+## Issues
+
+removed the following bit components as they no longer work with MUI v5
+
+- "@bit/mui-org.material-ui-icons.add-rounded": "^3.9.2",
+- "@bit/mui-org.material-ui-icons.close-rounded": "^3.9.2",
+- "@bit/mui-org.material-ui-icons.remove-rounded": "^3.9.2",
+- "@bit/mui-org.material-ui-icons.search-rounded": "^3.9.2",
+- "@bit/mui-org.material-ui.tooltip": "^4.9.10",
+
+Current Fix:
+
+- using SVG links for icons
