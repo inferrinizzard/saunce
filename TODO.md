@@ -38,3 +38,4 @@ removed the following bit components as they no longer work with MUI v5
 Current Fix:
 
 - using SVG files as ReactComponents with svgr for icons
+- using react-tooltip for tooltips

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Tooltip from '@bit/mui-org.material-ui.tooltip';
+import ReactTooltip from 'react-tooltip';
 
 import { list as ingredientsList } from '../data/ingredients.json';
 // type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType[number];
@@ -22,8 +22,9 @@ const IngredientIcon = styled.span<{ colour: string; size: number; pad: number }
 
 const Ingredient: React.FC<IngredientProps> = ({ name, lang, colour, count }) => {
 	return (
-		<Tooltip title={name[0].toUpperCase() + name.slice(1)} placement="bottom">
+		<>
 			<IngredientIcon
+				data-tip={name[0].toUpperCase() + name.slice(1)}
 				className={`ingredient-${
 					ingredientsList.includes(name) ? name : lang === 'en' ? 'missing' : 'absent'
 				}`}
@@ -31,7 +32,8 @@ const Ingredient: React.FC<IngredientProps> = ({ name, lang, colour, count }) =>
 				size={45 + +(count > 6 && -count + 6) * 2}
 				pad={5 + +(count > 5 && -count + 5)}
 			/>
-		</Tooltip>
+			<ReactTooltip place="bottom" effect="solid" />
+		</>
 	);
 };
 
