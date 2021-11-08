@@ -103,41 +103,45 @@ const App: React.FC<LocationContext> = ({ location }) => {
 		yMin: -(11 + 1) * CardBlockSize.y,
 	});
 
-	const stepPos = (initial: Pos, final: Pos, dur = 2000, start = 0) => (time: number) => {
-		if (!start) start = time;
-		const elapsed = time - start;
+	const stepPos =
+		(initial: Pos, final: Pos, dur = 2000, start = 0) =>
+		(time: number) => {
+			if (!start) start = time;
+			const elapsed = time - start;
 
-		setTransform(prev => ({
-			scale: prev.scale,
-			translation: {
-				x: initial.x + ((final.x - initial.x) * elapsed) / dur,
-				y: initial.y + ((final.y - initial.y) * elapsed) / dur,
-			},
-		}));
-		if (elapsed < dur) window.requestAnimationFrame(stepPos(initial, final, dur, start));
-	};
-
-	const stepScale = (initial: number, final: number, dur = 2000, start = 0) => (time: number) => {
-		if (!start) start = time;
-		const elapsed = time - start;
-
-		const newScale = initial + ((final - initial) * elapsed) / dur;
-		const center = {
-			x: window.innerWidth / 2 - transform.translation.x,
-			y: window.innerHeight / 2 - transform.translation.y,
-		};
-		const focalPtDelta = {
-			x: coordChange(center.x, newScale / initial),
-			y: coordChange(center.y, newScale / initial),
-		};
-		const newTranslation = {
-			x: transform.translation.x - focalPtDelta.x,
-			y: transform.translation.y - focalPtDelta.y,
+			setTransform(prev => ({
+				scale: prev.scale,
+				translation: {
+					x: initial.x + ((final.x - initial.x) * elapsed) / dur,
+					y: initial.y + ((final.y - initial.y) * elapsed) / dur,
+				},
+			}));
+			if (elapsed < dur) window.requestAnimationFrame(stepPos(initial, final, dur, start));
 		};
 
-		setTransform({ scale: newScale, translation: newTranslation });
-		if (elapsed < dur) window.requestAnimationFrame(stepScale(initial, final, dur, start));
-	};
+	const stepScale =
+		(initial: number, final: number, dur = 2000, start = 0) =>
+		(time: number) => {
+			if (!start) start = time;
+			const elapsed = time - start;
+
+			const newScale = initial + ((final - initial) * elapsed) / dur;
+			const center = {
+				x: window.innerWidth / 2 - transform.translation.x,
+				y: window.innerHeight / 2 - transform.translation.y,
+			};
+			const focalPtDelta = {
+				x: coordChange(center.x, newScale / initial),
+				y: coordChange(center.y, newScale / initial),
+			};
+			const newTranslation = {
+				x: transform.translation.x - focalPtDelta.x,
+				y: transform.translation.y - focalPtDelta.y,
+			};
+
+			setTransform({ scale: newScale, translation: newTranslation });
+			if (elapsed < dur) window.requestAnimationFrame(stepScale(initial, final, dur, start));
+		};
 
 	const updateScale = (step: number) => {
 		const initialScale = transform.scale;

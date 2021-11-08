@@ -14,15 +14,15 @@ import CreditsPanel from './CreditsPanel';
 
 // * styled components
 export const Raised = styled.div.attrs(
-	(p: { position: string; minWidth: string; shadow?: boolean }) => ({
+	(p: { position: string; $minWidth: string; $shadow?: boolean }) => ({
 		position: p.position || 'absolute',
-		minWidth: p.minWidth || '3rem',
-		shadow: p.shadow ?? true,
+		$minWidth: p.$minWidth || '3rem',
+		$shadow: p.$shadow ?? true,
 	})
 )`
 	position: ${p => p.position};
 	min-height: 3rem;
-	min-width: ${p => p.minWidth};
+	min-width: ${p => p.$minWidth};
 
 	display: flex;
 	align-items: center;
@@ -33,7 +33,7 @@ export const Raised = styled.div.attrs(
 	border: none;
 	border-color: ${p => p.theme.activeColour};
 	border-radius: 0.75rem;
-	${p => (p.shadow ? `box-shadow: 0.125rem 0.25rem 0.5rem ${p.theme.activeColour};` : undefined)}
+	${p => (p.$shadow ? `box-shadow: 0.125rem 0.25rem 0.5rem ${p.theme.activeColour};` : undefined)}
 `;
 
 export const RaisedButton = styled(Raised)`
@@ -135,13 +135,13 @@ const Overlay: React.FC<OverlayProps> = ({ updateScale, active }) => {
 					as="button"
 					onClick={() => updateScale(+0.1)}
 					style={{ right: '12rem', top: '2rem', cursor: 'zoom-in' }}>
-					<Plus height="2rem" width="2rem" />
+					<Plus height="2rem" width="2rem" style={{ outline: 'none' }} />
 				</RaisedButton>
 				<RaisedButton
 					as="button"
 					onClick={() => updateScale(-0.1)}
 					style={{ right: '8rem', top: '2rem', cursor: 'zoom-out' }}>
-					<Minus height="2rem" width="2rem" />
+					<Minus height="2rem" width="2rem" style={{ outline: 'none' }} />
 				</RaisedButton>
 				<Raised
 					as="button"
@@ -170,7 +170,7 @@ const Overlay: React.FC<OverlayProps> = ({ updateScale, active }) => {
 						animate="open"
 						exit="closed"
 						variants={exitButtonAnim}>
-						<Cross height="2rem" width="2rem" />
+						<Cross height="2rem" width="2rem" style={{ outline: 'none' }} />
 					</RaisedButton>
 				)}
 			</AnimatePresence>

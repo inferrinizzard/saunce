@@ -76,11 +76,11 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
 				className="search-bar"
 				as={motion.input}
 				placeholder={lang === 'en' ? 'Search for Sauces!' : 'Chercher pour Sauces!'}
-				minWidth="0"
-				shadow={false}
 				position="relative"
 				onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.currentTarget.value)}
 				value={display}
+				$shadow={false}
+				$minWidth="0"
 				style={{ display: 'inline-block', fontFamily: 'Courgette', fontSize: '1.5rem' }}
 				initial="closed"
 				animate={search === SEARCHOFF ? 'closed' : 'open'}
@@ -109,10 +109,10 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
 			<RaisedButton
 				as="button"
 				onClick={() => search && (search === SEARCHOFF ? setSearch('') : runSearch(_search))}
-				shadow={false}
 				position="relative"
+				$shadow={false}
 				style={{ display: 'inline-flex', cursor: 'pointer' }}>
-				<Search height="2rem" width="2rem" />
+				<Search height="2rem" width="2rem" style={{ outline: 'none' }} />
 			</RaisedButton>
 		</Raised>
 	);
