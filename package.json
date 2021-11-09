@@ -21,8 +21,8 @@
 		"styled-components": "^5.2.1",
 		"typescript": "^4.1.3"
 	},
-	"name": "saunce",
-	"version": "0.0.1",
+	"name": "french-sauces",
+	"version": "0.1.0",
 	"main": "index.js",
 	"repository": "https://github.com/inferrinizzard/saunce.git",
 	"author": "inferrinizzard <inferrinizzard@gmail.com>",
