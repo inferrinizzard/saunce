@@ -2,6 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import type { translate as TranslateFunction } from '../types/translate.types';
+import { setCORS, translate as browserTranslate } from 'google-translate-api-browser';
+const translate = setCORS('https://inferrinizzard-cors.herokuapp.com/') as (
+	...params: Parameters<typeof browserTranslate>
+) => ReturnType<TranslateFunction>;
+
 import { nav } from '../scripts/util';
 import SaucesEn from '../data/sauces.en.json';
 import SaucesFr from '../data/sauces.fr.json';
@@ -94,7 +100,27 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
 
 	const sauces: SauceList = lang === 'fr' ? SaucesFr : SaucesEn;
 
-	// useEffect(() => import('').then(() => setData({})), []);
+	useEffect(() => {
+		if (active)
+			if (lang === 'fr')
+				setData({
+					recipe:
+						recipes[(active as unknown) as keyof typeof recipes]?.recette ?? sauces[active].nom,
+					links: ['Liens ici'],
+				});
+			else {
+				setData({
+					recipe: 'Translating Recipe...',
+					links: ['Links here'],
+				});
+				translate(
+					recipes[(active as unknown) as keyof typeof recipes]?.recette ?? sauces[active].nom,
+					{ from: 'fr', to: 'en' }
+				)
+					.then(recipe => setData({ recipe: recipe.text, links: ['Links here'] }))
+					.catch(() => setData({ recipe: 'Translation unavailable', links: [] }));
+			}
+	}, [active, lang]);
 	const mères = Object.entries(filles).reduce(
 		(a, [k, v]) => (v.includes(active) ? ([...a, k] as SauceName[]) : a),
 		[] as SauceName[]
@@ -140,14 +166,9 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
 							<ActiveCard as={motion.div} variants={fadeLeft}>
 								<h2>{lang === 'fr' ? 'Recette' : 'Recipe'}</h2>
 								<hr />
-								{(
-									recipes[(active as unknown) as keyof typeof recipes]?.recette ??
-									sauces[active].nom
-								)
-									.split('\n')
-									.map((line, i) => (
-										<h4 key={`${active}-recipes-${i}`}>{line}</h4>
-									))}
+								{data.recipe.split('\n').map((line, i) => (
+									<h4 key={`${active}-recipes-${i}`}>{line}</h4>
+								))}
 							</ActiveCard>
 							<motion.div variants={fadeLeft}>
 								{!!mères.length && (
