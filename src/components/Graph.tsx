@@ -8,11 +8,11 @@ import { LangContext } from '../pages/App';
 import Card, { CardBlockSize } from './Card';
 import Arrow from './Arrow';
 
-export interface MainProps {
+export interface GraphProps {
 	transform: { scale: number; translation: Pos };
 }
 
-const Main: React.FC<MainProps> = ({ transform }) => {
+const Graph: React.FC<GraphProps> = ({ transform }) => {
 	const [cards, setCards] = useState({} as { [k: string]: Card });
 	const linkCard = (sauce: Card) =>
 		!cards[sauce.name] && setCards(prev => ({ ...prev, [sauce.name]: sauce }));
@@ -71,4 +71,4 @@ const Main: React.FC<MainProps> = ({ transform }) => {
 	);
 };
 
-export default Main;
+export default Graph;

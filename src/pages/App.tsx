@@ -8,7 +8,7 @@ import '../css/main.css';
 import '../css/ingredients.css';
 
 import Overlay from '../components/Overlay';
-import Main from '../components/Main';
+import Graph from '../components/Graph';
 import { CardBlockSize } from '../components/Card';
 
 import pos from '../data/pos.json';
@@ -130,7 +130,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 							...minBounds,
 						}}
 						onChange={(e: typeof transform) => setTransform(e)}>
-						<Main transform={transform} />
+						<Graph transform={transform} />
 					</TransformComponent>
 				</ThemeProvider>
 			</LangContext.Provider>
