@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import type { translate as TranslateFunction } from '../types/translate.types';
 import { setCORS, translate as browserTranslate } from 'google-translate-api-browser';
-const translate = setCORS('http://cors-anywhere.herokuapp.com/') as (
+const translate = setCORS('https://inferrinizzard-cors.herokuapp.com/') as (
 	...params: Parameters<typeof browserTranslate>
 ) => ReturnType<TranslateFunction>;
 
@@ -120,7 +120,7 @@ const ActivePanel: React.FC<ActivePanelProps> = ({ active }) => {
 					.then(recipe => setData({ recipe: recipe.text, links: ['Links here'] }))
 					.catch(() => setData({ recipe: 'Translation unavailable', links: [] }));
 			}
-	}, [active]);
+	}, [active, lang]);
 	const mères = Object.entries(filles).reduce(
 		(a, [k, v]) => (v.includes(active) ? ([...a, k] as SauceName[]) : a),
 		[] as SauceName[]
