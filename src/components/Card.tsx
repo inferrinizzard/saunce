@@ -1,29 +1,22 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import { lighten } from 'polished'; // I kinda don't want you
 
-import styled from '../util/Styled';
-import { lighten } from 'polished';
+import { nav } from '../scripts/util';
+import SaucesEn from '../data/sauces.en.json';
+import SaucesFr from '../data/sauces.fr.json';
 
-import Sauces from '../data/sauce.json';
-type Sauce = { nom: string; desc: string; ingredients: string[]; temp?: string };
 import Ingredient from './Ingredient';
 
-let ceilToNearestFive = (x: number) => Math.ceil(x / 5) * 5;
-let smoothPhi = (x: number) => ceilToNearestFive(x * 1.618) - x * 1.618;
 const phi = 1.618;
-const cardSize = 250;
+export const cardSize = 250;
+let ceilToNearestFive = (x: number) => Math.ceil(x / 5) * 5;
+let smoothPhi = (x: number) => ceilToNearestFive(x * phi) - x * phi;
 
-// margin border
-// &::before {
-// 	content: '';
-// 	position: absolute;
-// 	${p => Object.entries(p.margins).reduce((a, [k, v]) => `${a}\n${k}: -${v}px;`, '')}
-// 	border: 1px solid #000;
-// }
-
-let StyledCard = styled('section')({
+const StyledCard = styled('section').attrs({
 	size: cardSize,
 	shadowSize: 20,
-})`
+})<{ pos: Pos; accentColour: string; textScale?: number }>`
 	display: block;
 	position: fixed;
 	left: ${p => p.pos.x.toString()}px;
@@ -31,69 +24,118 @@ let StyledCard = styled('section')({
 	height: ${p => p.size}px;
 	width: ${p => phi * p.size}px;
 	background-color: ${p => p.theme.offwhite};
-	
+
 	border-radius: ${p => smoothPhi(p.size) + 20}px;
-	box-shadow: ${p => smoothPhi(p.size) + 20}px ${p => smoothPhi(p.size) + 20}px 0px 0px ${p =>
-	lighten(0.05, p.accentColour)};
-	
+	box-shadow: ${p => smoothPhi(p.size) + 20}px ${p => smoothPhi(p.size) + 20}px 0px 0px
+		${p => lighten(0.05, p.accentColour)};
+
+	&:hover {
+		border: 2px solid ${p => p.accentColour};
+	}
+
 	div {
+		cursor: pointer;
 		padding: 20px;
-		
+
 		h1 {
 			margin: 0;
-			font-size: ${p => p.size / 6}px;
+			font-size: ${p => p.size / 7.1}px;
+
+			&.aux {
+				padding-left: 7.5px;
+				padding-right: 7.5px;
+				font-size: ${p => p.size / 8}px;
+			}
 		}
 
 		h2 {
 			margin: 0;
-			font-size: ${p => p.size / 10}px;
+			font-size: ${p => p.size / (p.textScale ?? 11)}px;
 		}
 
 		hr {
 			height: 3px;
 			border: none;
-			background-color: ${'accentColour'}
+			background-color: ${'accentColour'};
 		}
 	}
 `;
 
-export type Pos = { x: number; y: number };
-export type SauceName = keyof typeof Sauces;
-export const CardBlockSize: Pos = { x: 525, y: 400 };
+export const CardBlockSize: Pos = { x: ceilToNearestFive(cardSize * phi) + 120, y: cardSize + 150 }; // 525, 400
 
 export interface CardProps {
 	name: SauceName;
+	lang: string;
 	pos: Pos; // top-left corner of card, pre-margin
-	attach: (sauce: Card) => void;
+	attach: (sauce: Card, force?: boolean) => void;
+	colour?: string;
 }
 
 export interface CardState {
 	pos: Pos;
+	sauce: Sauce;
 }
 
 class Card extends React.Component<CardProps, CardState> {
-	state = { pos: { x: this.props.pos.x * CardBlockSize.x, y: this.props.pos.y * CardBlockSize.y } };
+	state = {
+		pos: { x: this.props.pos.x * CardBlockSize.x, y: this.props.pos.y * CardBlockSize.y },
+		sauce: (this.props.lang === 'en' ? SaucesEn : SaucesFr)[this.props.name] as Sauce,
+	};
 
 	name = this.props.name;
-	sauce = Sauces[this.props.name] as Sauce;
-	colour = 'salmon';
+	colour = this.props.colour ?? 'salmon';
 	in = { x: this.state.pos.x + (cardSize * phi) / 2, y: this.state.pos.y };
 	out = { x: this.state.pos.x + (cardSize * phi) / 2, y: this.state.pos.y + cardSize };
 
 	componentDidMount() {
 		this.props.attach(this);
 	}
+	static getDerivedStateFromProps = ({ lang, name }: CardProps) => ({
+		sauce: (lang === 'en' ? SaucesEn : SaucesFr)[name] as Sauce,
+	});
 
 	render() {
 		return (
-			<StyledCard accentColour={this.colour} pos={this.state.pos}>
+			<StyledCard
+				accentColour={this.colour}
+				pos={this.state.pos}
+				textScale={
+					(this.state.sauce.desc.length > 90 &&
+						12 + Math.floor((this.state.sauce.desc.length - 90) / 25)) ||
+					undefined
+				}
+				onClick={e => !e.defaultPrevented && nav(this.name)}>
 				<div className="card-content">
-					<h1>{this.sauce.nom}</h1>
+					{(split =>
+						split ? (
+							(([a, b]) => [a, split, b])(this.state.sauce.nom.split(split)).map((frag, i) => (
+								<h1
+									key={`${this.name} ${frag}`}
+									className={i == 1 ? 'aux' : ''}
+									style={{ display: 'inline-block' }}>
+									{i == 1 ? ` ${frag} ` : frag}
+								</h1>
+							))
+						) : (
+							<h1>{this.state.sauce.nom}</h1>
+						))(this.state.sauce.nom.match(/\s(à(\sla)?|aux?|de)\s/g)?.pop())}
 					<hr />
-					<h2>{this.sauce.desc}</h2>
-					{this.sauce.ingredients.map((i, k) => (
-						<Ingredient key={k} name={i} colour={this.colour} />
-					))}
+					<h2>
+						{this.state.sauce.desc.length > 90
+							? this.state.sauce.desc.replace(/\s\+/g, ',')
+							: this.state.sauce.desc}
+					</h2>
+					<div style={{ position: 'absolute', bottom: 0, left: 0 }}>
+						{this.state.sauce.ingredients.map((i, k) => (
+							<Ingredient
+								key={k}
+								name={i}
+								lang={this.props.lang}
+								colour={this.colour}
+								count={this.state.sauce.ingredients.length}
+							/>
+						))}
+					</div>
 				</div>
 			</StyledCard>
 		);
