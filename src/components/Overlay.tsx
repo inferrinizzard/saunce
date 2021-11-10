@@ -115,7 +115,7 @@ const Overlay: React.FC<OverlayProps> = ({ updateScale, active }) => {
 
 	const [credits, setCredits] = useState(false);
 	const exit = (_lang?: string) =>
-		credits ? setCredits(false) : (navigate(`/#${_lang ?? lang}`), setSearch(''));
+		credits ? setCredits(false) : (navigate(`/graph#${_lang ?? lang}`), setSearch(''));
 
 	useEffect(() => {
 		const keyListener = (e: KeyboardEvent) =>
@@ -145,7 +145,7 @@ const Overlay: React.FC<OverlayProps> = ({ updateScale, active }) => {
 				</RaisedButton>
 				<Raised
 					as="button"
-					onClick={() => navigate(`/?${active}#${lang === 'en' ? 'fr' : 'en'}`)}
+					onClick={() => navigate(`/graph?${active}#${lang === 'en' ? 'fr' : 'en'}`)}
 					style={{ right: '2rem', top: '2rem', cursor: 'pointer' }}>
 					<LangButton
 						src="https://raw.githubusercontent.com/lipis/flag-icon-css/master/flags/4x3/us.svg"

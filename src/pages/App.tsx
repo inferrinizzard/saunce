@@ -40,7 +40,7 @@ let AppHead = styled.div`
 
 export const LangContext = React.createContext('en');
 
-const App: React.FC<LocationContext> = ({ location }) => {
+const App = (page: string): React.FC<LocationContext> => ({ location }) => {
 	const [lang, setLang] = useState(location.hash.slice(1));
 	const [active, setActive] = useState(
 		decodeURI(location.search).slice(1).replace(/[_]/g, ' ') as SauceName
@@ -49,7 +49,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 	useEffect(() => {
 		const local = localStorage.getItem('saunce-lang') ?? 'en';
 		if (!lang) {
-			navigate(`/${location.search}#${local}`);
+			navigate(`/${page}${location.search}#${local}`);
 			setLang(local);
 		}
 		return globalHistory.listen(({ location: next }) => {
@@ -66,7 +66,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 		<AppHead>
 			<LangContext.Provider value={lang}>
 				<ThemeProvider theme={active ? theme(active) : theme()}>
-					<GraphTransform active={active} />
+					{{ graph: <GraphTransform active={active} /> }[page]}
 				</ThemeProvider>
 			</LangContext.Provider>
 		</AppHead>
