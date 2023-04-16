@@ -5,6 +5,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import '../css/main.css';
 import '../css/ingredients.css';
 
+import Home from '../components/Home';
 import GraphTransform from '../components/GraphTransform';
 import filles from '../data/filles.json';
 
@@ -66,7 +67,12 @@ const App = (page: string): React.FC<LocationContext> => ({ location }) => {
 		<AppHead>
 			<LangContext.Provider value={lang}>
 				<ThemeProvider theme={active ? theme(active) : theme()}>
-					{{ graph: <GraphTransform active={active} /> }[page]}
+					{
+						{
+							home: <Home />,
+							graph: <GraphTransform active={active} />,
+						}[page]
+					}
 				</ThemeProvider>
 			</LangContext.Provider>
 		</AppHead>
