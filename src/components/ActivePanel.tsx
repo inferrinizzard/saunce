@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import type { translate as TranslateFunction } from '../types/translate.types';
 import { setCORS, translate as browserTranslate } from 'google-translate-api-browser';
-const translate = setCORS('https://inferrinizzard-cors.herokuapp.com/') as (
+const translate = setCORS(process.env.CORS_URL ?? '') as (
 	...params: Parameters<typeof browserTranslate>
 ) => ReturnType<TranslateFunction>;
 
