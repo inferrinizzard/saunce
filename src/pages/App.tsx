@@ -1,6 +1,7 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { MapInteractionCSS as TransformComponent } from 'react-map-interaction';
+import { MapInteractionCSS as TransformComponent } from '../components/Transform';
+import { clamp, coordChange } from '../components/Transform/MapInteraction';
 import { LocationContext, globalHistory, navigate } from '@reach/router';
 
 import styled, { ThemeProvider } from 'styled-components';
@@ -81,13 +82,19 @@ const App: React.FC<LocationContext> = ({ location }) => {
 			const nextActive = decodeURI(next.search).slice(1).replace(/[_]/g, ' ') as SauceName;
 			setActive(nextActive);
 			if (nextActive)
-				setTransform(prev => ({
-					...prev,
-					translation: {
-						x: -(pos[nextActive].x * CardBlockSize.x * prev.scale),
-						y: -(pos[nextActive].y * CardBlockSize.y * prev.scale),
-					},
-				}));
+				setTransform(prev => {
+					const targetPos = {
+						x: clamp(minBounds.xMin, -(pos[nextActive].x * CardBlockSize.x * prev.scale), 0),
+						y: clamp(minBounds.yMin, -(pos[nextActive].y * CardBlockSize.y * prev.scale), 0),
+					};
+					const animDuration =
+						((targetPos.x - prev.translation.x) ** 2 + (targetPos.y - prev.translation.y) ** 2) **
+							0.5 *
+						(1.5 +
+							(1 - (prev.scale - scaleParams.min) / (scaleParams.max - scaleParams.min)) * 0.5);
+					window.requestAnimationFrame(stepPos(prev.translation, targetPos, animDuration));
+					return prev;
+				});
 		});
 	}, []);
 
@@ -96,11 +103,47 @@ const App: React.FC<LocationContext> = ({ location }) => {
 		yMin: -(11 + 1) * CardBlockSize.y,
 	});
 
-	const updateScale = (step: number) =>
-		setTransform({
-			...transform,
-			scale: Math.max(Math.min(transform.scale + step, scaleParams.max), scaleParams.min),
-		});
+	const stepPos = (initial: Pos, final: Pos, dur = 2000, start = 0) => (time: number) => {
+		if (!start) start = time;
+		const elapsed = time - start;
+
+		setTransform(prev => ({
+			scale: prev.scale,
+			translation: {
+				x: initial.x + ((final.x - initial.x) * elapsed) / dur,
+				y: initial.y + ((final.y - initial.y) * elapsed) / dur,
+			},
+		}));
+		if (elapsed < dur) window.requestAnimationFrame(stepPos(initial, final, dur, start));
+	};
+
+	const stepScale = (initial: number, final: number, dur = 2000, start = 0) => (time: number) => {
+		if (!start) start = time;
+		const elapsed = time - start;
+
+		const newScale = initial + ((final - initial) * elapsed) / dur;
+		const center = {
+			x: window.innerWidth / 2 - transform.translation.x,
+			y: window.innerHeight / 2 - transform.translation.y,
+		};
+		const focalPtDelta = {
+			x: coordChange(center.x, newScale / initial),
+			y: coordChange(center.y, newScale / initial),
+		};
+		const newTranslation = {
+			x: transform.translation.x - focalPtDelta.x,
+			y: transform.translation.y - focalPtDelta.y,
+		};
+
+		setTransform({ scale: newScale, translation: newTranslation });
+		if (elapsed < dur) window.requestAnimationFrame(stepScale(initial, final, dur, start));
+	};
+
+	const updateScale = (step: number) => {
+		const initialScale = transform.scale;
+		const finalScale = clamp(scaleParams.min, initialScale + step, scaleParams.max);
+		window.requestAnimationFrame(stepScale(initialScale, finalScale, 300));
+	};
 
 	useEffect(
 		() =>
@@ -129,7 +172,7 @@ const App: React.FC<LocationContext> = ({ location }) => {
 							yMax: (CardBlockSize.y / 5) * transform.scale,
 							...minBounds,
 						}}
-						onChange={(e: typeof transform) => setTransform(e)}>
+						onChange={setTransform}>
 						<Main transform={transform} />
 					</TransformComponent>
 				</ThemeProvider>
